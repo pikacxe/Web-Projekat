@@ -5,20 +5,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Projekat.Models;
+using Projekat.DataBase;
 
 namespace Projekat.Controllers
 {
     public class UsersController : ApiController
     {
-        public IEnumerable<User> Get()
+        UserDAO userDAO = new UserDAO();
+
+        [HttpGet]
+        public ICollection<User> GetAllUsers()
         {
-            return Users.UsersList.Values.ToList();
+            return DB.UsersList.Values;
         }
-        public User Get(int id)
+        [HttpGet]
+        public User GetByUsername(string username)
         {
-            return Users.FindById(id);
+            return userDAO.FindByUsername(username);
         }
-        public IHttpActionResult Post(User user)
+        [HttpPost]
+        public IHttpActionResult AddUser(User user)
         {
             if (user == null)
             {
@@ -32,37 +38,38 @@ namespace Projekat.Controllers
             {
                 return BadRequest();
             }
-            return Ok(Users.AddUser(user));
+            return Ok(userDAO.AddUser(user));
         }
-        public IHttpActionResult Put(User user)
+        [HttpPut]
+        public IHttpActionResult UpdateUser(User user)
         {
             if (user == null)
             {
-                return BadRequest();
+                return BadRequest("Provided data is invalid");
             }
-            if (user.FirstName == null || user.FirstName.Length == 0)
+            if (string.IsNullOrWhiteSpace(user.FirstName))
             {
-                return BadRequest();
+                return BadRequest("Firstname is required");
             }
-            if (user.LastName == null || user.LastName.Length == 0)
+            if (string.IsNullOrWhiteSpace(user.LastName))
             {
-                return BadRequest();
+                return BadRequest("Lastname is required");
             }
-            if (Users.FindById(user.ID) == null)
+            if (userDAO.FindByUsername(user.Username) == null)
             {
-                return BadRequest();
+                return BadRequest("Selected user does not exist");
             }
-            return Ok(Users.UpdateUser(user));
+            return Ok(userDAO.UpdateUser(user));
         }
-        public IHttpActionResult Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult DeleteUser(string username)
         {
-            User user = Users.FindById(id);
+            User user = userDAO.FindByUsername(username);
             if (user == null)
             {
                 return NotFound();
             }
-            Users.RemoveUser(user.Username);
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(userDAO.RemoveUser(user.Username));
         }
     }
 }

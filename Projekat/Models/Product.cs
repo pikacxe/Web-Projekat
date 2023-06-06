@@ -15,7 +15,8 @@ namespace Projekat.Models
         public string Image { get; set; }
         public string PublishDate { get; set; }
         public string City { get; set; }
-        public List<Review> Review { get; set; }
+        public List<int> Review { get; set; }
         public bool isAvailable { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

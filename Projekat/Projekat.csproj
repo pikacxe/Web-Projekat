@@ -80,16 +80,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DataBaseFiles\Admins.txt" />
+    <Content Include="App_Data\DataBaseFiles\Orders.txt" />
+    <Content Include="App_Data\DataBaseFiles\Products.txt" />
+    <Content Include="App_Data\DataBaseFiles\Reviews.txt" />
+    <Content Include="App_Data\DataBaseFiles\Users.txt" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DataBase\DAO\ProductDAO.cs" />
+    <Compile Include="DataBase\DAO\ReviewDAO.cs" />
+    <Compile Include="DataBase\DAO\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="DataBase\DB.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
@@ -106,7 +114,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="DataBase\DTO\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -123,7 +131,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60471</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60471/</IISUrl>
+          <IISUrl>http://localhost:60471</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -8,7 +8,6 @@ namespace Projekat.Models
     public enum UserType { Buyer, Seller, Administrator}
     public class User
     {
-        public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -17,9 +16,9 @@ namespace Projekat.Models
         public string Email { get; set; }
         public string DateOfBirth { get; set; }
         public UserType Role { get; set; }
-        public List<Order> Orders { get; set; }
-        public List<Product> Favourites { get; set; }
-        public List<Product> PublishedProducts { get; set; }
-
+        public List<int> Orders { get; set; }
+        public List<int> Favourites { get; set; }
+        public List<int> PublishedProducts { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

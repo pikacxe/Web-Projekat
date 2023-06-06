@@ -9,9 +9,9 @@ namespace Projekat.Models
     public class Order
     {
         public int ID { get; set; }
-        public Product Product { get; set; }
+        public int Product { get; set; }
         public int Amount { get; set; }
-        public User Buyer { get; set; }
+        public int Buyer { get; set; }
         public DateTime OrderDate { get; set; }
         public ProductStatus Status { get; set; }
 

@@ -5,9 +5,10 @@ using System.Web;
 
 namespace Projekat.Models
 {
-    public enum UserType { Buyer, Seller, Administrator}
+    public enum UserType { Buyer, Seller, Administrator }
     public class User
     {
+        public int ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }

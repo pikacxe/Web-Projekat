@@ -7,13 +7,39 @@ Korišćene tehnologije:
  - jQuery
 
 
- ## Planirani "Road Map" - (podložno izmenama)
+ # Planirani "Road Map" - (podložno izmenama)
+ 
+ ## Web API
+
  ---
 
  - [X] Create data models
- - [X] Create user controller with needed routes
- - [ ] Create review controller with needed routes
- - [ ] Create product controller with needed routes
- - [ ] Implement RBAC for Buyer/Seller/Admin
- - [ ] Implement session control
+     - [ ] Add predefined JSON data for testing
+         - [X] Admin data
+         - [X] User data
+         - [ ] Product data
+         - [ ] Order data
+         - [ ] Review data
+ - [X] Create user controller with CRUD routes
+     - [X] Add password hashing (Possible migration to client side)
+     - [ ] Implement session control
+         - [ ] Add token auth (custom token / jwt)
+     - [ ] Implement RBAC for Buyer/Seller/Admin
+     - [ ] Add auth to admin routes
+ - [X] Create review controller with CRUD routes
+ - [X] Create product controller with CRUD routes
+     - [ ] Implement faourites per user
+ - [X] Create order controller with CRUD routes
+ - [ ] Create image upload controller
+     - [ ] On upload should return image path
+
+ - [ ] Add data saving route?
+
+ ---
+ ## User Interface
+ - [X] Create empty project with index.html
+ - [ ] Create folder structure (css, js, html)
+ - [ ] Add landing page 
+     - [ ] Signup / Login 
+     - [ ] Customize page per user base
  

@@ -6,48 +6,43 @@ using Projekat.Models;
 
 namespace Projekat.Repository.DAO
 {
-    public class ProductDAO
+    public class ProductDAO : IDao<Product>
     {
-        public Product FindById(int id)
+        public Product FindByID(int id)
         {
-            if (!DB.ProductsList.ContainsKey(id) || DB.ProductsList[id].isDeleted)
-            {
-                return null;
-            }
-            return DB.ProductsList[id];
+            return DB.ProductsList.Find(x => x.ID == id && !x.isDeleted);
         }
 
-        public Product AddProduct(Product product)
+        public Product Add(Product product)
         {
             product.ID = DB.GenerateId();
-            DB.ProductsList.Add(product.ID, product);
+            DB.ProductsList.Add(product);
             return product;
         }
 
-        public Product UpdateProduct(Product product)
+        public Product Update(Product product)
         {
-            if (!DB.ProductsList.ContainsKey(product.ID) || DB.ProductsList[product.ID].isDeleted)
+            Product old = FindByID(product.ID);
+            if (old != default(Product))
             {
-                return null;
+                old.Title = product.Title;
+                old.Price = product.Price;
+                old.Amount = product.Amount;
+                old.Description = product.Description;
+                old.Image = product.Image;
+                old.PublishDate = product.PublishDate;
+                old.City = product.City;
+                old.isAvailable = product.isAvailable;
             }
-            Product old = DB.ProductsList[product.ID];
-            old.Title = product.Title;
-            old.Description = product.Description;
-            old.City = product.City;
-            old.Amout = product.Amout;
-            old.Price = product.Price;
-            old.Image = product.Image;
-            old.PublishDate = product.PublishDate;
-            return product;
+            return old;
         }
-        public Product DeleteProduct(int id)
+        public Product Delete(int id)
         {
-            if (!DB.ProductsList.ContainsKey(id) || DB.ProductsList[id].isDeleted)
+            Product deleted = FindByID(id);
+            if(deleted != default(Product))
             {
-                return null;
+                deleted.isDeleted = true;
             }
-            Product deleted = DB.ProductsList[id];
-            deleted.isDeleted = true;
             return deleted;
         }
     }

@@ -5,7 +5,11 @@ using System.Web;
 
 namespace Projekat.Models
 {
-    public enum UserType { Buyer, Seller, Administrator }
+    public enum UserType { 
+        Buyer = 0, 
+        Seller = 1, 
+        Administrator = 2 
+    }
     public class User
     {
         public int ID { get; set; }
@@ -21,5 +25,6 @@ namespace Projekat.Models
         public List<int> Favourites { get; set; }
         public List<int> PublishedProducts { get; set; }
         public bool isDeleted { get; set; }
+        public string JwtToken { get; set; }
     }
 }

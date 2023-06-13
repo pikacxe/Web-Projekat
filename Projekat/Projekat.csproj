@@ -80,17 +80,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DataBaseFiles\Admins.txt" />
-    <Content Include="App_Data\DataBaseFiles\Orders.txt" />
-    <Content Include="App_Data\DataBaseFiles\Products.txt" />
-    <Content Include="App_Data\DataBaseFiles\Reviews.txt" />
-    <Content Include="App_Data\DataBaseFiles\Users.txt" />
+    <Content Include="App_Data\logs.txt" />
+    <None Include="App_Data\RepositoryFiles\Admins.json" />
+    <None Include="App_Data\RepositoryFiles\Orders.json" />
+    <None Include="App_Data\RepositoryFiles\Products.json" />
+    <None Include="App_Data\RepositoryFiles\Reviews.json" />
+    <None Include="App_Data\RepositoryFiles\Users.json" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Repository\DAO\OrderDAO.cs" />
     <Compile Include="Repository\DAO\ProductDAO.cs" />
     <Compile Include="Repository\DAO\ReviewDAO.cs" />
     <Compile Include="Repository\DAO\UserDAO.cs" />

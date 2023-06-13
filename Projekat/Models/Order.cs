@@ -14,6 +14,6 @@ namespace Projekat.Models
         public int Buyer { get; set; }
         public DateTime OrderDate { get; set; }
         public ProductStatus Status { get; set; }
-
+        public bool isDeleted { get; set; }
     }
 }

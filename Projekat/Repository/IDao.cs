@@ -12,7 +12,6 @@ namespace Projekat.Repository
         T Add(T item);
         T Delete(int id);
         T Update(T updated);
-        bool Exists(int id);
 
     }
 }

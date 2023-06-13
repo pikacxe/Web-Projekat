@@ -6,48 +6,41 @@ using Projekat.Models;
 
 namespace Projekat.Repository.DAO
 {
-    public class ReviewDAO
+    public class ReviewDAO : IDao<Review>
     {
-        public Review FindById(int id)
+        public Review FindByID(int id)
         {
-            if (!DB.ReviewsList.ContainsKey(id) && DB.ReviewsList[id].isDeleted)
-            {
-                return null;
-            }
-            return DB.ReviewsList[id];
+            return DB.ReviewsList.Find(x => x.ID == id && !x.isDeleted);
         }
 
-        public Review AddReview(Review product)
+        public Review Add(Review product)
         {
             product.ID = DB.GenerateId();
-            DB.ReviewsList.Add(product.ID, product);
+            DB.ReviewsList.Add(product);
             return product;
         }
 
-        public Review UpdateReview(Review review)
+        public Review Update(Review review)
         {
-            if (!DB.ReviewsList.ContainsKey(review.ID) && DB.ReviewsList[review.ID].isDeleted)
+            Review old = FindByID(review.ID);
+            if (old != default(Review))
             {
-                return null;
+                old.Product = review.Product;
+                old.Reviewer = review.Reviewer;
+                old.Title = review.Title;
+                old.Content = review.Content;
+                old.Image = review.Image;
             }
-            Review old = DB.ReviewsList[review.ID];
-            old.Title = review.Title;
-            old.Product = review.Product;
-            old.Reviewer = review.Reviewer;
-            old.Content = review.Content;
-            old.Image = review.Image;
             return review;
         }
-        public Review DeleteReview(int id)
+        public Review Delete(int id)
         {
-            if (!DB.ReviewsList.ContainsKey(id) && DB.ReviewsList[id].isDeleted)
+            Review deleted = FindByID(id);
+            if (deleted != default(Review))
             {
-                return null;
+                deleted.isDeleted = true;
             }
-            Review deleted = DB.ReviewsList[id];
-            deleted.isDeleted = true;
             return deleted;
         }
-
     }
 }

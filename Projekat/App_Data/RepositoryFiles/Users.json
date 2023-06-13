@@ -1,0 +1,47 @@
+﻿[
+  {
+    "ID": 1620861801,
+    "Username": "Test",
+    "Password": "sifra123",
+    "FirstName": "Ime1",
+    "LastName": "Prezime1",
+    "Gender": "m",
+    "Email": "example@example.com",
+    "DateOfBirth": "01/08/2001",
+    "Role": 0,
+    "Orders": null,
+    "Favourites": null,
+    "PublishedProducts": null,
+    "isDeleted": false
+  },
+  {
+    "ID": 1123861801,
+    "Username": "Test",
+    "Password": "sifra123",
+    "FirstName": "Ime1",
+    "LastName": "Prezime1",
+    "Gender": "m",
+    "Email": "example@example.com",
+    "DateOfBirth": "01/08/2001",
+    "Role": 0,
+    "Orders": null,
+    "Favourites": null,
+    "PublishedProducts": null,
+    "isDeleted": false
+  },
+  {
+    "ID": 1629456801,
+    "Username": "Test",
+    "Password": "sifra123",
+    "FirstName": "Ime1",
+    "LastName": "Prezime1",
+    "Gender": "m",
+    "Email": "example@example.com",
+    "DateOfBirth": "01/08/2001",
+    "Role": 0,
+    "Orders": null,
+    "Favourites": null,
+    "PublishedProducts": null,
+    "isDeleted": false
+  }
+]

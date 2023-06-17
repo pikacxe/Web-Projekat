@@ -1,1 +1,20 @@
-﻿
+﻿[
+  {
+    "ID": 1609367861,
+    "Product": 1,
+    "Amount": 100,
+    "Buyer": 123,
+    "OrderDate": "2023-06-17T18:52:56.1083543+02:00",
+    "Status": 0,
+    "isDeleted": false
+  },
+  {
+    "ID": 1633457861,
+    "Product": 1,
+    "Amount": 100,
+    "Buyer": 123,
+    "OrderDate": "2023-06-17T18:52:56.1083543+02:00",
+    "Status": 0,
+    "isDeleted": false
+  }
+]

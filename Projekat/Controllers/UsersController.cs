@@ -17,6 +17,7 @@ namespace Projekat.Controllers
         IDao<User> userDAO = new UserDAO();
 
         [HttpGet]
+        [ActionName("all")]
         public IEnumerable<User> GetAllUsers()
         {
             return DB.UsersList.Where(x=> !x.isDeleted);
@@ -47,13 +48,17 @@ namespace Projekat.Controllers
         }
 
         [HttpPost]
-        [ActionName("signup")]
+        [ActionName("register")]
         public IHttpActionResult SignUp(User user)
         {
             string message = ValidateUser(user);
             if(message != string.Empty)
             {
                 return BadRequest(message);
+            }
+            if(user.Role != UserType.Buyer)
+            {
+                return BadRequest("Invalid user role. Please select Buyer!");
             }
             user.Password = HashPassword(user.Password);
             User added = userDAO.Add(user);

@@ -17,7 +17,7 @@ namespace Projekat
         {
             Load_Data();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-        
+
         }
         private void Load_Data()
         {
@@ -25,32 +25,32 @@ namespace Projekat
             {
                 // Read admins from file
                 string adminPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Admins.json");
-                string adminsJson = File.ReadAllText(adminPath);
-                DB.AdminsList = JsonConvert.DeserializeObject<List<User>>(adminsJson);
-
-                // Read users from file
-                string userPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Users.json");
-                string usersJson = File.ReadAllText(userPath);
-                DB.UsersList = JsonConvert.DeserializeObject<List<User>>(usersJson);
-                if(DB.UsersList == null)
+                DB.UsersList = ReadFromFile<User>(adminPath);
+                if (DB.UsersList == null)
                 {
                     DB.UsersList = new List<User>();
                 }
 
+                // Read users from file
+                string userPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Users.json");
+                var users = ReadFromFile<User>(userPath);
+                if (users != null)
+                {
+                    DB.UsersList.AddRange(users);
+                }
+
                 // Read products from file
                 string productPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Products.json");
-                string productsJson = File.ReadAllText(productPath);
-                DB.ProductsList = JsonConvert.DeserializeObject<List<Product>>(productsJson);
-                if(DB.ProductsList == null)
+                DB.ProductsList = ReadFromFile<Product>(productPath);
+                if (DB.ProductsList == null)
                 {
                     DB.ProductsList = new List<Product>();
                 }
 
                 // Read reviews from file
                 string reviewPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Reviews.json");
-                string reviewsJson = File.ReadAllText(reviewPath);
-                DB.ReviewsList = JsonConvert.DeserializeObject<List<Review>>(reviewsJson);
-                if(DB.ReviewsList == null)
+                DB.ReviewsList = ReadFromFile<Review>(reviewPath);
+                if (DB.ReviewsList == null)
                 {
                     DB.ReviewsList = new List<Review>();
                 }
@@ -58,9 +58,8 @@ namespace Projekat
 
                 // Read orders from file
                 string orderPath = HttpContext.Current.Server.MapPath("~/App_Data/RepositoryFiles/Orders.json");
-                string ordersJson = File.ReadAllText(orderPath);
-                DB.OrdersList = JsonConvert.DeserializeObject<List<Order>>(ordersJson);
-                if(DB.OrdersList == null)
+                DB.OrdersList = ReadFromFile<Order>(orderPath);
+                if (DB.OrdersList == null)
                 {
                     DB.OrdersList = new List<Order>();
                 }
@@ -70,6 +69,12 @@ namespace Projekat
                 string logPath = HttpContext.Current.Server.MapPath("~/App_Data/logs.txt");
                 File.WriteAllText(logPath, ex.Message);
             }
+        }
+
+        private List<T> ReadFromFile<T>(string path)
+        {
+            string json = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<List<T>>(json);
         }
     }
 }

@@ -1,0 +1,129 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    display: grid;
+    grid-template-areas: 'menu header' 'menu content' 'menu footer';
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 5% 90% 5%;
+    background-color: lightgray;
+    height: 90vh;
+    padding: 1.25rem;
+}
+
+.grid-header{
+    grid-area:header;
+}
+.grid-menu {
+    grid-area: menu;
+}
+.grid-content {
+    grid-area: content;
+}
+.grid-footer {
+    grid-area: footer;
+}
+
+footer {
+    height: 20px;
+    background-color: aliceblue;
+    align-content: center;
+    text-align: center;
+    padding: 0.5rem;
+    vertical-align: middle;
+    border-top: 1px solid black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+nav {
+    display: inline-flex;
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    background-color: darkslategray;
+    box-shadow: rgba(0,0,0,0.45) 0px 5px 5px 0px;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.logo {
+    width: 100px;
+    font-size: 1.25rem;
+    padding-top:1rem;
+    font-weight: 800;
+    margin-left: 40px;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.nav-links li {
+    margin-right: 40px;
+    margin-top: 10px;
+    display: inline-block;
+    align-content: center;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.nav-links a {
+    padding: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 30px;
+    text-decoration: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+    a:hover {
+        color: white;
+        background-color: darkcyan;
+        transition: background-color ease-in 0.2s;
+    }
+
+.link-list {
+    list-style: none;
+    display: inline-block;
+}
+
+.items-container {
+    display:inline-block;
+    justify-content:space-evenly;
+    padding: 1.25rem;
+    margin:1rem 0 1rem 0;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    box-shadow: rgba(0,0,0,0.3) 0px 0px 5px 5px inset;
+}
+
+.product{
+    display:inline-block;
+    width:250px;
+    height:250px;
+    margin:1.25rem;
+    font-size:1.25rem;
+    text-align:center;
+    align-content:center;
+    background-color:azure;
+    border: 1px solid black;
+    border-radius:1rem;
+}
+
+.product:hover{
+    background-color:darkturquoise;
+}
+
+.product img{
+    width:100px;
+    height:100px;
+    border-radius:1rem;
+}
+

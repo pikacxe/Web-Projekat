@@ -3,17 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <title>Welcome to EShop</title>
-    <link href="CSS/template.css" type="text/css" rel="stylesheet"/>
+    <link href="CSS/template.css" type="text/css" rel="stylesheet" />
+    <link href="CSS/index.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <nav>
         <div class="logo">
-            <h1>EShop</h1>
+            <a href="index.html">EShop</a>
         </div>
         <div class="nav-links">
             <ul class="link-list">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="/Pages/login.html">Login</a></li>
+                <li><a href="/Pages/register.html">Register</a></li>
             </ul>
         </div>
     </nav>
@@ -22,7 +23,25 @@
             <h1>Proizvodi</h1>
         </div>
         <div class="grid-menu">
-            <span>Test123</span>
+            <div>
+                <label>Search</label>
+                <input id="name" type="search" placeholder="Search..." class="textbox" />
+            </div>
+            <br />
+            <div>
+                <label>Price (min - max)</label>
+                <br />
+                <input id="min" type="number" value="0"/>
+                ➖
+                <input id="max" type="number" value="99999"/>
+            </div>
+            <br />
+            <div>
+                <label>City</label>
+                <input id="city" type="search" placeholder="City..." class="textbox" />
+            </div>
+            <br />
+            <button id="searchBtn" class="green-btn">Search</button>
         </div>
         <div class="items-container grid-content">
         </div>

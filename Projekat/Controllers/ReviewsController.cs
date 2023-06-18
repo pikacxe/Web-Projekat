@@ -20,6 +20,26 @@ namespace Projekat.Controllers
         {
             return DB.ReviewsList.Where(x => !x.isDeleted);
         }
+
+        [HttpGet]
+        [ActionName("find")]
+        public IHttpActionResult GetById(int id)
+        {
+            Review found = reviewDAO.FindByID(id);
+            if (found == default(Review))
+            {
+                return NotFound();
+            }
+            return Ok(found);
+        }
+
+        [HttpGet]
+        [ActionName("for")]
+        public IEnumerable<Review> FindForProductId(int id)
+        {
+            return DB.ReviewsList.Where(x => x.Product == id && !x.isDeleted);
+        }
+
         [HttpPost]
         [ActionName("add")]
         public IHttpActionResult AddReview(Review review)

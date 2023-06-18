@@ -20,6 +20,19 @@ namespace Projekat.Controllers
         {
             return DB.ProductsList.Where(x => !x.isDeleted);
         }
+
+        [HttpGet]
+        [ActionName("find")]
+        public IHttpActionResult GetById(int id)
+        {
+            Product found = productDAO.FindByID(id);
+            if(found == default(Product))
+            {
+                return NotFound();
+            }
+            return Ok(found);
+        }
+
         [HttpPost]
         [ActionName("add")]
         public IHttpActionResult AddProduct(Product product)

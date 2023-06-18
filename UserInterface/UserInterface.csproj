@@ -67,10 +67,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\details.css" />
+    <Content Include="CSS\index.css" />
+    <Content Include="CSS\login.css" />
+    <Content Include="CSS\register.css" />
     <Content Include="CSS\template.css" />
+    <Content Include="JS\details.js" />
+    <Content Include="JS\login.js" />
+    <Content Include="JS\register.js" />
+    <Content Include="Pages\details.html" />
     <Content Include="index.html" />
     <Content Include="JS\index.js" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Pages\login.html" />
+    <Content Include="Pages\register.html" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />

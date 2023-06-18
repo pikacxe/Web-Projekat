@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>EShop - Register</title>
+    <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/register.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="../index.html">EShop</a>
+        </div>
+        <div class="nav-links">
+            <ul class="link-list">
+                <li><a href="../Pages/login.html">Login</a></li>
+                <li><a href="../Pages/register.html">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <form class="signup-form">
+            <h1 style="text-align:center">Sign up</h1>
+            <label for="usrname">Username</label>
+            <input id="usrname" type="text" name="Username" placeholder="Username..." class="textbox" />
+            <label for="pswd">Password</label>
+            <input id="pswd" type="password" name="Password" placeholder="*********" class="textbox" />
+            <label for="fname">Firstname</label>
+            <input id="fname" type="text" name="Firstname" placeholder="Firstname..." class="textbox" />
+            <label for="lname">Lastname</label>
+            <input id="lname" type="text" name="Lastname" placeholder="Lastname..." class="textbox" />
+            <label for="email">Email</label>
+            <input id="email" type="email" name="Email" placeholder="example@example.com" class="textbox" />
+            <label>Gender</label>
+            <div>
+                <input id="rbtn-m" type="radio" name="Gender" value="m" checked />
+                <label for="rbtn-m">Male</label><br />
+                <input id="rbtn-f" type="radio" name="Gender" value="f" />
+                <label for="rbtn-f">Female</label>
+            </div>
+            <br />
+            <label>Date of birth</label>
+            <input type="date" name="DateOfBirth" class="textbox" />
+            <br />
+            <button id="signupBtn" class="green-btn">Sign up</button>
+        </form>
+    </main>
+    <footer>
+        © 2023 Ilija Spasic PR 34/2020
+    </footer>
+
+    <script src="../Scripts/jquery-3.7.0.js"></script>
+    <script src="../JS/register.js"></script>
+</body>
+
+
+</html>

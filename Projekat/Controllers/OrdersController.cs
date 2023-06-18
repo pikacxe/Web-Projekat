@@ -20,6 +20,19 @@ namespace Projekat.Controllers
         {
             return DB.OrdersList.Where(x => !x.isDeleted);
         }
+
+        [HttpGet]
+        [ActionName("find")]
+        public IHttpActionResult GetById(int id)
+        {
+            Order found = orderDAO.FindByID(id);
+            if (found == default(Order))
+            {
+                return NotFound();
+            }
+            return Ok(found);
+        }
+
         [HttpPost]
         [ActionName("add")]
         public IHttpActionResult AddOrder(Order order)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Projekat.Models
 {
@@ -25,6 +22,6 @@ namespace Projekat.Models
         public List<int> Favourites { get; set; }
         public List<int> PublishedProducts { get; set; }
         public bool isDeleted { get; set; }
-        public string JwtToken { get; set; }
+        public string JwtToken { get; set; } = string.Empty;
     }
 }

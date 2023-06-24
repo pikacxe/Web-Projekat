@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Projekat.Models
+﻿namespace Projekat.Models
 {
     public class Review
     {

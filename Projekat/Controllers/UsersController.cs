@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
+using Microsoft.IdentityModel.Tokens;
 using Projekat.Models;
 using Projekat.Repository;
 
 namespace Projekat.Controllers
 {
+    [Authorize]
     public class UsersController : ApiController
     {
-        string _salt = "sada/d.,asda;s,dl";
+        string _salt = ConfigurationManager.AppSettings["PasswdSalt"];
+        string jwt_secret = ConfigurationManager.AppSettings["JwtSecretKey"];
         IDao<User> userDAO = new UserDAO();
 
         [HttpGet]
         [ActionName("all")]
         public IEnumerable<User> GetAllUsers()
         {
-            return DB.UsersList.Where(x=> !x.isDeleted);
+            return DB.UsersList.Where(x => !x.isDeleted);
         }
 
         [HttpGet]
@@ -30,39 +34,46 @@ namespace Projekat.Controllers
             return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("login")]
-        public IHttpActionResult LogIn(string username, string password)
+        [AllowAnonymous]
+        public IHttpActionResult LogIn([FromBody] LoginRequest req)
         {
-            User current = GetByUsername(username);
+            User current = GetByUsername(req.username);
             if (current == default(User))
             {
-                return BadRequest("Username is not in use.");
+                return BadRequest("No account associated with provided username!");
             }
-            if (VerifyPassword(password, current.Password))
+            if(current.JwtToken != string.Empty)
+            {
+                return BadRequest("User already logged in!");
+            }
+            if (VerifyPassword(req.password, current.Password))
             {
                 // TODO: Implement token auth 
-                return Ok("User logged in");
+                current.JwtToken = GenerateJwtToken(current);
+                return Ok(current.JwtToken);
             }
             return BadRequest("Invalid password!");
         }
 
         [HttpPost]
         [ActionName("register")]
+        [AllowAnonymous]
         public IHttpActionResult SignUp(User user)
         {
             string message = ValidateUser(user);
-            if(message != string.Empty)
+            if (message != string.Empty)
             {
                 return BadRequest(message);
             }
-            if(user.Role != UserType.Buyer)
+            if (user.Role != UserType.Buyer)
             {
                 return BadRequest("Invalid user role. Please select Buyer!");
             }
             user.Password = HashPassword(user.Password);
             User added = userDAO.Add(user);
-            if(added == default(User))
+            if (added == default(User))
             {
                 return BadRequest("Username already exists!");
             }
@@ -117,7 +128,7 @@ namespace Projekat.Controllers
             }
             if (string.IsNullOrWhiteSpace(user.Password))
             {
-                message+= "Password is required! ";
+                message += "Password is required! ";
             }
             if (string.IsNullOrWhiteSpace(user.Email))
             {
@@ -146,5 +157,33 @@ namespace Projekat.Controllers
             string hashedInput = HashPassword(password);
             return string.Equals(hashedInput, hashedPassword);
         }
+
+        public string GenerateJwtToken(User user)
+        {
+            DateTime issuedAt = DateTime.UtcNow;
+            DateTime expires = DateTime.UtcNow.AddMinutes(10);
+
+          
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            });
+            DateTime now = DateTime.UtcNow;
+            var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(jwt_secret));
+            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+
+
+            var token =
+                (JwtSecurityToken)
+                    tokenHandler.CreateJwtSecurityToken(issuer: "http://192.168.0.13:60471", audience: "http://192.168.0.13:60471",
+                        subject: claimsIdentity, notBefore: issuedAt, expires: expires, signingCredentials: signingCredentials);
+            string tokenString = tokenHandler.WriteToken(token);
+
+            return tokenString;
+        }
+
     }
 }

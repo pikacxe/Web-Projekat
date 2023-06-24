@@ -73,6 +73,7 @@
     <Content Include="CSS\register.css" />
     <Content Include="CSS\template.css" />
     <Content Include="JS\details.js" />
+    <Content Include="JS\endpoints.js" />
     <Content Include="JS\login.js" />
     <Content Include="JS\register.js" />
     <Content Include="Pages\details.html" />
@@ -117,7 +118,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51056</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51056/</IISUrl>
+          <IISUrl>http://localhost:8888/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

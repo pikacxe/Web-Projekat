@@ -4,7 +4,7 @@ $(document).ready(() => {
     let ID = new URL(window.location.href).searchParams.get("ID");
     console.log(ID);
     $.ajax({
-        url: "http://localhost:60471/api/products/find/" + ID,
+        url: api + "products/find/" + ID,
         type: "GET",
         dataType: "json",
         success: function (product) {
@@ -35,7 +35,7 @@ $(document).ready(() => {
         }
     });
     $.ajax({
-        url: "http://localhost:60471/api/reviews/for/" + ID,
+        url: api + "reviews/for/" + ID,
         type: "GET",
         dataType: "json",
         success: function (response) {

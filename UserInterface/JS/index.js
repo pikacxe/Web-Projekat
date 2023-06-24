@@ -3,7 +3,7 @@
 $(document).ready(() => {
     $('#searchBtn').click(Search);
     $.ajax({
-        url: "http://localhost:60471/api/products/all",
+        url: api + "products/all",
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -14,7 +14,7 @@ $(document).ready(() => {
         error: function (xhr, status, error) {
 
             // Handle any errors that occur during the AJAX request
-            alert("Error occured while proccesing request: " + error);
+            $("#error").text(xhr.responseText + "|" + status + "|" + error);
             console.error(error);
         }
     });

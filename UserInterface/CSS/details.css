@@ -10,14 +10,14 @@
     height:60%;
     width:100%;
     font-size:1.25rem;
-    font-weight:500;
+    font-weight:600;
     grid-template-areas: 
         'title none'
         'img desc'
         'img date'
-        'img amount'
-        'img price'
         'img city'
+        'img price'
+        'img amount'
         'img buttons';
     grid-template-columns: 60% 40%;
     grid-template-rows: 15% 35% 10% 10% 10% 10% 10%;

@@ -1,5 +1,4 @@
 ﻿let products;
-
 $(document).ready(() => {
     $('#searchBtn').click(Search);
     $.ajax({
@@ -12,8 +11,6 @@ $(document).ready(() => {
 
         },
         error: function (xhr, status, error) {
-
-            // Handle any errors that occur during the AJAX request
             $("#error").text(xhr.responseText + "|" + status + "|" + error);
             console.error(error);
         }
@@ -30,13 +27,13 @@ function populateItems(items) {
         if (product.isAvailable) {
             // Create the HTML elements for each product
             let a = $("<a></a>").addClass("product");
-            a.attr('href', "Pages/details.html?ID=" + product.ID);
-            let title = $("<p></p>").text(product.Title);
-            let image = $("<img>").attr("src", product.Image);
+            a.attr('href', "details.html?ID=" + product.ID);
+            let title = $("<h3></h3>").text(product.Title);
+            let image = $("<img>").attr("src",product.Image);
             let price = $("<p></p>").text(product.Price + "$");
 
             // Append the elements to the container div
-            a.append(title, image, price);
+            a.append(image, title, price);
             div.append(a);
         }
     });

@@ -22,16 +22,22 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [ActionName("all")]
-        public IEnumerable<User> GetAllUsers()
+        [Authorize(Roles = "Administrator")]
+        public IHttpActionResult GetAllUsers()
         {
-            return DB.UsersList.Where(x => !x.isDeleted);
+            return Ok(DB.UsersList.Where(x => !x.isDeleted));
+        }
+        private User GetByUsername(string username)
+        {
+            return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
         }
 
         [HttpGet]
-        [ActionName("username")]
-        public User GetByUsername(string username)
+        [ActionName("current")]
+        public IHttpActionResult GetUsername()
         {
-            return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
+            User current = GetByUsername(User.Identity.Name);
+            return Ok(new { id = current.ID, name = current.Username, role = current.Role.ToString() });
         }
 
         [HttpPost]
@@ -44,17 +50,30 @@ namespace Projekat.Controllers
             {
                 return BadRequest("No account associated with provided username!");
             }
-            if(current.JwtToken != string.Empty)
-            {
-                return BadRequest("User already logged in!");
-            }
             if (VerifyPassword(req.password, current.Password))
             {
-                // TODO: Implement token auth 
-                current.JwtToken = GenerateJwtToken(current);
-                return Ok(current.JwtToken);
+                return Ok(GenerateJwtToken(current));
             }
             return BadRequest("Invalid password!");
+        }
+
+        [HttpPost]
+        [ActionName("add")]
+        [Authorize(Roles = "Administrator")]
+        public IHttpActionResult AddUser(User user)
+        {
+            string message = ValidateUser(user);
+            if (message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            user.Password = HashPassword(user.Password);
+            User added = userDAO.Add(user);
+            if (added == default(User))
+            {
+                return BadRequest("Username already exists!");
+            }
+            return Ok(added);
         }
 
         [HttpPost]
@@ -97,6 +116,7 @@ namespace Projekat.Controllers
         }
         [HttpDelete]
         [ActionName("delete")]
+        [Authorize(Roles = "Administrator")]
         public IHttpActionResult DeleteUser(int id)
         {
             User user = userDAO.FindByID(id);
@@ -161,10 +181,11 @@ namespace Projekat.Controllers
         public string GenerateJwtToken(User user)
         {
             DateTime issuedAt = DateTime.UtcNow;
-            DateTime expires = DateTime.UtcNow.AddMinutes(10);
+            DateTime expires = DateTime.UtcNow.AddMinutes(30);
 
-          
+
             var tokenHandler = new JwtSecurityTokenHandler();
+            var baseAddress = ConfigurationManager.AppSettings["BaseAddress"];
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(new[]
             {
@@ -178,7 +199,7 @@ namespace Projekat.Controllers
 
             var token =
                 (JwtSecurityToken)
-                    tokenHandler.CreateJwtSecurityToken(issuer: "http://192.168.0.13:60471", audience: "http://192.168.0.13:60471",
+                    tokenHandler.CreateJwtSecurityToken(issuer: baseAddress, audience: baseAddress,
                         subject: claimsIdentity, notBefore: issuedAt, expires: expires, signingCredentials: signingCredentials);
             string tokenString = tokenHandler.WriteToken(token);
 

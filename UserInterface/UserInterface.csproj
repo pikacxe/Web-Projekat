@@ -67,21 +67,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\dashboard.css" />
     <Content Include="CSS\details.css" />
+    <Content Include="CSS\favourites.css" />
     <Content Include="CSS\index.css" />
     <Content Include="CSS\login.css" />
+    <Content Include="CSS\orders.css" />
+    <Content Include="CSS\products.css" />
+    <Content Include="CSS\profile.css" />
     <Content Include="CSS\register.css" />
+    <Content Include="CSS\reviews.css" />
     <Content Include="CSS\template.css" />
+    <Content Include="JS\dashboard.js" />
     <Content Include="JS\details.js" />
-    <Content Include="JS\endpoints.js" />
+    <Content Include="JS\common.js" />
+    <Content Include="JS\favourites.js" />
     <Content Include="JS\login.js" />
+    <Content Include="JS\orders.js" />
+    <Content Include="JS\products.js" />
+    <Content Include="JS\profile.js" />
     <Content Include="JS\register.js" />
+    <Content Include="JS\reviews.js" />
+    <Content Include="Pages\dashboard.html" />
     <Content Include="Pages\details.html" />
-    <Content Include="index.html" />
+    <Content Include="Pages\index.html" />
     <Content Include="JS\index.js" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Pages\favourites.html" />
     <Content Include="Pages\login.html" />
+    <Content Include="Pages\orders.html" />
+    <Content Include="Pages\product.html" />
+    <Content Include="Pages\profile.html" />
     <Content Include="Pages\register.html" />
+    <Content Include="Pages\reviews.html" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />

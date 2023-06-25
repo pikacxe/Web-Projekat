@@ -46,20 +46,19 @@ namespace Projekat
             {
                 var now = DateTime.UtcNow;
                 var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(secret));
-
+                var baseAddress = ConfigurationManager.AppSettings["BaseAddress"];
 
                 SecurityToken securityToken;
                 JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
                 TokenValidationParameters validationParameters = new TokenValidationParameters()
                 {
-                    ValidAudience = "http://192.168.0.13:60471",
-                    ValidIssuer = "http://192.168.0.13:60471",
+                    ValidAudience = baseAddress,
+                    ValidIssuer = baseAddress,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     LifetimeValidator = this.LifetimeValidator,
-                    IssuerSigningKey = securityKey
+                    IssuerSigningKey = securityKey,
                 };
-
                 //extract and assign the user of the jwt
                 Thread.CurrentPrincipal = handler.ValidateToken(token, validationParameters, out securityToken);
                 HttpContext.Current.User = handler.ValidateToken(token, validationParameters, out securityToken);

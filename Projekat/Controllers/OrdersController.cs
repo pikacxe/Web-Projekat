@@ -8,15 +8,20 @@ using System.Web.Http;
 
 namespace Projekat.Controllers
 {
+    [Authorize]
     public class OrdersController : ApiController
     {
         IDao<Order> orderDAO = new OrderDAO();
 
         [HttpGet]
         [ActionName("all")]
-        public IEnumerable<Order> GetAllOrders()
+        public IHttpActionResult GetAllOrders()
         {
-            return DB.OrdersList.Where(x => !x.isDeleted);
+            if (!User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
+            return Ok(DB.OrdersList.Where(x => !x.isDeleted));
         }
 
         [HttpGet]
@@ -65,17 +70,26 @@ namespace Projekat.Controllers
         public IHttpActionResult DeleteOrder(int id)
         {
             Order order = orderDAO.FindByID(id);
-            if (order == null)
+            if (order == default(Order))
             {
                 return NotFound();
             }
             return Ok(orderDAO.Delete(order.ID));
         }
 
+        [HttpPut]
+        [ActionName("delivered")]
+        public IHttpActionResult OrderDelivered(int id)
+        {
+            Order order = orderDAO.FindByID(id);
+            order.Status = ProductStatus.COMPLETED;
+            return Ok("Order status updated");
+        }
+
         private string ValidateOrder(Order order)
         {
             string message = string.Empty;
-            if (order == null)
+            if (order == default(Order))
             {
                 message += "Provided data is invalid! ";
             }

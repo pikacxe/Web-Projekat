@@ -9,7 +9,7 @@ using Projekat.Repository;
 
 namespace Projekat
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {

@@ -5,17 +5,27 @@
     <title>EShop - Details</title>
     <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
     <link href="../CSS/details.css" type="text/css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
 <body>
     <nav>
         <div class="logo">
-            <a href="../index.html">EShop</a>
+            <a href="index.html">EShop</a>
         </div>
         <div class="nav-links">
             <ul class="link-list">
-                <li><a href="../Pages/login.html">Login</a></li>
-                <li><a href="../Pages/register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
             </ul>
+            <div class="hide dropdown">
+                <a id="profile-name" href="#"></a>
+                <div class="dropdown-content">
+                    <a id="my-orders">📜 Orders</a>
+                    <a id="my-favourites">🧡 Favourites</a>
+                    <a id="my-reviews">💯 Reviews</a>
+                    <button id="logoutBtn" class="red-btn">Logout ➡️</button>
+                </div>
+            </div>
         </div>
     </nav>
     <main>
@@ -35,7 +45,7 @@
     </footer>
 
     <script src="../Scripts/jquery-3.7.0.js"></script>
-    <script src="../JS/endpoints.js"></script>
+    <script src="../JS/common.js"></script>
     <script src="../JS/details.js"></script>
 </body>
 

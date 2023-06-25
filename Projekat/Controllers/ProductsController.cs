@@ -7,19 +7,22 @@ using System.Web.Http;
 
 namespace Projekat.Controllers
 {
+    [Authorize]
     public class ProductsController : ApiController
     {
         IDao<Product> productDAO = new ProductDAO();
 
         [HttpGet]
         [ActionName("all")]
-        public IEnumerable<Product> GetAllProducts()
+        [AllowAnonymous]
+        public IHttpActionResult GetAllProducts()
         {
-            return DB.ProductsList.Where(x => !x.isDeleted);
+            return Ok(DB.ProductsList.Where(x => !x.isDeleted));
         }
 
         [HttpGet]
         [ActionName("find")]
+        [AllowAnonymous]
         public IHttpActionResult GetById(int id)
         {
             Product found = productDAO.FindByID(id);
@@ -32,6 +35,7 @@ namespace Projekat.Controllers
 
         [HttpPost]
         [ActionName("add")]
+        [Authorize(Roles ="Administrator,Seller")]
         public IHttpActionResult AddProduct(Product product)
         {
             string message = ValidateProduct(product);
@@ -43,6 +47,7 @@ namespace Projekat.Controllers
         }
         [HttpPut]
         [ActionName("update")]
+        [Authorize(Roles = "Administrator,Seller")]
         public IHttpActionResult UpdateProduct(Product product)
         {
             string message = ValidateProduct(product);
@@ -59,6 +64,7 @@ namespace Projekat.Controllers
         }
         [HttpDelete]
         [ActionName("delete")]
+        [Authorize(Roles = "Administrator,Seller")]
         public IHttpActionResult DeleteProduct(int id)
         {
             Product product = productDAO.FindByID(id);
@@ -98,11 +104,11 @@ namespace Projekat.Controllers
             }
             if(product.Price < 0)
             {
-                message += "Price must be greater or equal zero! ";
+                message += "Price must be greater zero! ";
             }
-            if(product.Amount <= 0)
+            if(product.Amount < 0)
             {
-                message += "Amount must be greater than zero! ";
+                message += "Amount must be greater or equal zero! ";
             }
             return message;
         }

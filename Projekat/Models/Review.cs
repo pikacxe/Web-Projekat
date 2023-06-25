@@ -9,5 +9,6 @@
         public string Content { get; set; }
         public string Image { get; set; }
         public bool isDeleted { get; set; }
+        public bool isApproved { get; set; }
     }
 }

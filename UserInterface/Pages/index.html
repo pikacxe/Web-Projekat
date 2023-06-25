@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>Welcome to EShop</title>
-    <link href="CSS/template.css" type="text/css" rel="stylesheet" />
-    <link href="CSS/index.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/index.css" type="text/css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png">
 </head>
 <body>
     <nav>
@@ -13,9 +14,18 @@
         </div>
         <div class="nav-links">
             <ul class="link-list">
-                <li><a href="/Pages/login.html">Login</a></li>
-                <li><a href="/Pages/register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
             </ul>
+            <div class="hide dropdown">
+                <a id="profile-name" href="#"></a>
+                <div class="dropdown-content">
+                    <a id="my-orders">📜 Orders</a>
+                    <a id="my-favourites">🧡 Favourites</a>
+                    <a id="my-reviews">💯 Reviews</a>
+                    <button id="logoutBtn" class="red-btn">Logout ➡️</button>
+                </div>
+            </div>
         </div>
     </nav>
     <main>
@@ -53,9 +63,9 @@
         © 2023 Ilija Spasic PR 34/2020
     </footer>
 
-    <script src="Scripts/jquery-3.7.0.js"></script>
-    <script src="JS/endpoints.js"></script>
-    <script src="JS/index.js"></script>
+    <script src="../Scripts/jquery-3.7.0.js"></script>
+    <script src="../JS/common.js"></script>
+    <script src="../JS/index.js"></script>
 </body>
 
 

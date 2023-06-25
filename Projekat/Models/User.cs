@@ -2,7 +2,7 @@
 
 namespace Projekat.Models
 {
-    public enum UserType { 
+    public enum UserType {
         Buyer = 0, 
         Seller = 1, 
         Administrator = 2 
@@ -22,6 +22,5 @@ namespace Projekat.Models
         public List<int> Favourites { get; set; }
         public List<int> PublishedProducts { get; set; }
         public bool isDeleted { get; set; }
-        public string JwtToken { get; set; } = string.Empty;
     }
 }

@@ -7,15 +7,16 @@ using System.Web.Http;
 
 namespace Projekat.Controllers
 {
+    [Authorize]
     public class ReviewsController : ApiController
     {
         IDao<Review> reviewDAO = new ReviewDAO();
 
         [HttpGet]
         [ActionName("all")]
-        public IEnumerable<Review> GetAllReviews()
+        public IHttpActionResult GetAllReviews()
         {
-            return DB.ReviewsList.Where(x => !x.isDeleted);
+            return Ok(DB.ReviewsList.Where(x => !x.isDeleted));
         }
 
         [HttpGet]

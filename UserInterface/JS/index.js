@@ -5,6 +5,7 @@ $(document).ready(() => {
         url: api + "products/all",
         type: "GET",
         dataType: "json",
+        contentType: "application/json",
         success: function (response) {
             products = response;
             populateItems(products);

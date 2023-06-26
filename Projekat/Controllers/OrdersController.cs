@@ -1,6 +1,7 @@
 ﻿using Projekat.Models;
 using Projekat.Repository;
 using Projekat.Repository.DAO;
+using Projekat.Repository.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Projekat.Controllers
     public class OrdersController : ApiController
     {
         IDao<Order> orderDAO = new OrderDAO();
+        IDao<Product> productDAO = new ProductDAO();
 
         [HttpGet]
         [ActionName("all")]
@@ -36,15 +38,37 @@ namespace Projekat.Controllers
             return Ok(found);
         }
 
+        [HttpGet]
+        [ActionName("for-user")]
+        public IHttpActionResult GetByUser(int id)
+        {
+            return Ok(DB.OrdersList.Where(x=> x.Buyer == id && !x.isDeleted));
+        }
+
         [HttpPost]
         [ActionName("add")]
+        [Authorize(Roles ="Administrator,Buyer")]
         public IHttpActionResult AddOrder(Order order)
         {
+            if(order == default(Order))
+            {
+                return BadRequest("Invalid data!");
+            }
             string message = ValidateOrder(order);
             if (message != string.Empty)
             {
                 return BadRequest(message);
             }
+            Product toBuy = productDAO.FindByID(order.Product);
+            if(toBuy == default(Product))
+            {
+                return NotFound();
+            }
+            if(toBuy.Amount - order.Amount < 0)
+            {
+                return BadRequest("Not enough product is available!");
+            }
+            toBuy.Amount -= order.Amount;
             order.OrderDate = DateTime.Now;
             order.Status = ProductStatus.ACTIVE;
             return Ok(orderDAO.Add(order));

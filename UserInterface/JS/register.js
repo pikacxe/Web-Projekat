@@ -15,7 +15,7 @@ function Signup() {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: function (response) {
-            window.location.href = web + "Pages/login.html";
+            window.location.href = web + "login.html";
         },
         error: function (xhr, status, error) {
 

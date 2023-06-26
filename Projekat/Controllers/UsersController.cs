@@ -37,6 +37,10 @@ namespace Projekat.Controllers
         public IHttpActionResult GetUsername()
         {
             User current = GetByUsername(User.Identity.Name);
+            if(current == default(User))
+            {
+                return NotFound();
+            }
             return Ok(new { id = current.ID, name = current.Username, role = current.Role.ToString() });
         }
 

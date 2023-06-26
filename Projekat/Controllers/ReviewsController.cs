@@ -33,6 +33,7 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [ActionName("for")]
+        [AllowAnonymous]
         public IEnumerable<Review> FindForProductId(int id)
         {
             return DB.ReviewsList.Where(x => x.Product == id && !x.isDeleted);

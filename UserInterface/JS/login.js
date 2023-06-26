@@ -14,7 +14,7 @@ function Login() {
         contentType: "application/json",
         success: function (response) {
             sessionStorage.setItem("jwt_token", response);
-            window.location.href = web + "Pages/index.html";
+            window.location.href = web + "index.html";
         },
         error: function (xrh, status, error) {
             console.log(xrh.responseText);

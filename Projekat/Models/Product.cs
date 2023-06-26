@@ -13,7 +13,11 @@ namespace Projekat.Models
         public string PublishDate { get; set; }
         public string City { get; set; }
         public List<int> Review { get; set; }
-        public bool isAvailable { get; set; }
+        public bool isAvailable { get
+            {
+                return Amount > 0;
+            }
+        }
         public bool isDeleted { get; set; }
     }
 }

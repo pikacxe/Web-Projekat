@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "ID": 1234567801,
     "Product": 1234567801,
@@ -6,7 +6,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567802,
@@ -15,7 +16,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567803,
@@ -24,7 +26,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567804,
@@ -33,7 +36,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567805,
@@ -42,7 +46,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567806,
@@ -51,7 +56,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567807,
@@ -60,7 +66,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567808,
@@ -69,7 +76,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567809,
@@ -78,7 +86,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567810,
@@ -87,7 +96,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567811,
@@ -96,7 +106,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567812,
@@ -105,7 +116,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567813,
@@ -114,7 +126,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567814,
@@ -123,7 +136,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567815,
@@ -132,7 +146,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567816,
@@ -141,7 +156,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567817,
@@ -150,7 +166,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567818,
@@ -159,7 +176,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567819,
@@ -168,7 +186,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567820,
@@ -177,7 +196,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567821,
@@ -186,7 +206,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567822,
@@ -195,7 +216,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567823,
@@ -204,7 +226,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567824,
@@ -213,7 +236,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567825,
@@ -222,7 +246,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567826,
@@ -231,7 +256,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567827,
@@ -240,7 +266,8 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567828,
@@ -249,7 +276,8 @@
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567829,
@@ -258,7 +286,8 @@
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   },
   {
     "ID": 1234567830,
@@ -267,6 +296,7 @@
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
     "Image": "image.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isApproved": false
   }
 ]

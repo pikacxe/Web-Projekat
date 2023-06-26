@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "ID": 1620861801,
     "Username": "Test",
@@ -8,6 +8,36 @@
     "Gender": "m",
     "Email": "example@example.com",
     "DateOfBirth": "01/08/2001",
+    "Role": 0,
+    "Orders": null,
+    "Favourites": null,
+    "PublishedProducts": null,
+    "isDeleted": false
+  },
+  {
+    "ID": 645486641,
+    "Username": "Pikac",
+    "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
+    "FirstName": "Test123",
+    "LastName": "Test123",
+    "Gender": "m",
+    "Email": "example@example.com",
+    "DateOfBirth": null,
+    "Role": 0,
+    "Orders": null,
+    "Favourites": null,
+    "PublishedProducts": null,
+    "isDeleted": false
+  },
+  {
+    "ID": 1650610698,
+    "Username": "Veci",
+    "Password": "/FyLS1/8zDH1dF9jcCj02FSiDIIFvExpw5PfXC5Km3s=",
+    "FirstName": "Veljko",
+    "LastName": "Spasic",
+    "Gender": "m",
+    "Email": "example@gmail.com",
+    "DateOfBirth": null,
     "Role": 0,
     "Orders": null,
     "Favourites": null,

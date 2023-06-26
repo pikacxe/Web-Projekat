@@ -28,7 +28,6 @@ namespace Projekat.Repository.DAO
                 old.Image = product.Image;
                 old.PublishDate = product.PublishDate;
                 old.City = product.City;
-                old.isAvailable = product.isAvailable;
             }
             return old;
         }

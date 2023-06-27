@@ -10,6 +10,10 @@ using System.Web.Http;
 using Microsoft.IdentityModel.Tokens;
 using Projekat.Models;
 using Projekat.Repository;
+using Projekat.Repository.Impl;
+using Projekat.Repository.DAO;
+using Projekat.Repository.DAO.Impl;
+
 
 namespace Projekat.Controllers
 {
@@ -18,7 +22,8 @@ namespace Projekat.Controllers
     {
         string _salt = ConfigurationManager.AppSettings["PasswdSalt"];
         string jwt_secret = ConfigurationManager.AppSettings["JwtSecretKey"];
-        IDao<User> userDAO = new UserDAO();
+        IUserRepository userRepo = new UserRepository();
+        IUserDao userDao = new UserDAO();
 
         [HttpGet]
         [ActionName("all")]
@@ -27,16 +32,24 @@ namespace Projekat.Controllers
         {
             return Ok(DB.UsersList.Where(x => !x.isDeleted));
         }
-        private User GetByUsername(string username)
+        [HttpGet]
+        [ActionName("user")]
+        [AllowAnonymous]
+        public IHttpActionResult GetById(int id)
         {
-            return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
+            User temp = userDao.FindById(id);
+            if(temp == default(User))
+            {
+                return NotFound();
+            }
+            return Ok(temp);
         }
 
         [HttpGet]
         [ActionName("current")]
         public IHttpActionResult GetUsername()
         {
-            User current = GetByUsername(User.Identity.Name);
+            User current = userDao.FindByUsername(User.Identity.Name);
             if(current == default(User))
             {
                 return NotFound();
@@ -49,7 +62,7 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult LogIn([FromBody] LoginRequest req)
         {
-            User current = GetByUsername(req.username);
+            User current = userDao.FindByUsername(req.username);
             if (current == default(User))
             {
                 return BadRequest("No account associated with provided username!");
@@ -66,13 +79,12 @@ namespace Projekat.Controllers
         [Authorize(Roles = "Administrator")]
         public IHttpActionResult AddUser(User user)
         {
-            string message = ValidateUser(user);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
             user.Password = HashPassword(user.Password);
-            User added = userDAO.Add(user);
+            User added = userDao.AddUser(user);
             if (added == default(User))
             {
                 return BadRequest("Username already exists!");
@@ -85,17 +97,16 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult SignUp(User user)
         {
-            string message = ValidateUser(user);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
             if (user.Role != UserType.Buyer)
             {
                 return BadRequest("Invalid user role. Please select Buyer!");
             }
             user.Password = HashPassword(user.Password);
-            User added = userDAO.Add(user);
+            User added = userDao.AddUser(user);
             if (added == default(User))
             {
                 return BadRequest("Username already exists!");
@@ -107,58 +118,27 @@ namespace Projekat.Controllers
         [ActionName("update")]
         public IHttpActionResult UpdateUser(User user)
         {
-            if (userDAO.FindByID(user.ID) == null)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid data");
+            }
+            if (userDao.FindById(user.ID) == null)
             {
                 return BadRequest("Selected user does not exist");
             }
-            string message = ValidateUser(user);
-            if (message != string.Empty)
-            {
-                return BadRequest(message);
-            }
-            return Ok(userDAO.Update(user));
+            return Ok(userDao.UpdateUser(user));
         }
         [HttpDelete]
         [ActionName("delete")]
         [Authorize(Roles = "Administrator")]
         public IHttpActionResult DeleteUser(int id)
         {
-            User user = userDAO.FindByID(id);
+            User user = userDao.FindById(id);
             if (user == default(User))
             {
                 return NotFound();
             }
-            return Ok(userDAO.Delete(user.ID));
-        }
-
-        private string ValidateUser(User user)
-        {
-            string message = string.Empty;
-            if (user == null)
-            {
-                return "Invalid data!";
-            }
-            if (string.IsNullOrWhiteSpace(user.FirstName))
-            {
-                message += "Firstname is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(user.LastName))
-            {
-                message += "Lastname is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(user.Username))
-            {
-                message += "Username is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(user.Password))
-            {
-                message += "Password is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(user.Email))
-            {
-                message += "Email is required! ";
-            }
-            return message;
+            return Ok(userDao.DeleteUser(user.ID));
         }
 
         private string HashPassword(string password)

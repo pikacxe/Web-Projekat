@@ -8,7 +8,7 @@
     "Image": "image.png",
     "PublishDate": "1/10/2020",
     "City": "Leskovac",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -21,7 +21,7 @@
     "Image": "image.png",
     "PublishDate": "12/04/20203",
     "City": "Niš",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -34,7 +34,7 @@
     "Image": "image.png",
     "PublishDate": "12/10/2021",
     "City": "Sombor",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -47,7 +47,7 @@
     "Image": "image.png",
     "PublishDate": "04/09/2019",
     "City": "Pirot",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -60,7 +60,7 @@
     "Image": "image.png",
     "PublishDate": "18/02/2022",
     "City": "Subotica",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -73,7 +73,7 @@
     "Image": "image.png",
     "PublishDate": "26/06/2021",
     "City": "Kraljevo",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -86,7 +86,7 @@
     "Image": "image.png",
     "PublishDate": "22/11/2022",
     "City": "Zaječar",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -99,7 +99,7 @@
     "Image": "image.png",
     "PublishDate": "19/10/2019",
     "City": "Beograd",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -112,7 +112,7 @@
     "Image": "image.png",
     "PublishDate": "07/08/2021",
     "City": "Novi Pazar",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   },
@@ -125,7 +125,7 @@
     "Image": "image.png",
     "PublishDate": "18/05/2022",
     "City": "Vranje",
-    "Review": null,
+    "Review": [],
     "isAvailable": true,
     "isDeleted": false
   }

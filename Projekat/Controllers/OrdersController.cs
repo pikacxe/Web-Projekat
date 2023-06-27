@@ -1,19 +1,21 @@
 ﻿using Projekat.Models;
 using Projekat.Repository;
-using Projekat.Repository.DAO;
-using Projekat.Repository.DTO;
+using Projekat.Repository.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Projekat.Repository.DAO;
+using Projekat.Repository.DAO.Impl;
 
 namespace Projekat.Controllers
 {
     [Authorize]
     public class OrdersController : ApiController
     {
-        IDao<Order> orderDAO = new OrderDAO();
-        IDao<Product> productDAO = new ProductDAO();
+        IOrderRepository orderRepo = new OrderRepository();
+        IOrderDao orderDao = new OrderDAO();
+        IProductDao productDao = new ProductDAO();
 
         [HttpGet]
         [ActionName("all")]
@@ -30,7 +32,7 @@ namespace Projekat.Controllers
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
         {
-            Order found = orderDAO.FindByID(id);
+            Order found = orderDao.FindById(id);
             if (found == default(Order))
             {
                 return NotFound();
@@ -50,16 +52,11 @@ namespace Projekat.Controllers
         [Authorize(Roles ="Administrator,Buyer")]
         public IHttpActionResult AddOrder(Order order)
         {
-            if(order == default(Order))
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid data!");
+                return BadRequest();
             }
-            string message = ValidateOrder(order);
-            if (message != string.Empty)
-            {
-                return BadRequest(message);
-            }
-            Product toBuy = productDAO.FindByID(order.Product);
+            Product toBuy = productDao.FindById(order.Product);
             if(toBuy == default(Product))
             {
                 return NotFound();
@@ -70,67 +67,42 @@ namespace Projekat.Controllers
             }
             toBuy.Amount -= order.Amount;
             order.OrderDate = DateTime.Now;
-            order.Status = ProductStatus.ACTIVE;
-            return Ok(orderDAO.Add(order));
+            order.Status = OrderStatus.ACTIVE;
+            return Ok(orderDao.AddOrder(order));
         }
         [HttpPut]
         [ActionName("update")]
         public IHttpActionResult UpdateOrder(Order order)
         {
-            string message = ValidateOrder(order);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest();
             }
 
-            if (orderDAO.FindByID(order.ID) == null)
+            if (orderDao.FindById(order.ID) == null)
             {
                 return BadRequest("Selected Order does not exist");
             }
-            return Ok(orderDAO.Update(order));
+            return Ok(orderDao.UpdateOrder(order));
         }
         [HttpDelete]
         [ActionName("delete")]
         public IHttpActionResult DeleteOrder(int id)
         {
-            Order order = orderDAO.FindByID(id);
+            Order order = orderDao.FindById(id);
             if (order == default(Order))
             {
                 return NotFound();
             }
-            return Ok(orderDAO.Delete(order.ID));
+            return Ok(orderDao.DeleteOrder(order.ID));
         }
 
         [HttpPut]
         [ActionName("delivered")]
         public IHttpActionResult OrderDelivered(int id)
         {
-            Order order = orderDAO.FindByID(id);
-            order.Status = ProductStatus.COMPLETED;
-            return Ok("Order status updated");
+            string result = orderRepo.UpdateOrderStatus(id, OrderStatus.COMPLETED);
+            return Ok(result);
         }
-
-        private string ValidateOrder(Order order)
-        {
-            string message = string.Empty;
-            if (order == default(Order))
-            {
-                message += "Provided data is invalid! ";
-            }
-            if (order.Product <= 0)
-            {
-                message += "Product is required! ";
-            }
-            if (order.Buyer <= 0)
-            {
-                message += "Buyer is required! ";
-            }
-            if (order.Amount <= 0)
-            {
-                message += "Amount must be greater than zero! ";
-            }
-            return message;
-        }
-
     }
 }

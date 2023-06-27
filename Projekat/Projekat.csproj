@@ -147,21 +147,35 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\LoginRequest.cs" />
-    <Compile Include="Repository\DAO\OrderDAO.cs" />
-    <Compile Include="Repository\DAO\ProductDAO.cs" />
-    <Compile Include="Repository\DAO\ReviewDAO.cs" />
-    <Compile Include="Repository\DAO\UserDAO.cs" />
+    <Compile Include="Models\OrdersByUser.cs" />
+    <Compile Include="Models\ReviewsByUser.cs" />
+    <Compile Include="Repository\DAO\Impl\OrderDAO.cs" />
+    <Compile Include="Repository\DAO\Impl\ProductDAO.cs" />
+    <Compile Include="Repository\DAO\Impl\ReviewDAO.cs" />
+    <Compile Include="Repository\DAO\Impl\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Repository\DAO\IOrderDao.cs" />
+    <Compile Include="Repository\DAO\IProductDao.cs" />
+    <Compile Include="Repository\DAO\IReviewDao.cs" />
+    <Compile Include="Repository\DAO\IUserDao.cs" />
     <Compile Include="Repository\DB.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IDao.cs" />
+    <Compile Include="Repository\Impl\OrderRepository.cs" />
+    <Compile Include="Repository\Impl\ProductRepository.cs" />
+    <Compile Include="Repository\Impl\ReviewRepository.cs" />
+    <Compile Include="Repository\Impl\UserRepository.cs" />
+    <Compile Include="Repository\IOrderRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IReviewRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -174,7 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Images\" />
-    <Folder Include="Repository\DTO\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

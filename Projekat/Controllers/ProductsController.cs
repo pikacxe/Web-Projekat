@@ -1,16 +1,20 @@
 ﻿using Projekat.Models;
 using Projekat.Repository;
-using Projekat.Repository.DAO;
+using Projekat.Repository.Impl;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Projekat.Repository.DAO;
+using Projekat.Repository.DAO.Impl;
 
 namespace Projekat.Controllers
 {
     [Authorize]
     public class ProductsController : ApiController
     {
-        IDao<Product> productDAO = new ProductDAO();
+        IProductRepository productRepo = new ProductRepository();
+        IProductDao productDao = new ProductDAO();
+        IUserDao userDao = new UserDAO();
 
         [HttpGet]
         [ActionName("all")]
@@ -25,7 +29,7 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult GetById(int id)
         {
-            Product found = productDAO.FindByID(id);
+            Product found = productDao.FindById(id);
             if(found == default(Product))
             {
                 return NotFound();
@@ -38,79 +42,48 @@ namespace Projekat.Controllers
         [Authorize(Roles ="Administrator,Seller")]
         public IHttpActionResult AddProduct(Product product)
         {
-            string message = ValidateProduct(product);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
-            return Ok(productDAO.Add(product));
+            return Ok(productDao.AddProduct(product));
         }
+
+        [HttpGet]
+        [ActionName("seller")]
+        [Authorize(Roles = "Administrator,Seller")]
+        public IHttpActionResult GetProductsBySeller(int id)
+        {
+            User seller = userDao.FindById(id);
+            return Ok();
+        }
+
         [HttpPut]
         [ActionName("update")]
         [Authorize(Roles = "Administrator,Seller")]
         public IHttpActionResult UpdateProduct(Product product)
         {
-            string message = ValidateProduct(product);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
-
-            if (productDAO.FindByID(product.ID) == null)
+            if (productDao.FindById(product.ID) == null)
             {
                 return BadRequest("Selected Product does not exist");
             }
-            return Ok(productDAO.Update(product));
+            return Ok(productDao.UpdateProduct(product));
         }
         [HttpDelete]
         [ActionName("delete")]
         [Authorize(Roles = "Administrator,Seller")]
         public IHttpActionResult DeleteProduct(int id)
         {
-            Product product = productDAO.FindByID(id);
+            Product product = productDao.FindById(id);
             if (product == null)
             {
                 return NotFound();
             }
-            return Ok(productDAO.Delete(product.ID));
-        }
-
-        private string ValidateProduct(Product product)
-        {
-            string message = string.Empty;
-            if (product == null)
-            {
-                message += "Provided data is invalid! ";
-            }
-            if (string.IsNullOrWhiteSpace(product.Title))
-            {
-                message += "Title is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(product.Description))
-            {
-                message += "Description is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(product.Image))
-            {
-                message += "Image is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(product.PublishDate))
-            {
-                message += "Publish date is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(product.City))
-            {
-                message += "City is required! ";
-            }
-            if(product.Price < 0)
-            {
-                message += "Price must be greater zero! ";
-            }
-            if(product.Amount < 0)
-            {
-                message += "Amount must be greater or equal zero! ";
-            }
-            return message;
+            return Ok(productDao.DeleteProduct(product.ID));
         }
 
     }

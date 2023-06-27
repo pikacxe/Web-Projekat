@@ -1,6 +1,8 @@
 ﻿using Projekat.Models;
 using Projekat.Repository;
+using Projekat.Repository.Impl;
 using Projekat.Repository.DAO;
+using Projekat.Repository.DAO.Impl;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,7 +12,8 @@ namespace Projekat.Controllers
     [Authorize]
     public class ReviewsController : ApiController
     {
-        IDao<Review> reviewDAO = new ReviewDAO();
+        IReviewDao reviewDao = new ReviewDAO();
+        IReviewRepository reviewRepo = new ReviewRepository();
 
         [HttpGet]
         [ActionName("all")]
@@ -23,7 +26,7 @@ namespace Projekat.Controllers
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
         {
-            Review found = reviewDAO.FindByID(id);
+            Review found = reviewDao.FindById(id);
             if (found == default(Review))
             {
                 return NotFound();
@@ -43,69 +46,37 @@ namespace Projekat.Controllers
         [ActionName("add")]
         public IHttpActionResult AddReview(Review review)
         {
-            string message = ValidateReview(review);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
-            return Ok(reviewDAO.Add(review));
+            return Ok(reviewDao.AddReview(review));
         }
         [HttpPut]
         [ActionName("update")]
         public IHttpActionResult UpdateReview(Review review)
         {
-            string message = ValidateReview(review);
-            if (message != string.Empty)
+            if (!ModelState.IsValid)
             {
-                return BadRequest(message);
+                return BadRequest("Invalid data");
             }
 
-            if (reviewDAO.FindByID(review.ID) == null)
+            if (reviewDao.FindById(review.ID) == null)
             {
                 return BadRequest("Selected Review does not exist");
             }
-            return Ok(reviewDAO.Update(review));
+            return Ok(reviewDao.UpdateReview(review));
         }
         [HttpDelete]
         [ActionName("delete")]
         public IHttpActionResult DeleteReview(int id)
         {
-            Review review = reviewDAO.FindByID(id);
+            Review review = reviewDao.FindById(id);
             if (review == null)
             {
                 return NotFound();
             }
-            return Ok(reviewDAO.Delete(review.ID));
-        }
-
-        private string ValidateReview(Review review)
-        {
-            string message = string.Empty;
-            if (review == null)
-            {
-                message += "Provided data is invalid! ";
-            }
-            if (review.Product <= 0)
-            {
-                message += "Product is required! ";
-            }
-            if (review.Reviewer <= 0)
-            {
-                message += "Reviewer is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(review.Title))
-            {
-                message += "Title is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(review.Content))
-            {
-                message += "Content is required! ";
-            }
-            if (string.IsNullOrWhiteSpace(review.Image))
-            {
-                message += "Image is required! ";
-            }
-            return message;
+            return Ok(reviewDao.DeleteReview(review.ID));
         }
     }
 }

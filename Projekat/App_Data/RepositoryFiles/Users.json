@@ -9,9 +9,9 @@
     "Email": "example@example.com",
     "DateOfBirth": "01/08/2001",
     "Role": 0,
-    "Orders": null,
-    "Favourites": null,
-    "PublishedProducts": null,
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [],
     "isDeleted": false
   },
   {
@@ -22,11 +22,11 @@
     "LastName": "Test123",
     "Gender": "m",
     "Email": "example@example.com",
-    "DateOfBirth": null,
+    "DateOfBirth": "01/01/001",
     "Role": 0,
-    "Orders": null,
-    "Favourites": null,
-    "PublishedProducts": null,
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [],
     "isDeleted": false
   },
   {
@@ -37,11 +37,11 @@
     "LastName": "Spasic",
     "Gender": "m",
     "Email": "example@gmail.com",
-    "DateOfBirth": null,
+    "DateOfBirth": "01/01/001",
     "Role": 0,
-    "Orders": null,
-    "Favourites": null,
-    "PublishedProducts": null,
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [],
     "isDeleted": false
   }
 ]

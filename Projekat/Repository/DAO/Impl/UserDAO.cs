@@ -9,6 +9,16 @@ namespace Projekat.Repository.DAO.Impl
         {
             return DB.UsersList.Find(x => x.ID == id && !x.isDeleted);
         }
+        public IEnumerable<User> GetAll()
+        {
+            return DB.UsersList.FindAll(x => !x.isDeleted);
+        }
+
+        public User FindByUsername(string username)
+        {
+            return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
+        }
+
         public User AddUser(User user)
         {
             if (DB.UsersList.Find(x => x.Username == user.Username && !x.isDeleted) == default(User))
@@ -43,16 +53,6 @@ namespace Projekat.Repository.DAO.Impl
                 existingUser.DateOfBirth = updatedUser.DateOfBirth;
             }
             return existingUser;
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return DB.UsersList.FindAll(x => !x.isDeleted);
-        }
-
-        public User FindByUsername(string username)
-        {
-            return DB.UsersList.Find(x => x.Username == username && !x.isDeleted);
         }
     }
 }

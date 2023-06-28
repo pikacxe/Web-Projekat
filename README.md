@@ -14,32 +14,51 @@ Korišćene tehnologije:
  ---
 
  - [X] Create data models
-     - [ ] Add predefined JSON data for testing
+     - [X] Add predefined JSON data for testing
          - [X] Admin data
          - [X] User data
-         - [ ] Product data
-         - [ ] Order data
-         - [ ] Review data
+         - [X] Product data
+         - [X] Order data
+         - [X] Review data
+ - [X] Add password hashing
+ - [X] Implement session control
+     - [X] Implement jwt token authentification
+     - [X] Implement authorization with RBAC for Buyer/Seller/Admin
  - [X] Create user controller with CRUD routes
-     - [X] Add password hashing (Possible migration to client side)
-     - [ ] Implement session control
-         - [ ] Add token auth (custom token / jwt)
-     - [ ] Implement RBAC for Buyer/Seller/Admin
-     - [ ] Add auth to admin routes
  - [X] Create review controller with CRUD routes
  - [X] Create product controller with CRUD routes
-     - [ ] Implement faourites per user
+     - [X] Implement favourites per Buyer
+     - [X] Implement published products per Seller
  - [X] Create order controller with CRUD routes
- - [ ] Create image upload controller
+ - [X] Create image upload controller
      - [ ] On upload should return image path
-
- - [ ] Add data saving route?
+ - [X] Add data saving on application exit
 
  ---
  ## User Interface
  - [X] Create empty project with index.html
- - [ ] Create folder structure (css, js, html)
- - [ ] Add landing page 
-     - [ ] Signup / Login 
-     - [ ] Customize page per user base
+ - [X] Create folder structure (css, js, html)
+ - [X] Add landing page 
+     - [X] Signup / Login 
+     - [X] Product details with product reviews 
+ - [ ] Add user profile page
+     - [X] Display profile info
+     - [ ] Display favourite products
+     - [ ] Display my orders
+     - [ ] Display my reviews
+ - [ ] Add admin dashboard
+     - [ ] Display profile info
+     - [ ] Display review awaiting approval
+     - [ ] Display all products
+     - [ ] Display all orders
+     - [ ] Display all reviews
+ - [ ] Add product page
+     - [ ] Product form
+     - [ ] Image upload
+ - [ ] Add user page
+     - [ ] User form
+ - [ ] Add review page
+     - [ ] Review form
+     - [ ] Image upload
+
  

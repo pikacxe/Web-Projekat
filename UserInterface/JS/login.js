@@ -1,4 +1,7 @@
 ﻿$(document).ready(() => {
+    if (token) {
+        window.location.href = web + "index.html";
+    }
     $('#loginBtn').click(Login);
 });
 

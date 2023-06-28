@@ -11,8 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using Projekat.Models;
 using Projekat.Repository;
 using Projekat.Repository.Impl;
-using Projekat.Repository.DAO;
-using Projekat.Repository.DAO.Impl;
 
 
 namespace Projekat.Controllers
@@ -23,7 +21,6 @@ namespace Projekat.Controllers
         string _salt = ConfigurationManager.AppSettings["PasswdSalt"];
         string jwt_secret = ConfigurationManager.AppSettings["JwtSecretKey"];
         IUserRepository userRepo = new UserRepository();
-        IUserDao userDao = new UserDAO();
 
         [HttpGet]
         [ActionName("all")]
@@ -37,7 +34,7 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult GetById(int id)
         {
-            User temp = userDao.FindById(id);
+            User temp = userRepo.FindById(id);
             if(temp == default(User))
             {
                 return NotFound();
@@ -49,7 +46,7 @@ namespace Projekat.Controllers
         [ActionName("current")]
         public IHttpActionResult GetUsername()
         {
-            User current = userDao.FindByUsername(User.Identity.Name);
+            User current = userRepo.FindByUsername(User.Identity.Name);
             if(current == default(User))
             {
                 return NotFound();
@@ -62,7 +59,7 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult LogIn([FromBody] LoginRequest req)
         {
-            User current = userDao.FindByUsername(req.username);
+            User current = userRepo.FindByUsername(req.username);
             if (current == default(User))
             {
                 return BadRequest("No account associated with provided username!");
@@ -84,7 +81,7 @@ namespace Projekat.Controllers
                 return BadRequest("Invalid data");
             }
             user.Password = HashPassword(user.Password);
-            User added = userDao.AddUser(user);
+            User added = userRepo.AddUser(user);
             if (added == default(User))
             {
                 return BadRequest("Username already exists!");
@@ -106,7 +103,7 @@ namespace Projekat.Controllers
                 return BadRequest("Invalid user role. Please select Buyer!");
             }
             user.Password = HashPassword(user.Password);
-            User added = userDao.AddUser(user);
+            User added = userRepo.AddUser(user);
             if (added == default(User))
             {
                 return BadRequest("Username already exists!");
@@ -122,23 +119,23 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            if (userDao.FindById(user.ID) == null)
+            if (userRepo.FindById(user.ID) == null)
             {
                 return BadRequest("Selected user does not exist");
             }
-            return Ok(userDao.UpdateUser(user));
+            return Ok(userRepo.UpdateUser(user));
         }
         [HttpDelete]
         [ActionName("delete")]
         [Authorize(Roles = "Administrator")]
         public IHttpActionResult DeleteUser(int id)
         {
-            User user = userDao.FindById(id);
+            User user = userRepo.FindById(id);
             if (user == default(User))
             {
                 return NotFound();
             }
-            return Ok(userDao.DeleteUser(user.ID));
+            return Ok(userRepo.DeleteUser(user.ID));
         }
 
         private string HashPassword(string password)

@@ -37,9 +37,9 @@ namespace Projekat.Models
         public DateTime? DateOfBirth { get; set; }
         public UserType Role { get; set; }
         public string RoleName { get => Role.ToString(); }
-        public IEnumerable<int> Orders { get; set; } = Enumerable.Empty<int>();
-        public IEnumerable<int> Favourites { get; set; } = Enumerable.Empty<int>();
-        public IEnumerable<int> PublishedProducts { get; set; } = Enumerable.Empty<int>();
+        public List<int> Orders { get; set; } = new List<int>();
+        public List<int> Favourites { get; set; } = new List<int>();
+        public List<int> PublishedProducts { get; set; } = new List<int>();
         public bool isDeleted { get; set; }
     }
 }

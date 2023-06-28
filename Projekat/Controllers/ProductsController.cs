@@ -9,19 +9,17 @@ using Projekat.Repository.DAO.Impl;
 
 namespace Projekat.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Administrator,Seller")]
     public class ProductsController : ApiController
     {
         IProductRepository productRepo = new ProductRepository();
-        IProductDao productDao = new ProductDAO();
-        IUserDao userDao = new UserDAO();
 
         [HttpGet]
         [ActionName("all")]
         [AllowAnonymous]
         public IHttpActionResult GetAllProducts()
         {
-            return Ok(DB.ProductsList.Where(x => !x.isDeleted));
+            return Ok(productRepo.GetAll());
         }
 
         [HttpGet]
@@ -29,8 +27,8 @@ namespace Projekat.Controllers
         [AllowAnonymous]
         public IHttpActionResult GetById(int id)
         {
-            Product found = productDao.FindById(id);
-            if(found == default(Product))
+            Product found = productRepo.FindById(id);
+            if (found == default(Product))
             {
                 return NotFound();
             }
@@ -39,51 +37,61 @@ namespace Projekat.Controllers
 
         [HttpPost]
         [ActionName("add")]
-        [Authorize(Roles ="Administrator,Seller")]
         public IHttpActionResult AddProduct(Product product)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-            return Ok(productDao.AddProduct(product));
+            string message;
+            Product added = productRepo.AddProduct(product, out message);
+            if (message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(added);
         }
 
         [HttpGet]
         [ActionName("seller")]
-        [Authorize(Roles = "Administrator,Seller")]
+        [Authorize(Roles ="Buyer,Seller")]
         public IHttpActionResult GetProductsBySeller(int id)
         {
-            User seller = userDao.FindById(id);
-            return Ok();
+            string message;
+            var result = productRepo.GetProductByUser(id, out message);
+            if(message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(result);
         }
 
         [HttpPut]
         [ActionName("update")]
-        [Authorize(Roles = "Administrator,Seller")]
-        public IHttpActionResult UpdateProduct(Product product)
+        public IHttpActionResult UpdateProduct(Product updatedProduct)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid data");
             }
-            if (productDao.FindById(product.ID) == null)
+            string message;
+            Product updated = productRepo.AddProduct(updatedProduct, out message);
+            if (message != string.Empty)
             {
-                return BadRequest("Selected Product does not exist");
+                return BadRequest(message);
             }
-            return Ok(productDao.UpdateProduct(product));
+            return Ok(updated);
         }
         [HttpDelete]
         [ActionName("delete")]
-        [Authorize(Roles = "Administrator,Seller")]
         public IHttpActionResult DeleteProduct(int id)
         {
-            Product product = productDao.FindById(id);
+            Product product = productRepo.FindById(id);
             if (product == null)
             {
                 return NotFound();
             }
-            return Ok(productDao.DeleteProduct(product.ID));
+            return Ok(productRepo.DeleteProduct(product.ID));
         }
 
     }

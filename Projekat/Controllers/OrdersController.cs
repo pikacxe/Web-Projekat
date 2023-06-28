@@ -5,34 +5,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Projekat.Repository.DAO;
-using Projekat.Repository.DAO.Impl;
 
 namespace Projekat.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Administrator,Buyer")]
     public class OrdersController : ApiController
     {
         IOrderRepository orderRepo = new OrderRepository();
-        IOrderDao orderDao = new OrderDAO();
-        IProductDao productDao = new ProductDAO();
 
         [HttpGet]
         [ActionName("all")]
+        [Authorize(Roles ="Administrator")]
         public IHttpActionResult GetAllOrders()
         {
-            if (!User.IsInRole("Administrator"))
-            {
-                return Unauthorized();
-            }
-            return Ok(DB.OrdersList.Where(x => !x.isDeleted));
+            return Ok(orderRepo.GetAll());
         }
 
         [HttpGet]
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
         {
-            Order found = orderDao.FindById(id);
+            Order found = orderRepo.FindById(id);
             if (found == default(Order))
             {
                 return NotFound();
@@ -44,31 +37,24 @@ namespace Projekat.Controllers
         [ActionName("for-user")]
         public IHttpActionResult GetByUser(int id)
         {
-            return Ok(DB.OrdersList.Where(x=> x.Buyer == id && !x.isDeleted));
+            return Ok(orderRepo.FindByUser(id));
         }
 
         [HttpPost]
         [ActionName("add")]
-        [Authorize(Roles ="Administrator,Buyer")]
         public IHttpActionResult AddOrder(Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            Product toBuy = productDao.FindById(order.Product);
-            if(toBuy == default(Product))
+            string message;
+            Order added = orderRepo.AddOrder(order, out message);
+            if(message != string.Empty)
             {
-                return NotFound();
+                return BadRequest(message);
             }
-            if(toBuy.Amount - order.Amount < 0)
-            {
-                return BadRequest("Not enough product is available!");
-            }
-            toBuy.Amount -= order.Amount;
-            order.OrderDate = DateTime.Now;
-            order.Status = OrderStatus.ACTIVE;
-            return Ok(orderDao.AddOrder(order));
+            return Ok(added);
         }
         [HttpPut]
         [ActionName("update")]
@@ -78,23 +64,24 @@ namespace Projekat.Controllers
             {
                 return BadRequest();
             }
-
-            if (orderDao.FindById(order.ID) == null)
+            string message;
+            Order updated = orderRepo.UpdateOrder(order, out message);
+            if (message != string.Empty)
             {
-                return BadRequest("Selected Order does not exist");
+                return BadRequest(message);
             }
-            return Ok(orderDao.UpdateOrder(order));
+            return Ok(updated);
         }
         [HttpDelete]
         [ActionName("delete")]
         public IHttpActionResult DeleteOrder(int id)
         {
-            Order order = orderDao.FindById(id);
-            if (order == default(Order))
+            Order deleted = orderRepo.DeleteOrder(id);
+            if(deleted == default(Order))
             {
                 return NotFound();
             }
-            return Ok(orderDao.DeleteOrder(order.ID));
+            return Ok(deleted);
         }
 
         [HttpPut]
@@ -102,6 +89,10 @@ namespace Projekat.Controllers
         public IHttpActionResult OrderDelivered(int id)
         {
             string result = orderRepo.UpdateOrderStatus(id, OrderStatus.COMPLETED);
+            if(result == string.Empty)
+            {
+                return InternalServerError();
+            }
             return Ok(result);
         }
     }

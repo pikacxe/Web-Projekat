@@ -8,6 +8,10 @@ namespace Projekat.Models
     public class Product
     {
         public int ID { get; set; }
+        [Required(AllowEmptyStrings =false,
+            ErrorMessage ="Seller is invalid")]
+        public int SellerId { get; set; }
+
         [Required(AllowEmptyStrings = false,
             ErrorMessage = "Title is invalid !")]
         public string Title { get; set; }

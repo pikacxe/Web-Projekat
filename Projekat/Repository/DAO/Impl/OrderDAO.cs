@@ -27,9 +27,9 @@ namespace Projekat.Repository.DAO.Impl
             return DB.OrdersList.Find(x => x.ID == id && !x.isDeleted);
         }
 
-        public IEnumerable<Order> FindByUser(int id)
+        public IEnumerable<Order> FindByUser(int userId)
         {
-            return DB.OrdersList.FindAll(x => x.Buyer == id && !x.isDeleted);
+            return DB.OrdersList.FindAll(x => x.Buyer == userId && !x.isDeleted);
         }
 
         public IEnumerable<Order> GetAll()
@@ -47,7 +47,6 @@ namespace Projekat.Repository.DAO.Impl
                 old.Buyer = updatedOrder.Buyer;
                 old.OrderDate = updatedOrder.OrderDate;
             }
-
             return old;
         }
     }

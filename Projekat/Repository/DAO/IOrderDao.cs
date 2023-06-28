@@ -11,7 +11,7 @@ namespace Projekat.Repository.DAO
     {
         IEnumerable<Order> GetAll();
         Order FindById(int id);
-        IEnumerable<Order> FindByUser(int id);
+        IEnumerable<Order> FindByUser(int userId);
         Order AddOrder(Order order);
         Order UpdateOrder(Order updatedOrder);
         Order DeleteOrder(int id);

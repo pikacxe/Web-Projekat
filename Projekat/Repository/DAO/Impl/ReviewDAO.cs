@@ -5,6 +5,10 @@ namespace Projekat.Repository.DAO.Impl
 {
     public class ReviewDAO : IReviewDao
     {
+        public IEnumerable<Review> GetAll()
+        {
+            return DB.ReviewsList.FindAll(x => !x.isDeleted);
+        }
         public Review FindById(int id)
         {
             return DB.ReviewsList.Find(x => x.ID == id && !x.isDeleted);
@@ -38,16 +42,6 @@ namespace Projekat.Repository.DAO.Impl
                 deleted.isDeleted = true;
             }
             return deleted;
-        }
-
-        public IEnumerable<Review> GetAll()
-        {
-            return DB.ReviewsList.FindAll(x => !x.isDeleted);
-        }
-
-        public IEnumerable<Review> FindForProduct(int productId)
-        {
-            return DB.ReviewsList.FindAll(x => x.Product == productId && x.isApproved && !x.isDeleted);
         }
     }
 }

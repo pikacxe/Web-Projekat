@@ -9,6 +9,7 @@ namespace Projekat.Controllers
     {
         [HttpPost]
         [ActionName("add")]
+        [Authorize]
         public IHttpActionResult UploadImage()
         {
             var filename = string.Empty;

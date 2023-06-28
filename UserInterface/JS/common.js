@@ -47,6 +47,7 @@ function Logout() {
         $(".link-list").removeClass("hide");
         $(".dropdown").addClass("hide");
         sessionStorage.removeItem("jwt_token");
+        window.location.href = web + "index.html";
     }
 
 }

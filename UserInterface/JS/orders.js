@@ -13,11 +13,11 @@
                     let table = $(".orders-container");
                     let tr = $("<tr></tr>");
                     let id = $("<td></td>").text(order.ID);
-                    let product = $("<td></td>").text(order.ProductName);
+                    let product = $("<td></td>").text(order.Product);
                     let amount = $("<td></td>").text(order.Amount);
                     let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleString());
-                    let status = $("<td></td>").text(order.Status);
-                    let aproveBtn = $("<button>Completed</button>");
+                    let status = $("<td></td>").text(order.StatusMessage);
+                    let aproveBtn = $("<button>Confirm</button>");
                     aproveBtn.addClass("green-btn");
                     status.attr("id", "order-" + order.ID);
                     aproveBtn.click({ id: order.ID }, OrderComplete);
@@ -45,7 +45,7 @@ function OrderComplete(event) {
         headers: { "Authorization": token },
         success: function (res) {
             console.log(res);
-            $("#order-"+event.data.id).text("DELIVERED");
+            $("#order-"+event.data.id).text(res);
         },
         error: function (xhr, status, error) {
             console.log(error);

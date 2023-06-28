@@ -12,21 +12,20 @@ namespace Projekat.Controllers
     [Authorize]
     public class ReviewsController : ApiController
     {
-        IReviewDao reviewDao = new ReviewDAO();
         IReviewRepository reviewRepo = new ReviewRepository();
 
         [HttpGet]
         [ActionName("all")]
         public IHttpActionResult GetAllReviews()
         {
-            return Ok(DB.ReviewsList.Where(x => !x.isDeleted));
+            return Ok(reviewRepo.GetAll());
         }
 
         [HttpGet]
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
         {
-            Review found = reviewDao.FindById(id);
+            Review found = reviewRepo.FindById(id);
             if (found == default(Review))
             {
                 return NotFound();
@@ -50,7 +49,7 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            return Ok(reviewDao.AddReview(review));
+            return Ok(reviewRepo.AddReview(review));
         }
         [HttpPut]
         [ActionName("update")]
@@ -61,22 +60,22 @@ namespace Projekat.Controllers
                 return BadRequest("Invalid data");
             }
 
-            if (reviewDao.FindById(review.ID) == null)
+            if (reviewRepo.FindById(review.ID) == null)
             {
                 return BadRequest("Selected Review does not exist");
             }
-            return Ok(reviewDao.UpdateReview(review));
+            return Ok(reviewRepo.UpdateReview(review));
         }
         [HttpDelete]
         [ActionName("delete")]
         public IHttpActionResult DeleteReview(int id)
         {
-            Review review = reviewDao.FindById(id);
+            Review review = reviewRepo.FindById(id);
             if (review == null)
             {
                 return NotFound();
             }
-            return Ok(reviewDao.DeleteReview(review.ID));
+            return Ok(reviewRepo.DeleteReview(review.ID));
         }
     }
 }

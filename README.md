@@ -31,7 +31,7 @@ Korišćene tehnologije:
      - [X] Implement published products per Seller
  - [X] Create order controller with CRUD routes
  - [X] Create image upload controller
-     - [ ] On upload should return image path
+     - [X] On upload should return image path
  - [X] Add data saving on application exit
 
  ---
@@ -43,9 +43,10 @@ Korišćene tehnologije:
      - [X] Product details with product reviews 
  - [ ] Add user profile page
      - [X] Display profile info
-     - [ ] Display favourite products
-     - [ ] Display my orders
-     - [ ] Display my reviews
+     - [ ] Edit profile
+     - [X] Display favourite products
+     - [X] Display my orders
+     - [X] Display my reviews
  - [ ] Add admin dashboard
      - [ ] Display profile info
      - [ ] Display review awaiting approval
@@ -57,8 +58,8 @@ Korišćene tehnologije:
      - [ ] Image upload
  - [ ] Add user page
      - [ ] User form
- - [ ] Add review page
-     - [ ] Review form
-     - [ ] Image upload
+ - [X] Add review page
+     - [X] Review form
+     - [X] Image upload
 
  

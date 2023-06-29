@@ -137,6 +137,7 @@
     <None Include="App_Data\RepositoryFiles\Reviews.json" />
     <None Include="App_Data\RepositoryFiles\Users.json" />
     <Content Include="Global.asax" />
+    <Content Include="Images\0d8eff91-7f51-4a4b-a06e-9616301be3da.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +149,8 @@
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\AddFavouriteRequest.cs" />
     <Compile Include="Models\LoginRequest.cs" />
-    <Compile Include="Models\OrdersByUser.cs" />
-    <Compile Include="Models\ReviewsByUser.cs" />
     <Compile Include="Repository\DAO\Impl\OrderDAO.cs" />
     <Compile Include="Repository\DAO\Impl\ProductDAO.cs" />
     <Compile Include="Repository\DAO\Impl\ReviewDAO.cs" />
@@ -186,9 +186,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

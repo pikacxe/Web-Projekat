@@ -32,11 +32,67 @@
     </nav>
     <main>
         <div class="content">
-            <div class="profile-data">
+            <div class="profile-info">
                 <h1>My profile 🤵</h1>
+                <div class="profile-data">
+                    <div class="profile-element">
+                        <h2>Username</h2>
+                        <h3 id="usrname">Test123</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2 class="hide">Password</h2>
+                        <input id="pass" type="password" class="textbox hide" />
+                    </div>
+                    <div class="profile-element">
+                        <h2>Firstname</h2>
+                        <h3 id="fname">Test123</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2>Lastname</h2>
+                        <h3 id="lname">Test123</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2>Gender</h2>
+                        <h3 id="gender">Male</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2>Email</h2>
+                        <h3 id="email">Test123</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2>Date of birth</h2>
+                        <h3 id="dob">"01/01/001"</h3>
+                    </div>
+                    <div class="profile-element">
+                        <h2>Role</h2>
+                        <h3 id="role">"Buyer"</h3>
+                    </div>
+                </div>
             </div>
-            <div class="hide items-container">
-                <h1>My published products 📦</h1>
+            <div class="items-container">
+                <h1 id="product-title">My published products 📦</h1>
+                <div class="products">
+
+                </div>
+            </div>
+            <div class="items-container">
+                <h1>My orders 📦</h1>
+                <table class="orders">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product name</th>
+                        <th>Amount</th>
+                        <th>Order date</th>
+                        <th>Order status</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="items-container">
+                <h1>My reviews 📜</h1>
+                <div class="reviews">
+
+                </div>
             </div>
         </div>
     </main>

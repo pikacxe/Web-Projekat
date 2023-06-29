@@ -5,9 +5,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567802,
@@ -15,9 +15,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567803,
@@ -25,9 +25,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567804,
@@ -35,9 +35,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567805,
@@ -45,9 +45,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567806,
@@ -55,9 +55,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567807,
@@ -65,9 +65,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567808,
@@ -75,9 +75,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567809,
@@ -85,9 +85,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567810,
@@ -95,9 +95,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567811,
@@ -105,9 +105,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567812,
@@ -115,9 +115,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567813,
@@ -125,9 +125,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567814,
@@ -135,9 +135,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567815,
@@ -145,9 +145,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567816,
@@ -155,9 +155,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567817,
@@ -165,9 +165,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567818,
@@ -175,9 +175,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567819,
@@ -185,9 +185,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567820,
@@ -195,9 +195,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567821,
@@ -205,9 +205,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567822,
@@ -215,9 +215,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567823,
@@ -225,9 +225,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567824,
@@ -235,9 +235,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567825,
@@ -245,9 +245,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567826,
@@ -255,9 +255,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567827,
@@ -265,9 +265,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567828,
@@ -275,9 +275,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 1",
     "Content": "Neki temp content 1",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567829,
@@ -285,9 +285,9 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 2",
     "Content": "Neki temp content 2",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
     "isDeleted": false,
-    "isApproved": false
+    "isApproved": true
   },
   {
     "ID": 1234567830,
@@ -295,7 +295,37 @@
     "Reviewer": 123,
     "Title": "Neki temp naziv 3",
     "Content": "Neki temp content 3",
-    "Image": "image.png",
+    "Image": "0d8eff91-7f51-4a4b-a06e-9616301be3da.png",
+    "isDeleted": false,
+    "isApproved": true
+  },
+  {
+    "ID": 172698027,
+    "Product": 1234567802,
+    "Reviewer": 645486641,
+    "Title": "Lep proizvod",
+    "Content": "Super",
+    "Image": "6750b68d-4e09-4b2f-8da5-370cd1d38385.png",
+    "isDeleted": false,
+    "isApproved": false
+  },
+  {
+    "ID": 40537939,
+    "Product": 1234567801,
+    "Reviewer": 760997999,
+    "Title": "1223",
+    "Content": "hlhlkhlk",
+    "Image": "f4e554e3-f2d0-44e6-96c6-a3fcd6943208.png",
+    "isDeleted": false,
+    "isApproved": false
+  },
+  {
+    "ID": 1866513990,
+    "Product": 1234567801,
+    "Reviewer": 844096847,
+    "Title": "Review",
+    "Content": "Mnogo dobro",
+    "Image": "e2f2f30b-4c2d-407c-b6cb-9b11a779642a.png",
     "isDeleted": false,
     "isApproved": false
   }

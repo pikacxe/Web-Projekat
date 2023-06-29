@@ -2,11 +2,12 @@
     if (token) {
         window.location.href = web + "index.html";
     }
-    $('#signupBtn').click(Signup);
+    $('#signupBtn').click({},Signup);
 });
 
 
-function Signup() {
+function Signup(event) {
+    event.preventDefault();
     console.log("Test");
     user = ValidateUser();
     console.log(JSON.stringify(user));
@@ -22,7 +23,7 @@ function Signup() {
 
             // Handle any errors that occur during the AJAX request
             $("#error").text(xhr.responseText + "|" + status + "|" + error);
-            console.error(error);
+            console.error(xhr.responseText);
         }
     });
     return false;
@@ -35,10 +36,10 @@ function ValidateUser() {
     let lastname = $("#lname").val();
     let email = $("#email").val();
     let gender = $("input[name='Gender']:checked").val();
-    let dateOfBirth = $("#dob").val();
+    let dateOfBirth = new Date($("#dob").val());
 
     // Validate username, password, firstname, lastname, email, gender, and date of birth
-    if (username === "" || password === "" || firstname === "" || lastname === "" || email === "" || !gender || dateOfBirth === "") {
+    if (username === "" || password === "" || firstname === "" || lastname === "" || email === "" || !gender || dateOfBirth >= Date.now()) {
         alert("Please fill in all fields");
         return null;
     }
@@ -60,6 +61,6 @@ function ValidateUser() {
         Gender: gender,
         DateOfBirth: dateOfBirth
     };
-
+    console.log(user);
     return user;
 }

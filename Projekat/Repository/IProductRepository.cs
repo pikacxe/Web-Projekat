@@ -31,6 +31,8 @@ namespace Projekat.Repository
         /// otherwise default(Product)</returns>
         Product AddProduct(Product product, out string message);
 
+        IEnumerable<int> AddProductToFavourites(int userId, int productId, out string message);
+
         /// <summary>
         /// Update product
         /// </summary>

@@ -11,10 +11,11 @@ namespace Projekat.Repository
     {
         IEnumerable<Review> GetAll();
         Review FindById(int id);
-        Review AddReview(Review review);
-        Review UpdateReview(Review updatedReview);
+        Review AddReview(Review review, out string message);
+        Review UpdateReview(Review updatedReview, out string message);
         Review DeleteReview(int id);
-        IEnumerable<Review> FindForProduct(int productId);
+        IEnumerable<Review> FindForProduct(int productId, out string message);
+        IEnumerable<Review> FindForReviewer(int userId, out string message);
 
         /// <summary>
         /// Approves selected review

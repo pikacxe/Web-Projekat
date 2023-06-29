@@ -52,10 +52,26 @@ namespace Projekat.Controllers
             return Ok(added);
         }
 
+        [HttpPut]
+        [ActionName("add-to-favourites")]
+        [OverrideAuthorization]
+        [Authorize(Roles = "Buyer")]
+        public IHttpActionResult AddToFavourites([FromBody] AddFavouriteRequest req)
+        {
+            string message;
+            IEnumerable<int> favs = productRepo.AddProductToFavourites(req.UserId,req.ProductId, out message);
+            if(message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(favs);
+        }
+
         [HttpGet]
-        [ActionName("seller")]
-        [Authorize(Roles ="Buyer,Seller")]
-        public IHttpActionResult GetProductsBySeller(int id)
+        [ActionName("user")]
+        [OverrideAuthorization]
+        [Authorize]
+        public IHttpActionResult GetProductsByUser(int id)
         {
             string message;
             var result = productRepo.GetProductByUser(id, out message);

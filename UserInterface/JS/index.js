@@ -30,9 +30,8 @@ function populateItems(items) {
             let a = $("<a></a>").addClass("product");
             a.attr('href', "details.html?ID=" + product.ID);
             let title = $("<h3></h3>").text(product.Title);
-            let image = $("<img>").attr("src",product.Image);
+            let image = $("<img>").attr("src", imagesUrl + product.Image);
             let price = $("<p></p>").text(product.Price + "$");
-
             // Append the elements to the container div
             a.append(image, title, price);
             div.append(a);

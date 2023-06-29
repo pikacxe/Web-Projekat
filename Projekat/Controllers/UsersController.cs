@@ -51,7 +51,14 @@ namespace Projekat.Controllers
             {
                 return NotFound();
             }
-            return Ok(new { id = current.ID, name = current.Username, role = current.Role.ToString() });
+            CurrentUser cu = new CurrentUser
+            {
+                ID = current.ID,
+                Username = current.Username,
+                Role = current.RoleName,
+                Favourites = current.Favourites
+            };
+            return Ok(cu);
         }
 
         [HttpPost]

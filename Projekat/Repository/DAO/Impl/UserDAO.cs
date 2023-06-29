@@ -29,6 +29,13 @@ namespace Projekat.Repository.DAO.Impl
             }
             return default(User);
         }
+        public void RemoveProductFromFav(int productId)
+        {
+            foreach(var x in DB.UsersList)
+            {
+                x.Favourites.Remove(productId);
+            }
+        }
 
         public User DeleteUser(int id)
         {

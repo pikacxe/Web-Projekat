@@ -1,16 +1,10 @@
-﻿main {
-    margin-left: 20%;
-    width: 60%;
-    padding: 2rem;
-}
-
-#product-display {
+﻿#product-display {
     display: grid;
-    height: 50vh;
-    width: 60vw;
+    height: 70vh;
     font-size: 1.25rem;
     font-weight: 600;
-    grid-gap: 10px;
+    grid-gap: 15px;
+    margin-top:15px;
     grid-template-areas:
         'title title'
         'img desc'
@@ -19,9 +13,9 @@
         'img price'
         'img amount'
         'img buttons';
-    grid-template-columns: minmax(500px, 1fr) minmax(200px,1fr);
-    grid-template-rows: minmax(200px 1fr) repeat(7, minmax(1.25rem, 1fr));
-    ;
+    grid-template-columns: minmax(500px, 1fr) 240px;
+    grid-template-rows: 3rem 7rem repeat(3, 3rem) 10rem 5rem;
+    white-space: pre-line;
 }
 
 .grid-title {
@@ -35,7 +29,7 @@
 
 .grid-desc {
     grid-area: desc;
-    white-space: pre-line;
+
 }
 
 .grid-date {
@@ -52,6 +46,22 @@
 
 .grid-buttons {
     grid-area: buttons;
+    display: flex;
+    list-style:none;
+    text-align:center;
+    align-content:start;
+    vertical-align:middle;
+}
+.grid-buttons li{
+    line-height:1rem;
+}
+
+.icon-btn{
+    margin-left:50px;
+    color:gray;
+}
+.favourite{
+    color:red;
 }
 
 .grid-city {
@@ -59,13 +69,17 @@
 }
 
 #product-display img {
+    width:500px;
+    height:500px;
     border-radius: 1.5rem;
     box-shadow: rgba(0,0,0,0.45) 0px 5px 5px 0px;
 }
+#product-display p{
+    padding:0px;
+}
 
 #buy-amount {
-    margin-bottom: 10px;
-    width: 60px;
+    width: 40px;
 }
 
 .reviews-container {

@@ -11,6 +11,9 @@ namespace Projekat.Repository.DAO
     {
         IEnumerable<Review> GetAll();
         Review FindById(int id);
+        IEnumerable<Review> FindByProduct(int productId);
+        IEnumerable<Review> FindByReviewer(int userId);
+        IEnumerable<Review> FindForApproval();
         Review AddReview(Review review);
         Review UpdateReview(Review updateReview);
         Review DeleteReview(int id);

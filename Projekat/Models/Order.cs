@@ -11,6 +11,8 @@ namespace Projekat.Models
             ErrorMessage = "Product is invalid !")]
         public int Product { get; set; }
 
+        public string ProductName { get; set; }
+
         [Required(AllowEmptyStrings = false,
             ErrorMessage = "Amount is invalid !")]
         public int Amount { get; set; }

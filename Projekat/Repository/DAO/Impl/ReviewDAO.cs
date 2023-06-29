@@ -14,6 +14,18 @@ namespace Projekat.Repository.DAO.Impl
             return DB.ReviewsList.Find(x => x.ID == id && !x.isDeleted);
         }
 
+        public IEnumerable<Review> FindByProduct(int productId)
+        {
+            return DB.ReviewsList.FindAll(x => x.Product == productId && x.isApproved && !x.isDeleted);
+        }
+        public IEnumerable<Review> FindByReviewer(int userId)
+        {
+            return DB.ReviewsList.FindAll(x => x.Reviewer == userId && !x.isDeleted);
+        }
+        public IEnumerable<Review> FindForApproval()
+        {
+            return DB.ReviewsList.FindAll(x => !x.isApproved && !x.isDeleted);
+        }
         public Review AddReview(Review review)
         {
             review.ID = DB.GenerateId();
@@ -31,6 +43,7 @@ namespace Projekat.Repository.DAO.Impl
                 old.Title = updatedReview.Title;
                 old.Content = updatedReview.Content;
                 old.Image = updatedReview.Image;
+                old.isApproved = false;
             }
             return old;
         }

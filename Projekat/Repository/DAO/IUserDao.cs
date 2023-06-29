@@ -14,6 +14,7 @@ namespace Projekat.Repository.DAO
         User FindByUsername(string username);
         User AddUser(User user);
         User UpdateUser(User updatedUser);
+        void RemoveProductFromFav(int productId);
         User DeleteUser(int id);
     }
 }

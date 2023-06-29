@@ -12,6 +12,7 @@ namespace Projekat.Repository.Impl
     {
         IReviewDao reviewDao = new ReviewDAO();
         IProductDao productDao = new ProductDAO();
+        IUserDao userDao = new UserDAO();
 
         public IEnumerable<Review> GetAll()
         {
@@ -22,15 +23,34 @@ namespace Projekat.Repository.Impl
             return reviewDao.FindById(id);
         }
 
-        public IEnumerable<Review> FindForProduct(int productId)
+        public IEnumerable<Review> FindForProduct(int productId, out string message)
         {
+            message = string.Empty;
             Product product = productDao.FindById(productId);
             if (product == default(Product))
             {
+                message = "Product not found!";
                 return Enumerable.Empty<Review>();
             }
-            IEnumerable<Review> result = reviewDao.GetAll().Where(x => x.Product == productId);
+            IEnumerable<Review> result = reviewDao.FindByProduct(productId);
             return result;
+        }
+        public IEnumerable<Review> FindForReviewer(int userId, out string message)
+        {
+            message = string.Empty;
+            User user = userDao.FindById(userId);
+            if (user == default(User))
+            {
+                message = "User not found!";
+                return Enumerable.Empty<Review>();
+            }
+            IEnumerable<Review> result = reviewDao.FindByReviewer(userId);
+            return result;
+        }
+
+        public IEnumerable<Review> FindForApproval()
+        {
+            return reviewDao.FindForApproval();
         }
         public string ApproveReview(int id)
         {
@@ -43,14 +63,45 @@ namespace Projekat.Repository.Impl
             return "Approved";
         }
 
-        public Review AddReview(Review review)
+        public Review AddReview(Review review, out string message)
         {
+            message = string.Empty;
+            User user = userDao.FindById(review.Reviewer);
+            if(user == default(User))
+            {
+                message = "Reviewer not found";
+                return default(Review);
+            }
+            Product product = productDao.FindById(review.Product);
+            if(product == default(Product))
+            {
+                message = "Product not found";
+                return default(Review);
+            }
             Review added = reviewDao.AddReview(review);
             return added;
         }
 
-        public Review UpdateReview(Review updatedReview)
+        public Review UpdateReview(Review updatedReview, out string message)
         {
+            message = string.Empty;
+            if (FindById(updatedReview.ID) == default(Review))
+            {
+                message = "Review not found";
+                return default(Review);
+            }
+            User user = userDao.FindById(updatedReview.Reviewer);
+            if (user != default(User))
+            {
+                message = "Reviewer not found";
+                return default(Review);
+            }
+            Product product = productDao.FindById(updatedReview.Product);
+            if (product == default(Product))
+            {
+                message = "Product not found";
+                return default(Review);
+            }
             Review updated = reviewDao.UpdateReview(updatedReview);
             return updated;
         }

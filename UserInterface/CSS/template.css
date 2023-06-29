@@ -94,6 +94,24 @@ button {
         transition: background-color ease-out 0.3s;
     }
 
+.icon-btn {
+    display:inline-block;
+    width:2.5rem;
+    height:4rem;
+    text-align:center;
+    vertical-align:middle;
+    justify-content:flex-start;
+    background-color: transparent;
+    font-size:4rem;
+    padding:0px;
+    border: none;
+}
+
+    .icon-btn:hover {
+        color: red;
+        transition: color ease-out 0.3s;
+    }
+
 .nav-links li {
     margin-right: 40px;
     margin-top: 10px;
@@ -127,13 +145,13 @@ button {
 
 .dropdown {
     position: relative;
-    margin-right:40px;
+    margin-right: 40px;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    border-radius:10px;
+    border-radius: 10px;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -149,7 +167,7 @@ button {
 
         .dropdown-content a:hover {
             background-color: #ddd;
-            border-radius:10px;
+            border-radius: 10px;
         }
 
 .dropdown:hover .dropdown-content {
@@ -160,23 +178,31 @@ button {
     display: none;
 }
 
-#logoutBtn{
-    width:80%;
-    font-size:1rem;
-    display:block;
-    margin:15px;
+#logoutBtn {
+    width: 80%;
+    font-size: 1rem;
+    display: block;
+    margin: 15px;
 }
 
-#profile-name{
-    font-size:2rem;
-    font-weight:600;
-    padding:0.5rem;
-    display:block;
-
+#profile-name {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    display: block;
 }
 
-#profile-name:hover{
-    color:white;
-    transition: color ease-out 0.2s;
-}
+    #profile-name:hover {
+        color: white;
+        transition: color ease-out 0.2s;
+    }
 
+.content {
+    display: flex;
+    background-color:whitesmoke;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}

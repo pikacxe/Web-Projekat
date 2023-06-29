@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EShop - My reviews</title>
+    <title>EShop - Add review</title>
     <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
-    <link href="../CSS/reviews.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/addreview.css" type="text/css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
 <body>
@@ -30,10 +30,17 @@
             </div>
         </nav>
     </nav>
-    <main>
-        <div class="reviews-table">
+    <main class="content">
+        <form class="reviewForm">
+            <label>Title</label>
+            <input id="title" type="text" class="textbox" placeholder="Review title"/>
+            <label>Content</label>
+            <textarea id="content" type="text"  class="textbox" placeholder="Review content...">
 
-        </div>
+            </textarea>
+            <input id="imageUpload" type="file" class="textbox"/>
+            <button id="uploadBtn">Upload image</button>
+        </form>
     </main>
     <footer>
         © 2023 Ilija Spasic PR 34/2020
@@ -41,7 +48,7 @@
 
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
-    <script src="../JS/reviews.js"></script>
+    <script src="../JS/addreview.js"></script>
 </body>
 
 

@@ -16,6 +16,7 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [ActionName("all")]
+        [Authorize(Roles ="Administrator")]
         public IHttpActionResult GetAllReviews()
         {
             return Ok(reviewRepo.GetAll());
@@ -34,11 +35,31 @@ namespace Projekat.Controllers
         }
 
         [HttpGet]
-        [ActionName("for")]
+        [ActionName("for-product")]
         [AllowAnonymous]
-        public IEnumerable<Review> FindForProductId(int id)
+        public IHttpActionResult FindForProduct(int id)
         {
-            return DB.ReviewsList.Where(x => x.Product == id && !x.isDeleted);
+            string message;
+            IEnumerable<Review> result = reviewRepo.FindForProduct(id, out message);
+            if(message  != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [ActionName("for-user")]
+        [Authorize(Roles ="Buyer")]
+        public IHttpActionResult FindForUser(int id)
+        {
+            string message;
+            IEnumerable<Review> result = reviewRepo.FindForReviewer(id, out message);
+            if(message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(result);
         }
 
         [HttpPost]
@@ -49,7 +70,13 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            return Ok(reviewRepo.AddReview(review));
+            string message;
+            Review result = reviewRepo.AddReview(review, out message);
+            if(message != string.Empty)
+            {
+                return BadRequest(message);
+            }
+            return Ok(result);
         }
         [HttpPut]
         [ActionName("update")]
@@ -59,12 +86,13 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
-
-            if (reviewRepo.FindById(review.ID) == null)
+            string message;
+            Review result = reviewRepo.UpdateReview(review, out message);
+            if (message != string.Empty)
             {
-                return BadRequest("Selected Review does not exist");
+                return BadRequest(message);
             }
-            return Ok(reviewRepo.UpdateReview(review));
+            return Ok(result);
         }
         [HttpDelete]
         [ActionName("delete")]

@@ -206,3 +206,10 @@ button {
     flex-wrap: wrap;
     padding: 20px;
 }
+
+.red-text{
+    color:red;
+}
+.green-text{
+    color:darkgreen;
+}

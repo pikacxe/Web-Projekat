@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EShop - Add review</title>
+    <title>EShop - Review</title>
     <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
-    <link href="../CSS/addreview.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/review.css" type="text/css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
 <body>
@@ -14,16 +14,9 @@
                 <a href="index.html">EShop</a>
             </div>
             <div class="nav-links">
-                <ul class="link-list">
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
                 <div class="hide dropdown">
                     <a id="profile-name" href="#"></a>
                     <div class="dropdown-content">
-                        <a id="my-orders">📜 Orders</a>
-                        <a id="my-favourites">🧡 Favourites</a>
-                        <a id="my-reviews">💯 Reviews</a>
                         <button id="logoutBtn" class="red-btn">Logout ➡️</button>
                     </div>
                 </div>
@@ -31,6 +24,7 @@
         </nav>
     </nav>
     <main class="content">
+        <h1 id="title"> Add a review</h1>
         <form class="reviewForm">
             <label>Title</label>
             <input id="title" type="text" class="textbox" placeholder="Review title"/>
@@ -39,6 +33,7 @@
 
             </textarea>
             <input id="imageUpload" type="file" class="textbox"/>
+            <button id="addBtn" class="hide">Add review</button>
             <button id="uploadBtn">Upload image</button>
         </form>
     </main>
@@ -48,7 +43,7 @@
 
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
-    <script src="../JS/addreview.js"></script>
+    <script src="../JS/review.js"></script>
 </body>
 
 

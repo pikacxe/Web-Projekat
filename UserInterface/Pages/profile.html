@@ -14,16 +14,9 @@
                 <a href="index.html">EShop</a>
             </div>
             <div class="nav-links">
-                <ul class="link-list">
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-                <div class="hide dropdown">
+                <div class="dropdown">
                     <a id="profile-name" href="#"></a>
                     <div class="dropdown-content">
-                        <a id="my-orders">📜 Orders</a>
-                        <a id="my-favourites">🧡 Favourites</a>
-                        <a id="my-reviews">💯 Reviews</a>
                         <button id="logoutBtn" class="red-btn">Logout ➡️</button>
                     </div>
                 </div>
@@ -33,39 +26,41 @@
     <main>
         <div class="content">
             <div class="profile-info">
-                <h1>My profile 🤵</h1>
+                <div class="profile-header">
+                    <h1>My profile 🤵</h1>
+                    <button class="icon-btn btn-edit" id="editBtn">📝</button>
+                </div>
                 <div class="profile-data">
                     <div class="profile-element">
                         <h2>Username</h2>
-                        <h3 id="usrname">Test123</h3>
+                        <h3 id="usrname"></h3>
                     </div>
                     <div class="profile-element">
-                        <h2 class="hide">Password</h2>
-                        <input id="pass" type="password" class="textbox hide" />
+                        <span></span>
                     </div>
                     <div class="profile-element">
                         <h2>Firstname</h2>
-                        <h3 id="fname">Test123</h3>
+                        <h3 id="fname"></h3>
                     </div>
                     <div class="profile-element">
                         <h2>Lastname</h2>
-                        <h3 id="lname">Test123</h3>
+                        <h3 id="lname"></h3>
                     </div>
                     <div class="profile-element">
                         <h2>Gender</h2>
-                        <h3 id="gender">Male</h3>
+                        <h3 id="gender"></h3>
                     </div>
                     <div class="profile-element">
                         <h2>Email</h2>
-                        <h3 id="email">Test123</h3>
+                        <h3 id="email"></h3>
                     </div>
                     <div class="profile-element">
                         <h2>Date of birth</h2>
-                        <h3 id="dob">"01/01/001"</h3>
+                        <h3 id="dob"></h3>
                     </div>
                     <div class="profile-element">
                         <h2>Role</h2>
-                        <h3 id="role">"Buyer"</h3>
+                        <h3 id="role"></h3>
                     </div>
                 </div>
             </div>
@@ -75,9 +70,9 @@
 
                 </div>
             </div>
-            <div class="items-container">
+            <div id="orders"class="items-container">
                 <h1>My orders 📦</h1>
-                <table class="orders">
+                <table class="orders datatable">
                     <tr>
                         <th>Order ID</th>
                         <th>Product name</th>
@@ -88,7 +83,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="items-container">
+            <div id="reviews" class="items-container">
                 <h1>My reviews 📜</h1>
                 <div class="reviews">
 

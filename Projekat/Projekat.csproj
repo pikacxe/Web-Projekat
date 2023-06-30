@@ -151,6 +151,7 @@
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\AddFavouriteRequest.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\StatusChangeRequest.cs" />
     <Compile Include="Repository\DAO\Impl\OrderDAO.cs" />
     <Compile Include="Repository\DAO\Impl\ProductDAO.cs" />
     <Compile Include="Repository\DAO\Impl\ReviewDAO.cs" />

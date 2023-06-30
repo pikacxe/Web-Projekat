@@ -35,6 +35,11 @@ namespace Projekat.Repository.Impl
             IEnumerable<Review> result = reviewDao.FindByProduct(productId);
             return result;
         }
+
+        public IEnumerable<Review> FindNotApproved()
+        {
+            return reviewDao.FindNotApproved();
+        }
         public IEnumerable<Review> FindForReviewer(int userId, out string message)
         {
             message = string.Empty;
@@ -46,11 +51,6 @@ namespace Projekat.Repository.Impl
             }
             IEnumerable<Review> result = reviewDao.FindByReviewer(userId);
             return result;
-        }
-
-        public IEnumerable<Review> FindForApproval()
-        {
-            return reviewDao.FindForApproval();
         }
         public string ApproveReview(int id)
         {

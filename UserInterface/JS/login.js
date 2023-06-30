@@ -1,12 +1,11 @@
 ﻿$(document).ready(() => {
-    if (token) {
-        window.location.href = web + "index.html";
-    }
-    $('#loginBtn').click(Login);
+    checkLogin();
+    $('#loginBtn').click({},Login);
 });
 
 // headers: { "Authorization": localStorage.getItem('token') }
-function Login() {
+function Login(event) {
+    event.preventDefault();
     let loginReq = JSON.stringify(ValidateLogin());
 
     console.log(loginReq);
@@ -23,7 +22,6 @@ function Login() {
             console.log(xrh.responseText);
         }
     });
-    return false;
 }
 
 

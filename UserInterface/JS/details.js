@@ -3,6 +3,7 @@
     if (!ID) {
         windows.location.href = web + "index.html";
     }
+    checkLogin();
     $.ajax({
         url: api + "products/find/" + ID,
         type: "GET",
@@ -92,7 +93,7 @@ function Order(event) {
                     window.location.href = web + "profile.html?ID=" + currentID;
                 },
                 error(xhr, status, error) {
-                    console.log(error);
+                    console.log(xhr.responseText);
                 }
 
             });
@@ -130,7 +131,7 @@ function AddToFavourites(event) {
                 }
             },
             error(xhr, status, error) {
-                console.log(error);
+                console.log(xhr.responseText);
             }
         });
     } else {

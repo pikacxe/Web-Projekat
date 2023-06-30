@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Projekat.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Administrator,Buyer")]
     public class ReviewsController : ApiController
     {
         IReviewRepository reviewRepo = new ReviewRepository();
@@ -21,7 +21,13 @@ namespace Projekat.Controllers
         {
             return Ok(reviewRepo.GetAll());
         }
-
+        [HttpGet]
+        [ActionName("need-approval")]
+        [Authorize(Roles = "Administrator")]
+        public IHttpActionResult GetNotApproved()
+        {
+            return Ok(reviewRepo.FindNotApproved());
+        }
         [HttpGet]
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
@@ -50,7 +56,6 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [ActionName("for-user")]
-        [Authorize(Roles ="Buyer")]
         public IHttpActionResult FindForUser(int id)
         {
             string message;
@@ -62,8 +67,18 @@ namespace Projekat.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        [ActionName("approve")]
+        [Authorize(Roles ="Administrator")]
+        public IHttpActionResult AppoveReview(int id)
+        {
+            return Ok(reviewRepo.ApproveReview(id));
+        }
+
+
         [HttpPost]
         [ActionName("add")]
+        [Authorize(Roles = "Buyer")]
         public IHttpActionResult AddReview(Review review)
         {
             if (!ModelState.IsValid)
@@ -80,6 +95,7 @@ namespace Projekat.Controllers
         }
         [HttpPut]
         [ActionName("update")]
+        [Authorize(Roles = "Buyer")]
         public IHttpActionResult UpdateReview(Review review)
         {
             if (!ModelState.IsValid)
@@ -96,6 +112,7 @@ namespace Projekat.Controllers
         }
         [HttpDelete]
         [ActionName("delete")]
+        [Authorize(Roles = "Buyer")]
         public IHttpActionResult DeleteReview(int id)
         {
             Review review = reviewRepo.FindById(id);

@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CSS\addreview.css" />
+    <Content Include="CSS\review.css" />
     <Content Include="CSS\dashboard.css" />
     <Content Include="CSS\details.css" />
     <Content Include="CSS\index.css" />
@@ -75,14 +75,15 @@
     <Content Include="CSS\profile.css" />
     <Content Include="CSS\register.css" />
     <Content Include="CSS\template.css" />
-    <Content Include="JS\addreview.js" />
+    <Content Include="JS\review.js" />
     <Content Include="JS\dashboard.js" />
     <Content Include="JS\details.js" />
     <Content Include="JS\common.js" />
     <Content Include="JS\login.js" />
     <Content Include="JS\profile.js" />
     <Content Include="JS\register.js" />
-    <Content Include="Pages\addreview.html" />
+    <Content Include="JS\user.js" />
+    <Content Include="Pages\review.html" />
     <Content Include="Pages\dashboard.html" />
     <Content Include="Pages\details.html" />
     <Content Include="Pages\index.html" />
@@ -92,6 +93,7 @@
     <Content Include="Pages\product.html" />
     <Content Include="Pages\profile.html" />
     <Content Include="Pages\register.html" />
+    <Content Include="Pages\user.html" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />

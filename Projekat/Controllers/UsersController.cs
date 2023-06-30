@@ -60,6 +60,13 @@ namespace Projekat.Controllers
             };
             return Ok(cu);
         }
+        [HttpGet]
+        [ActionName("roles")]
+        [AllowAnonymous]
+        public IHttpActionResult GetAvailableRoles()
+        {
+            return Ok(Enum.GetNames(typeof(UserType)));
+        }
 
         [HttpPost]
         [ActionName("login")]
@@ -130,6 +137,7 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Selected user does not exist");
             }
+            user.Password = HashPassword(user.Password);
             return Ok(userRepo.UpdateUser(user));
         }
         [HttpDelete]

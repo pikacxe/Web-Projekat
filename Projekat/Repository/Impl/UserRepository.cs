@@ -11,6 +11,8 @@ namespace Projekat.Repository.Impl
     public class UserRepository : IUserRepository
     {
         IUserDao userDao = new UserDAO();
+        IOrderDao orderDao = new OrderDAO();
+        IProductDao productDao = new ProductDAO();
 
         public User AddUser(User user)
         {
@@ -19,6 +21,25 @@ namespace Projekat.Repository.Impl
 
         public User DeleteUser(int id)
         {
+            User user = userDao.FindById(id);
+            if(user != default(User) && user.Role == UserType.Buyer)
+            {
+                IEnumerable<Order> toDelete = orderDao.FindByUser(id);
+                foreach(Order o in toDelete)
+                {
+                    o.isDeleted = true;
+                    if(o.Status == OrderStatus.ACTIVE)
+                    {
+                        continue;
+                    }
+                    Product p = productDao.FindById(o.Product);
+                    if(p == default(Product))
+                    {
+                        continue;
+                    }
+                    p.Amount += o.Amount;                   
+                }
+            }
             return userDao.DeleteUser(id);
         }
 

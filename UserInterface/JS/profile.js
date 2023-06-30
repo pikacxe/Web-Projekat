@@ -1,9 +1,10 @@
 ﻿$(document).ready(() => {
+    checkLogin();
+    let ID = new URL(window.location.href).searchParams.get("ID");
+    if (!ID) {
+        windows.location.href = web + "index.html";
+    }
     if (token) {
-        let ID = new URL(window.location.href).searchParams.get("ID");
-        if (!ID) {
-            windows.location.href = web + "index.html";
-        }
         $.ajax({
             url: api + "users/user/" + ID,
             method: 'GET',
@@ -14,23 +15,31 @@
                 $("#lname").text(res.LastName);
                 $("#gender").text(res.Gender === "m" ? "Male" : "Female");
                 $("#email").text(res.Email);
-                $("#dob").text(new Date(res.DateOfBirth).toLocaleDateString());
+                $("#dob").text(new Date(res.DateOfBirth).toLocaleDateString(dateFormatOptions));
                 $("#role").text(res.RoleName);
-                if (res.RoleName === "Buyer") {
+                $("#editBtn").click({ id: res.ID }, editProfile);
+                if (res.RoleName == "Buyer") {
                     $("#product-title").text("My favourites 📦");
+                    generateOrdersDisplay(res.ID);
+                    generateReviewsDisplay(res.ID);
+                }
+                else {
+                    $("#reviews").addClass("hide");
+                    $("#orders").addClass("hide");
                 }
                 generateProductDisplay(res.ID);
-                generateOrdersDisplay(res.ID);
-                generateReviewsDisplay(res.ID);
 
             },
             error: function (xhr, status, error) {
-                console.log(error);
+                console.log(xhr.responseText);
             }
         })
     }
 });
 
+function editProfile(event) {
+    window.location.href = web + "user.html?ID=" + currentID;
+}
 
 function generateProductDisplay(id) {
     $.ajax({
@@ -86,7 +95,7 @@ function generateOrdersDisplay(id) {
                     let id = $("<td></td>").text(order.ID);
                     let product = $("<td></td>").text(order.ProductName);
                     let amount = $("<td></td>").text(order.Amount);
-                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleString());
+                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleString(dateFormatOptions));
                     let status = $("<td></td>").text(order.StatusMessage);
                     let actionBtn = $('<button></button>');
                     actionBtn.addClass("green-btn");
@@ -98,7 +107,7 @@ function generateOrdersDisplay(id) {
                     }
                     else if (order.StatusMessage == "ACTIVE") {
                         actionBtn.text("Mark delivered");
-                        actionBtn.click({ id: order.ID, product:order.Product}, OrderComplete);
+                        actionBtn.click({ id: order.ID, product: order.Product }, OrderComplete);
                     }
                     let action = $("<td></td>");
                     action.append(actionBtn);
@@ -114,7 +123,7 @@ function generateOrdersDisplay(id) {
             }
         },
         error: function (xhr, status, error) {
-            console.log(error);
+            console.log(xhr.responseText);
         }
     });
 }
@@ -133,16 +142,16 @@ function OrderComplete(event) {
             btn.text("Add review");
             btn.click({ id: event.data.product }, LeaveReview);
             btn.off("click", OrderComplete);
-            
+
         },
         error: function (xhr, status, error) {
-            console.log(error);
+            console.log(xhr.responseText);
         }
     });
 }
 
 function LeaveReview(event) {
-    window.location.href = web + "addreview.html?ID=" + event.data.id;
+    window.location.href = web + "review.html?ID=" + event.data.id;
 }
 
 function generateReviewsDisplay(id) {

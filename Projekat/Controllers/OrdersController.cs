@@ -8,14 +8,13 @@ using System.Web.Http;
 
 namespace Projekat.Controllers
 {
-    [Authorize(Roles ="Administrator,Buyer")]
+    [Authorize(Roles ="Administrator")]
     public class OrdersController : ApiController
     {
         IOrderRepository orderRepo = new OrderRepository();
 
         [HttpGet]
         [ActionName("all")]
-        [Authorize(Roles ="Administrator")]
         public IHttpActionResult GetAllOrders()
         {
             return Ok(orderRepo.GetAll());
@@ -34,7 +33,17 @@ namespace Projekat.Controllers
         }
 
         [HttpGet]
+        [ActionName("statuses")]
+        [AllowAnonymous]
+        public IHttpActionResult GetOrderStatuses()
+        {          
+            return Ok(Enum.GetNames(typeof(OrderStatus)));
+        }
+
+        [HttpGet]
         [ActionName("for-user")]
+        [OverrideAuthorization]
+        [Authorize]
         public IHttpActionResult GetByUser(int id)
         {
             return Ok(orderRepo.FindByUser(id));
@@ -42,6 +51,8 @@ namespace Projekat.Controllers
 
         [HttpPost]
         [ActionName("add")]
+        [OverrideAuthorization]
+        [Authorize(Roles = "Buyer")]
         public IHttpActionResult AddOrder(Order order)
         {
             if (!ModelState.IsValid)
@@ -89,6 +100,17 @@ namespace Projekat.Controllers
         public IHttpActionResult OrderDelivered(int id)
         {
             string result = orderRepo.UpdateOrderStatus(id, OrderStatus.COMPLETED);
+            if(result == string.Empty)
+            {
+                return InternalServerError();
+            }
+            return Ok(result);
+        }
+        [HttpPost]
+        [ActionName("change-status")]
+        public IHttpActionResult ChangeStatus([FromBody] StatusChangeRequest req)
+        {
+            string result = orderRepo.UpdateOrderStatus(req.orderId, req.status);
             if(result == string.Empty)
             {
                 return InternalServerError();

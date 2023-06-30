@@ -10,9 +10,9 @@
     "DateOfBirth": "0001-01-01T00:00:00",
     "Role": 2,
     "RoleName": "Administrator",
-    "Orders": null,
-    "Favourites": null,
-    "PublishedProducts": null,
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [],
     "isDeleted": false
   },
   {
@@ -26,9 +26,9 @@
     "DateOfBirth": "0001-01-01T00:00:00",
     "Role": 2,
     "RoleName": "Administrator",
-    "Orders": null,
-    "Favourites": null,
-    "PublishedProducts": null,
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [],
     "isDeleted": false
   }
 ]

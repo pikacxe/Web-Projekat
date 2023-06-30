@@ -21,7 +21,6 @@ namespace Projekat.Repository.DAO.Impl
             }
             return deleted;
         }
-
         public Order FindById(int id)
         {
             return DB.OrdersList.Find(x => x.ID == id && !x.isDeleted);

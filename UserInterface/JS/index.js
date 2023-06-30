@@ -1,5 +1,6 @@
 ﻿let products;
 $(document).ready(() => {
+    checkLogin();
     $('#searchBtn').click(Search);
     $.ajax({
         url: api + "products/all",

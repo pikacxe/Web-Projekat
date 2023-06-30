@@ -22,7 +22,7 @@ namespace Projekat.Repository.DAO.Impl
         {
             return DB.ReviewsList.FindAll(x => x.Reviewer == userId && !x.isDeleted);
         }
-        public IEnumerable<Review> FindForApproval()
+        public IEnumerable<Review> FindNotApproved()
         {
             return DB.ReviewsList.FindAll(x => !x.isApproved && !x.isDeleted);
         }

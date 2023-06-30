@@ -1,14 +1,11 @@
 ﻿$(document).ready(() => {
-    if (token) {
-        window.location.href = web + "index.html";
-    }
+    checkLogin();
     $('#signupBtn').click({},Signup);
 });
 
 
 function Signup(event) {
     event.preventDefault();
-    console.log("Test");
     user = ValidateUser();
     console.log(JSON.stringify(user));
     $.ajax({
@@ -26,7 +23,6 @@ function Signup(event) {
             console.error(xhr.responseText);
         }
     });
-    return false;
 }
 
 function ValidateUser() {

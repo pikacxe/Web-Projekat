@@ -51,13 +51,18 @@ Korišćeni alati:
  - [X] Add user profile page
      - [X] Display profile info
      - [X] Edit profile
-     - [X] Display favourite products
+     - [X] Display favourite products for Buyer
+     - [X] Display published products for Seller
+        - [ ] Filter products
+        - [ ] Sort products
      - [X] Display my orders
      - [X] Display my reviews
  - [X] Add admin dashboard
      - [X] Display profile info
      - [X] Display review awaiting approval
      - [X] Display all products
+        - [ ] Filter products
+        - [ ] Sort products
      - [X] Display all orders
         - [X] Allow order confirmation/cancelation
      - [X] Display all reviews

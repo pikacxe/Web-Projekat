@@ -67,12 +67,12 @@ Korišćeni alati:
         - [X] Edit existing user
         - [ ] Search users
         - [ ] Sort users
- - [ ] Add/Edit product page
-     - [ ] Product form
-     - [ ] Image upload
+ - [X] Add/Edit product page
+     - [X] Product form
+     - [X] Image upload
  - [X] Add/Edit user page
      - [X] User form
- - [ ] Add/Edit review page
+ - [X] Add/Edit review page
      - [X] Add review
      - [X] Image upload
      - [X] Edit review

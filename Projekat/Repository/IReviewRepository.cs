@@ -16,7 +16,6 @@ namespace Projekat.Repository
         Review DeleteReview(int id);
         IEnumerable<Review> FindForProduct(int productId, out string message);
         IEnumerable<Review> FindForReviewer(int userId, out string message);
-        IEnumerable<Review> FindNotApproved();
         /// <summary>
         /// Approves selected review
         /// </summary>
@@ -24,5 +23,12 @@ namespace Projekat.Repository
         /// <returns>Message "Approved" if it was successful
         /// otherwise string.Empty </returns>
         string ApproveReview(int id);
+        /// <summary>
+        /// Denies selected review
+        /// </summary>
+        /// <param name="id">Id of a review to deny</param>
+        /// <returns>Message "Denied" if it was successful
+        /// otherwise string.Empty </returns>
+        string DenyReview(int id);
     }
 }

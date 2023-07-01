@@ -27,5 +27,6 @@ namespace Projekat.Models
         public string Image { get; set; }
         public bool isDeleted { get; set; }
         public bool isApproved { get; set; }
+        public bool isDenied { get; set; }
     }
 }

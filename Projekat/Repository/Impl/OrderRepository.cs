@@ -55,7 +55,7 @@ namespace Projekat.Repository.Impl
             product.Amount -= order.Amount;
             order.Status = OrderStatus.ACTIVE;
             order.OrderDate = DateTime.UtcNow;
-            order.ProductName = product.Title;
+            order.ProductName = product.Name;
 
             return orderDao.AddOrder(order);
         }

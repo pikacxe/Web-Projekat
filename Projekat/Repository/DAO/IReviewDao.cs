@@ -11,11 +11,11 @@ namespace Projekat.Repository.DAO
     {
         IEnumerable<Review> GetAll();
         Review FindById(int id);
-        IEnumerable<Review> FindByProduct(int productId);
+        IEnumerable<Review> FindByIds(List<int> reviewIds);
         IEnumerable<Review> FindByReviewer(int userId);
-        IEnumerable<Review> FindNotApproved();
         Review AddReview(Review review);
         Review UpdateReview(Review updateReview);
         Review DeleteReview(int id);
+        void DeleteByIds(List<int> ids);
     }
 }

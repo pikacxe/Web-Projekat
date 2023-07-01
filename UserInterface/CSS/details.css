@@ -60,6 +60,12 @@
     margin-left:50px;
     color:gray;
 }
+
+#btnFav{
+    font-size:3rem;
+    height:40px;
+    width:40px;
+}
 .favourite{
     color:red;
 }
@@ -79,7 +85,7 @@
 }
 
 #buy-amount {
-    width: 40px;
+    width: 60px;
 }
 
 .reviews-container {

@@ -92,7 +92,21 @@
         height: 70%;
         border-radius: 1rem 1rem 0 0;
     }
+.product-action {
+    display: flex;
+    justify-content: space-between;
+    width:220px;
+    margin-left:10px;
+}
 
+.product-action button {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+}
+.product-action div{
+    width:50%;
+}
 .orders {
     width: 100%;
     padding: 15px;

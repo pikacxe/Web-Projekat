@@ -58,6 +58,14 @@ a {
     height: 40px;
 }
 
+.textarea {
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 10px;
+    width: 100%;
+    height: 40px;
+}
+
 label {
     padding: 0.25rem;
     font-size: 1.5rem;
@@ -95,15 +103,11 @@ button {
     }
 
 .icon-btn {
-    display:inline-block;
-    width:2.5rem;
-    height:4rem;
-    text-align:center;
-    vertical-align:middle;
-    justify-content:flex-start;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
     background-color: transparent;
-    font-size:4rem;
-    padding:0px;
+    padding: 0px;
     border: none;
 }
 
@@ -199,7 +203,7 @@ button {
 
 .content {
     display: flex;
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -207,9 +211,54 @@ button {
     padding: 20px;
 }
 
-.red-text{
-    color:red;
+.red-text {
+    color: red;
 }
-.green-text{
-    color:darkgreen;
+
+.green-text {
+    color: darkgreen;
 }
+
+.unavailable {
+    background-color: gray;
+}
+
+.api-error {
+    width: 100%;
+    height:100%;
+    position: absolute;
+    display: block;
+    z-index: 10;
+    background-color: rgb(75 75 75 / 0.63);
+    align-content: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.error-popup {
+    width: 400px;
+    height: 250px;
+    font-size: 1.25rem;
+    position: relative;
+    top: 15%;
+    left: 35%;
+    background-color: darkslategray;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    padding: 30px;
+    text-align:center;
+}
+
+    .error-popup p {
+        text-align: left;
+    }
+
+    .error-popup h1 {
+        border-bottom: 1px solid black;
+    }
+    .error-popup button{
+        align-self:center;
+    }

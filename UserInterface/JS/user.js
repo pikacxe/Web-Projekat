@@ -5,6 +5,10 @@
             $("#title").text("Edit user");
             $("#addBtn").text("Save");
             populateFields(ID);
+            $("#usrname").remove();
+            $("#usrlbl").remove();
+            $("#pswd").remove();
+            $("#pswdlbl").remove();
             $("#addBtn").click({ id: ID }, updateUser);
         }
         else if (role == "Administrator") {
@@ -16,14 +20,18 @@
     });
 });
 
+let old_usrname;
+let old_pass = "placeholder";
 
 function addUser(event) {
     if (role != "Administrator") {
         window.location.href = profileUrl;
     }
     event.preventDefault();
-    user = ValidateUser();
-    console.log(JSON.stringify(user));
+    user = validateUser();
+    if (user == null) {
+        return;
+    }
     $.ajax({
         url: api + "users/add/",
         type: 'POST',
@@ -35,6 +43,8 @@ function addUser(event) {
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
         }
     });
     return false;
@@ -42,8 +52,13 @@ function addUser(event) {
 
 function updateUser(event) {
     event.preventDefault();
-    user = ValidateUser();
+    user = validateUpdateUser();
+    if (user == null) {
+        return;
+    }
     user.ID = event.data.id;
+    user.Username = old_usrname;
+    user.Password = old_pass;
     console.log(JSON.stringify(user));
     $.ajax({
         url: api + "users/update/",
@@ -56,6 +71,8 @@ function updateUser(event) {
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
         }
     });
     return false;
@@ -66,7 +83,7 @@ function populateFields(id) {
         method: 'GET',
         contentType: "application/json",
         success: function (res) {
-            $("#usrname").val(res.Username);
+            old_usrname = res.Username;
             $("#fname").val(res.FirstName);
             $("#lname").val(res.LastName);
             $("#gender").val(res.Gender === "m" ? "Male" : "Female");
@@ -77,43 +94,150 @@ function populateFields(id) {
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
         }
     })
 }
 
-function ValidateUser() {
-    let username = $("#usrname").val();
-    let password = $("#pswd").val();
-    let firstname = $("#fname").val();
-    let lastname = $("#lname").val();
-    let email = $("#email").val();
+function validateUser() {
+    let username = $("#usrname").val().trim();
+    let pass = $("#pswd").val().trim();
+    let firstname = $("#fname").val().trim();
+    let lastname = $("#lname").val().trim();
+    let email = $("#email").val().trim();
     let gender = $("input[name='Gender']:checked").val();
-    let dateOfBirth = new Date($("#dob").val());
+    let dob = new Date($("#dob").val());
 
-    // Validate username, password, firstname, lastname, email, gender, and date of birth
-    if (username === "" || firstname === "" || lastname === "" || email === "" || !gender || dateOfBirth >= Date.now()) {
-        alert("Please fill in all fields");
-        return null;
+    isValid = true;
+
+    if (username === "") {
+        isValid = false;
+        $("#usrname")[0].setCustomValidity("Username is required.");
+    } else {
+        $("#usrname")[0].setCustomValidity("");
     }
+    $("#usrname")[0].reportValidity();
+
+    if (pass === "") {
+        isValid = false;
+        $("#pswd")[0].setCustomValidity("Password is required.");
+    } else {
+        $("#pswd")[0].setCustomValidity("");
+    }
+    $("#pswd")[0].reportValidity();
+
+    if (firstname === "") {
+        isValid = false;
+        $("#fname")[0].setCustomValidity("Firstname is required.");
+    } else {
+        $("#fname")[0].setCustomValidity("");
+    }
+    $("#fname")[0].reportValidity();
+
+    if (lastname === "") {
+        isValid = false;
+        $("#lname")[0].setCustomValidity("Lastname is required.");
+    } else {
+        $("#lname")[0].setCustomValidity("");
+    }
+    $("#lname")[0].reportValidity();
 
     // Validate email format using a regular expression
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.match(emailPattern)) {
-        alert("Please enter a valid email address");
+        isValid = false;
+        $("#email")[0].setCustomValidity("Please enter a valid email address");
+    } else {
+        $("#email")[0].setCustomValidity("");
+    }
+    $("#email")[0].reportValidity();
+
+    // Validate date of birth
+    if (dob === null && dob >= Date.now()) {
+        isValid = false;
+        $("#dob")[0].setCustomValidity("Date of birth is required.");
+    } else {
+        $("#dob")[0].setCustomValidity("");
+    }
+    $("#dob")[0].reportValidity();
+
+    if (!isValid) {
+
         return null;
     }
 
-    // Create a user object
     let user = {
         Username: username,
-        Password: password,
+        Password:pass,
         FirstName: firstname,
         LastName: lastname,
         Email: email,
         Gender: gender,
-        DateOfBirth: dateOfBirth,
-        Role: 1
+        DateOfBirth: dob,
+        Role:1
     };
     console.log(user);
+    return user;
+}
+
+function validateUpdateUser() {
+    let firstname = $("#fname").val().trim();
+    let lastname = $("#lname").val().trim();
+    let email = $("#email").val().trim();
+    let gender = $("input[name='Gender']:checked").val();
+    let dob = new Date($("#dob").val());
+
+    isValid = true;
+
+    if (firstname === "") {
+        isValid = false;
+        $("#fname")[0].setCustomValidity("Firstname is required.");
+    } else {
+        $("#fname")[0].setCustomValidity("");
+    }
+    $("#fname")[0].reportValidity();
+
+    if (lastname === "") {
+        isValid = false;
+        $("#lname")[0].setCustomValidity("Lastname is required.");
+    } else {
+        $("#lname")[0].setCustomValidity("");
+    }
+    $("#lname")[0].reportValidity();
+
+    // Validate email format using a regular expression
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.match(emailPattern)) {
+        isValid = false;
+        $("#email")[0].setCustomValidity("Please enter a valid email address");
+    } else {
+        $("#email")[0].setCustomValidity("");
+    }
+    $("#email")[0].reportValidity();
+
+    // Validate date of birth
+    if (dob === null && dob >= Date.now()) {
+        isValid = false;
+        $("#dob")[0].setCustomValidity("Date of birth is required.");
+    } else {
+        $("#dob")[0].setCustomValidity("");
+    }
+    $("#dob")[0].reportValidity();
+
+    if (!isValid) {
+
+        return null;
+    }
+
+    let user = {
+        Username: old_usrname,
+        Password: old_pass,
+        FirstName: firstname,
+        LastName: lastname,
+        Email: email,
+        Gender: gender,
+        DateOfBirth: dob,
+    };
     return user;
 }

@@ -1,86 +1,93 @@
 [
   {
-    "ID": 1620861801,
-    "Username": "Test",
-    "Password": "WvFbFsiRWSJgtuniR//o6zUSVue92vJKC+0MQiMSNTk=",
-    "FirstName": "Ime1",
-    "LastName": "Prezime1",
+    "ID": 1899628227,
+    "Username": "Seller",
+    "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
+    "FirstName": "X",
+    "LastName": "X",
     "Gender": "m",
     "Email": "example@example.com",
-    "DateOfBirth": "2001-01-08T00:00:00",
-    "Role": 0,
-    "RoleName": "Buyer",
+    "DateOfBirth": "2023-01-01T00:00:00Z",
+    "Role": 1,
+    "RoleName": "Seller",
     "Orders": [],
     "Favourites": [],
-    "PublishedProducts": [],
+    "PublishedProducts": [
+      1884118579
+    ],
     "isDeleted": false
   },
   {
-    "ID": 645486641,
+    "ID": 1513900732,
+    "Username": "Seller123",
+    "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
+    "FirstName": "123",
+    "LastName": "123",
+    "Gender": "m",
+    "Email": "tes@gmail.com",
+    "DateOfBirth": "2023-01-09T00:00:00Z",
+    "Role": 1,
+    "RoleName": "Seller",
+    "Orders": [],
+    "Favourites": [],
+    "PublishedProducts": [
+      1327219494,
+      1935639
+    ],
+    "isDeleted": true
+  },
+  {
+    "ID": 1069243552,
+    "Username": "Buyer123",
+    "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
+    "FirstName": "123",
+    "LastName": "123",
+    "Gender": "m",
+    "Email": "tes@gmail.com",
+    "DateOfBirth": "2023-02-14T00:00:00Z",
+    "Role": 0,
+    "RoleName": "Buyer",
+    "Orders": [],
+    "Favourites": [
+      1327219494,
+      1234567805,
+      1935639,
+      1234567801,
+      1234567803
+    ],
+    "PublishedProducts": [],
+    "isDeleted": true
+  },
+  {
+    "ID": 1344970700,
     "Username": "Pikac",
     "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
     "FirstName": "Test123",
     "LastName": "Test123",
     "Gender": "m",
     "Email": "example@example.com",
-    "DateOfBirth": "2001-01-01T00:00:00",
+    "DateOfBirth": "2021-01-01T00:00:00Z",
     "Role": 0,
     "RoleName": "Buyer",
     "Orders": [],
     "Favourites": [],
     "PublishedProducts": [],
-    "isDeleted": false
+    "isDeleted": true
   },
   {
-    "ID": 1650610698,
-    "Username": "Veci",
-    "Password": "/FyLS1/8zDH1dF9jcCj02FSiDIIFvExpw5PfXC5Km3s=",
-    "FirstName": "Veljko",
-    "LastName": "Spasic",
-    "Gender": "m",
-    "Email": "example@gmail.com",
-    "DateOfBirth": "2001-01-01T00:00:00",
-    "Role": 0,
-    "RoleName": "Buyer",
-    "Orders": [],
-    "Favourites": [],
-    "PublishedProducts": [],
-    "isDeleted": false
-  },
-  {
-    "ID": 760997999,
-    "Username": "Veci123",
+    "ID": 1086450614,
+    "Username": "Pikac",
     "Password": "F3D+mzkpWQaR/tKfl1xjhZ8hgdpxMyafM7OF4CSusyQ=",
-    "FirstName": "123",
-    "LastName": "123",
+    "FirstName": "Test123",
+    "LastName": "Test123",
     "Gender": "m",
     "Email": "example@example.com",
-    "DateOfBirth": "2023-06-14T00:00:00Z",
+    "DateOfBirth": "2020-01-01T00:00:00Z",
     "Role": 0,
     "RoleName": "Buyer",
     "Orders": [],
-    "Favourites": [
-      1234567801
-    ],
+    "Favourites": [],
     "PublishedProducts": [],
-    "isDeleted": false
-  },
-  {
-    "ID": 844096847,
-    "Username": "Djole",
-    "Password": "RHa/e6Iz2gQPKI0F+5RJ28YOL9f32HM83f+v6g7HRHY=",
-    "FirstName": "Djordje",
-    "LastName": "Stojanovic",
-    "Gender": "m",
-    "Email": "djoledole123@gmail.com",
-    "DateOfBirth": "2004-12-04T00:00:00Z",
-    "Role": 0,
-    "RoleName": "Buyer",
-    "Orders": [],
-    "Favourites": [
-      1234567801
-    ],
-    "PublishedProducts": [],
-    "isDeleted": false
+    "isDeleted": true
   }
 ]

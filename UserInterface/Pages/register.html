@@ -22,15 +22,15 @@
         <form class="signup-form">
             <h1 style="text-align:center">Sign up</h1>
             <label for="usrname">Username</label>
-            <input id="usrname" type="text" name="Username" placeholder="Username..." class="textbox" />
+            <input id="usrname" type="text" name="Username" placeholder="Username..." class="textbox" required />
             <label for="pswd">Password</label>
-            <input id="pswd" type="password" name="Password" placeholder="*********" class="textbox" />
+            <input id="pswd" type="password" name="Password" placeholder="*********" class="textbox" required />
             <label for="fname">Firstname</label>
-            <input id="fname" type="text" name="Firstname" placeholder="Firstname..." class="textbox" />
+            <input id="fname" type="text" name="Firstname" placeholder="Firstname..." class="textbox" required/>
             <label for="lname">Lastname</label>
-            <input id="lname" type="text" name="Lastname" placeholder="Lastname..." class="textbox" />
+            <input id="lname" type="text" name="Lastname" placeholder="Lastname..." class="textbox" required />
             <label for="email">Email</label>
-            <input id="email" type="email" name="Email" placeholder="example@example.com" class="textbox" />
+            <input id="email" type="email" name="Email" placeholder="example@example.com" class="textbox" required/>
             <label>Gender</label>
             <div>
                 <input id="rbtn-m" type="radio" name="Gender" value="m" checked />
@@ -40,7 +40,7 @@
             </div>
             <br />
             <label>Date of birth</label>
-            <input type="date" id="dob" class="textbox" />
+            <input type="date" id="dob" class="textbox" required/>
             <br />
             <button id="signupBtn" class="green-btn">Sign up</button>
         </form>

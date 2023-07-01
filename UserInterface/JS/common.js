@@ -2,7 +2,7 @@
 const web = "http://192.168.0.13:8888/Pages/";
 const imagesUrl = "http://192.168.0.13:60471/Images/";
 
-let token = sessionStorage.getItem("jwt_token");
+let token = localStorage.getItem("jwt_token");
 let role;
 let currentID;
 let isLoggedIn = false;
@@ -10,14 +10,14 @@ let favourites = [];
 let username;
 let profileUrl;
 const dateFormatOptions = {
-    day: 'numeric',
-    month: 'long',
+    day: '2-digit',
+    month: '2-digit',
     year: 'numeric',
     hour12: false,
     hour: '2-digit',
     minute: '2-digit'
 };
-const dateLocale = "sr-RS";
+const dateLocale = "en-GB";
 
 async function checkLogin() {
     try {
@@ -28,7 +28,6 @@ async function checkLogin() {
                 "Authorization": token
             }
         });
-        console.log(response);
         role = response.Role;
         currentID = response.ID;
         favourites = Array.from(response.Favourites);
@@ -48,7 +47,6 @@ async function checkLogin() {
 
     }
     catch (error) {
-        console.log(error);
         $("#links").removeClass("hide");
         Logout();
     }
@@ -59,8 +57,8 @@ async function checkLogin() {
 
 function Logout() {
     if (token != null) {
-        sessionStorage.removeItem("jwt_token");
-        isLoggedIn = false;
+        localStorage.removeItem("jwt_token");
+        
         if (window.location.href != web + "index.html") {
             window.location.href = web + "index.html";
         }
@@ -73,4 +71,22 @@ function Logout() {
 
 function open_img(event) {
     window.open(imagesUrl + event.data.param1, "_blank");
+}
+
+function showApiError(message, error) {
+    let div = $("<div></div>");
+    let popup = $("<div></div>");
+    popup.addClass("error-popup");
+    div.addClass("api-error");
+    let title = $("<h1></h1>").text(error);
+    let text = $("<p></p>").text(message);
+    let btn = $("<button>Ok</button>");
+    btn.addClass("green-btn");
+    btn.click(() => {
+        div.remove();
+    });
+    text.addClass("red-text");
+    popup.append(title, text,btn);
+    div.append(popup);
+    $("main").append(div);
 }

@@ -66,12 +66,23 @@
             </div>
             <div class="items-container">
                 <h1>Reviews waiting approval ✔️</h1>
-                <div class="reviews">
+                <div id="approved" class="reviews">
+
+                </div>
+            </div>
+            <div class="items-container">
+                <h1>Denied reviews ❌</h1>
+                <div id="denied" class="reviews">
 
                 </div>
             </div>
             <div class="items-container">
                 <h1 id="product-title">All products 📦</h1>
+                <div id="btnActions">
+                    <div id="sortBtns">
+
+                    </div>
+                </div>
                 <div class="products">
 
                 </div>
@@ -92,7 +103,17 @@
             <div class="items-container">
                 <div class="profile-header">
                     <h1>All users 🤵</h1>
-                    <button class="green-btn userAdd" id="userAddBtn">Add buyer +</button>
+                    <button class="green-btn userAdd" id="userAddBtn">Add seller +</button>
+                </div>
+                <div id="btnActions">
+                    <div>
+                        <label>Search</label>
+                        <input type="text" id="userSearch" />
+                        <button id="btnSearch">Search</button>
+                    </div>
+                    <div id="sortBtns">
+
+                    </div>
                 </div>
                 <table id="users" class="users datatable">
                     <tr>

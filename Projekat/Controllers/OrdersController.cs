@@ -97,6 +97,8 @@ namespace Projekat.Controllers
 
         [HttpPut]
         [ActionName("delivered")]
+        [OverrideAuthorization]
+        [Authorize(Roles ="Buyer")]
         public IHttpActionResult OrderDelivered(int id)
         {
             string result = orderRepo.UpdateOrderStatus(id, OrderStatus.COMPLETED);

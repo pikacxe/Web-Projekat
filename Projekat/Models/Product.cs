@@ -13,8 +13,8 @@ namespace Projekat.Models
         public int SellerId { get; set; }
 
         [Required(AllowEmptyStrings = false,
-            ErrorMessage = "Title is invalid !")]
-        public string Title { get; set; }
+            ErrorMessage = "Name is invalid !")]
+        public string Name { get; set; }
 
         [Required(AllowEmptyStrings = false,
             ErrorMessage = "Price is invalid !")]
@@ -37,7 +37,7 @@ namespace Projekat.Models
         public string City { get; set; }
         public DateTime? PublishDate { get; set; }
 
-        public IEnumerable<int> Review { get; set; } = Enumerable.Empty<int>();
+        public List<int> Reviews { get; set; } = new List<int>();
         public bool isAvailable { get
             {
                 return Amount > 0;

@@ -12,6 +12,7 @@ namespace Projekat.Repository.Impl
     {
         IUserDao userDao = new UserDAO();
         IOrderDao orderDao = new OrderDAO();
+        IReviewDao reviewDao = new ReviewDAO();
         IProductDao productDao = new ProductDAO();
 
         public User AddUser(User user)
@@ -22,22 +23,34 @@ namespace Projekat.Repository.Impl
         public User DeleteUser(int id)
         {
             User user = userDao.FindById(id);
-            if(user != default(User) && user.Role == UserType.Buyer)
+            if (user != default(User))
             {
-                IEnumerable<Order> toDelete = orderDao.FindByUser(id);
-                foreach(Order o in toDelete)
+                if (user.Role == UserType.Buyer)
                 {
-                    o.isDeleted = true;
-                    if(o.Status == OrderStatus.ACTIVE)
+                    IEnumerable<Order> toDelete = orderDao.FindByUser(id);
+                    foreach (Order o in toDelete)
                     {
-                        continue;
+                        if (o.Status != OrderStatus.ACTIVE)
+                        {
+                            continue;
+                        }
+                        Product p = productDao.FindById(o.Product);
+                        if (p == default(Product))
+                        {
+                            continue;
+                        }
+                        p.Amount += o.Amount;
+                        orderDao.DeleteOrder(o.ID);
                     }
-                    Product p = productDao.FindById(o.Product);
-                    if(p == default(Product))
+                }
+                else if(user.Role == UserType.Seller)
+                {
+                    IEnumerable<Product> toDelete = productDao.FindByIds(user.PublishedProducts);
+                    foreach(Product p in toDelete)
                     {
-                        continue;
+                        reviewDao.DeleteByIds(p.Reviews);
+                        productDao.DeleteProduct(p.ID);
                     }
-                    p.Amount += o.Amount;                   
                 }
             }
             return userDao.DeleteUser(id);

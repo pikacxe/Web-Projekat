@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\product.css" />
     <Content Include="CSS\review.css" />
     <Content Include="CSS\dashboard.css" />
     <Content Include="CSS\details.css" />
@@ -75,6 +76,7 @@
     <Content Include="CSS\profile.css" />
     <Content Include="CSS\register.css" />
     <Content Include="CSS\template.css" />
+    <Content Include="JS\product.js" />
     <Content Include="JS\review.js" />
     <Content Include="JS\dashboard.js" />
     <Content Include="JS\details.js" />

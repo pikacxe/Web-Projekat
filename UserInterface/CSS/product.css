@@ -1,0 +1,9 @@
+﻿.product-form{
+    width:600px;
+    display:flex;
+    flex-direction:column;
+    align-content:center;
+}
+#title{
+    text-align:center;
+}

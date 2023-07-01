@@ -27,7 +27,7 @@ namespace Projekat.Repository.DAO.Impl
             Product old = FindById(updatedProduct.ID);
             if (old != default(Product))
             {
-                old.Title = updatedProduct.Title;
+                old.Name = updatedProduct.Name;
                 old.Price = updatedProduct.Price;
                 old.Amount = updatedProduct.Amount;
                 old.Description = updatedProduct.Description;
@@ -48,7 +48,7 @@ namespace Projekat.Repository.DAO.Impl
         }
         public IEnumerable<Product> FindByIds(List<int> ids)
         {
-            return DB.ProductsList.FindAll(p => ids.Contains(p.ID));
+            return DB.ProductsList.FindAll(p => ids.Contains(p.ID) && !p.isDeleted);
         }
     }
 }

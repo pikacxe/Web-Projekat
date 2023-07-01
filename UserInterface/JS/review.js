@@ -1,33 +1,37 @@
 ﻿
 $(document).ready(function () {
-    checkLogin().then(function () {
+    checkLogin().then(() => {
         if (role != "Buyer") {
-            let ID = new URL(window.location.href).searchParams.get("ID");
-            if (ID != null) {
-                $("#title").text("Edit user");
-                $("#addBtn").text("Save");
-                populateFields(ID);
-                $("#addBtn").click({ id: ID }, updateReview);
-            }
-            else if (role == "Buyer") {
-                $("#addBtn").click({}, createReview);
-            }
-            $('#uploadBtn').click({ id: ID }, UploadImage);
-        }
-        else {
             window.location.href = profileUrl;
         }
+        let params = new URL(window.location.href).searchParams;
+        let reviewId = params.get("reviewId");
+        let productId = params.get("productId");
+        if (reviewId != null) {
+            $("#title").text("Edit review");
+            $("#addBtn").text("Save");
+            populateFields(reviewId);
+            $("#addBtn").click({ id: reviewId, product: productId }, updateReview);
+        }
+        else {
+            $("#addBtn").click({ id: productId }, createReview);
+            $("#addBtn").addClass("hide");
+        }
+        $('#uploadBtn').click({}, UploadImage);
     });
 });
-
+let imagePath = "";
 function UploadImage(event) {
     event.preventDefault();
-
-    if ($('#imageUpload').val() == '') {
-        alert('Plase select file');
+    if ($('#imageUpload').val() === '') {
+        $("#imageUpload")[0].setCustomValidity("Please upload an image");
+        $("#imageUpload")[0].reportValidity();
         return;
     }
-
+    else {
+        $("#imageUpload")[0].setCustomValidity("");
+        $("#imageUpload")[0].reportValidity();
+    }
     let formData = new FormData();
     let file = $('#imageUpload')[0];
 
@@ -42,27 +46,54 @@ function UploadImage(event) {
         headers: { "Authorization": token },
         success: function (response) {
             console.log(response);
-            $("#addBtn").removeClass("hide");
+            imagePath = response;
             $("#uploadBtn").addClass("hide");
+            $("#addBtn").removeClass("hide");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
         }
     })
 }
+let reviewer;
+function populateFields(reviewId) {
+    $.ajax({
+        url: api + "reviews/find/" + reviewId,
+        method: "GET",
+        contentType: "application/json",
+        headers: { "Authorization": token },
+        success: function (res) {
+            $("#name").val(res.Title);
+            $("#content").text(res.Content);
+            reviewer = res.Reviewer;
+            imagePath = res.Image
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
+        }
+    })
+}
 
 function updateReview(event) {
     event.preventDefault();
-    let imagePath = event.data.image;
-    let title = $("#title").val().trim();
+    let title = $("#name").val().trim();
     let content = $("#content").val().trim();
 
+    if (!validateReview()) {
+        return;
+    }
+
     let req = {
+        ID:parseInt(event.data.id),
         Title: title,
         Content: content,
-        Image: imagePath,
         Product: parseInt(event.data.product),
-        Reviewer: currentID
+        Reviewer: reviewer
+    }
+    if (imagePath != "") {
+        req.Image = imagePath;
     }
     console.log(req);
     $.ajax({
@@ -76,6 +107,8 @@ function updateReview(event) {
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
         }
 
     })
@@ -83,15 +116,17 @@ function updateReview(event) {
 
 function createReview(event) {
     event.preventDefault();
-    let imagePath = event.data.image;
-    let title = $("#title").val().trim();
+    let title = $("#name").val().trim();
     let content = $("#content").val().trim();
 
+    if (!validateReview()) {
+        return;
+    }
     let req = {
         Title: title,
         Content: content,
         Image: imagePath,
-        Product: parseInt(event.data.product),
+        Product: parseInt(event.data.id),
         Reviewer: currentID
     }
     console.log(req);
@@ -106,7 +141,28 @@ function createReview(event) {
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            let result = JSON.parse(xhr.responseText);
+            showApiError(result.Message, error);
         }
-
     })
+}
+
+function validateReview() {
+    let isValid = true;
+    if ($("#name").val().trim() === "") {
+        $("#name")[0].setCustomValidity("Title is required!");
+        isValid = false;
+    } else {
+        $("#name")[0].setCustomValidity("");
+    }
+    $("#name")[0].reportValidity();
+
+    if ($("#content").val().trim() === "") {
+        $("#content")[0].setCustomValidity("Content is required!");
+        isValid = false;
+    } else {
+        $("#content")[0].setCustomValidity("");
+    }
+    $("#content")[0].reportValidity();
+    return isValid;
 }

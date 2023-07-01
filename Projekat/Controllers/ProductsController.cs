@@ -91,7 +91,7 @@ namespace Projekat.Controllers
                 return BadRequest("Invalid data");
             }
             string message;
-            Product updated = productRepo.AddProduct(updatedProduct, out message);
+            Product updated = productRepo.UpdateProduct(updatedProduct, out message);
             if (message != string.Empty)
             {
                 return BadRequest(message);

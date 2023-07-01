@@ -13,11 +13,11 @@
             <a href="index.html">EShop</a>
         </div>
         <div class="nav-links">
-            <ul class="link-list">
+            <ul class="hide link-list">
                 <li><a href="login.html">Login</a></li>
                 <li><a href="register.html">Register</a></li>
             </ul>
-            <div class="hide dropdown">
+            <div id="dropdown" class="hide dropdown">
                 <a id="profile-name" href="#"></a>
                 <div class="dropdown-content">
                     <button id="logoutBtn" class="red-btn">Logout ➡️</button>
@@ -28,8 +28,8 @@
     <main class="content">
         <div id="product-display">
             <div class="grid-amount">
-                <p>Amount to buy:</p>
-                <input type="number" id="buy-amount" class="textbox" value="0" />
+                <p id="amount-label">Amount to buy:</p>
+                <input type="number" id="buy-amount" class="textbox" min="0" value="0" required/>
                 <p id="product-amount"></p>
             </div>
             <ul class="grid-buttons">

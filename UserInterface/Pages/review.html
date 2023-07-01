@@ -27,14 +27,15 @@
         <h1 id="title"> Add a review</h1>
         <form class="reviewForm">
             <label>Title</label>
-            <input id="title" type="text" class="textbox" placeholder="Review title"/>
+            <input id="name" type="text" class="textbox" placeholder="Review title" required />
             <label>Content</label>
-            <textarea id="content" type="text"  class="textbox" placeholder="Review content...">
-
-            </textarea>
-            <input id="imageUpload" type="file" class="textbox"/>
-            <button id="addBtn" class="hide">Add review</button>
-            <button id="uploadBtn">Upload image</button>
+            <textarea id="content" type="text" class="textarea" placeholder="Review content..." required></textarea>
+            <label>Image</label>
+            <input id="imageUpload" type="file" class="textbox" required/>
+            <div>
+                <button id="addBtn" class="green-btn">Add review</button>
+                <button id="uploadBtn" class="green-btn">Upload image</button>
+            </div>
         </form>
     </main>
     <footer>

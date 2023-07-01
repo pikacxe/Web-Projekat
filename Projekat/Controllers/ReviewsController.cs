@@ -22,13 +22,6 @@ namespace Projekat.Controllers
             return Ok(reviewRepo.GetAll());
         }
         [HttpGet]
-        [ActionName("need-approval")]
-        [Authorize(Roles = "Administrator")]
-        public IHttpActionResult GetNotApproved()
-        {
-            return Ok(reviewRepo.FindNotApproved());
-        }
-        [HttpGet]
         [ActionName("find")]
         public IHttpActionResult GetById(int id)
         {
@@ -72,7 +65,24 @@ namespace Projekat.Controllers
         [Authorize(Roles ="Administrator")]
         public IHttpActionResult AppoveReview(int id)
         {
-            return Ok(reviewRepo.ApproveReview(id));
+            string result = reviewRepo.ApproveReview(id);
+            if(result == string.Empty)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpPut]
+        [ActionName("deny")]
+        [Authorize(Roles = "Administrator")]
+        public IHttpActionResult DenyReview(int id)
+        {
+            string result = reviewRepo.DenyReview(id);
+            if (result == string.Empty)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
 

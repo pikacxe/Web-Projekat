@@ -112,10 +112,11 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
-            if (user.Role != UserType.Buyer)
+            if(user == default(User))
             {
-                return BadRequest("Invalid user role. Please select Buyer!");
+                return BadRequest("Invalid data");
             }
+            user.Role = UserType.Buyer;
             user.Password = HashPassword(user.Password);
             User added = userRepo.AddUser(user);
             if (added == default(User))

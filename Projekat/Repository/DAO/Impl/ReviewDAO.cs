@@ -7,24 +7,20 @@ namespace Projekat.Repository.DAO.Impl
     {
         public IEnumerable<Review> GetAll()
         {
-            return DB.ReviewsList.FindAll(x => !x.isDeleted);
+            return DB.ReviewsList.FindAll(x => !x.isDeleted && !x.isApproved);
         }
         public Review FindById(int id)
         {
             return DB.ReviewsList.Find(x => x.ID == id && !x.isDeleted);
         }
 
-        public IEnumerable<Review> FindByProduct(int productId)
+        public IEnumerable<Review> FindByIds(List<int> reviewIds)
         {
-            return DB.ReviewsList.FindAll(x => x.Product == productId && x.isApproved && !x.isDeleted);
+            return DB.ReviewsList.FindAll(x => reviewIds.Contains(x.ID) && x.isApproved && !x.isDeleted);
         }
         public IEnumerable<Review> FindByReviewer(int userId)
         {
-            return DB.ReviewsList.FindAll(x => x.Reviewer == userId && !x.isDeleted);
-        }
-        public IEnumerable<Review> FindNotApproved()
-        {
-            return DB.ReviewsList.FindAll(x => !x.isApproved && !x.isDeleted);
+            return DB.ReviewsList.FindAll(x => x.Reviewer == userId && !x.isDeleted && !x.isDenied);
         }
         public Review AddReview(Review review)
         {
@@ -55,6 +51,15 @@ namespace Projekat.Repository.DAO.Impl
                 deleted.isDeleted = true;
             }
             return deleted;
+        }
+
+        public void DeleteByIds(List<int> ids)
+        {
+            IEnumerable<Review> toDelete = DB.ReviewsList.FindAll(x => ids.Contains(x.ID) && !x.isDeleted);
+            foreach(Review r in toDelete)
+            {
+                r.isDeleted = true;
+            }
         }
     }
 }

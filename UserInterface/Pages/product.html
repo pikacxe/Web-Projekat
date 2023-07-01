@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EShop - Profile</title>
+    <title>EShop - Product</title>
     <link href="../CSS/template.css" type="text/css" rel="stylesheet" />
-    <link href="../CSS/profile.css" type="text/css" rel="stylesheet" />
+    <link href="../CSS/product.css" type="text/css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
 <body>
@@ -23,8 +23,26 @@
             </div>
         </nav>
     </nav>
-    <main>
-
+    <main class="content">
+        <div class="product-form">
+            <h1 id="title"> Add product</h1>
+            <label>Product name</label>
+            <input type="text" id="name" class="textbox" placeholder="Product name" required/>
+            <label>Product price</label>
+            <input type="number" id="price" class="textbox" placeholder="123.45" required/>
+            <label>Product amount</label>
+            <input type="number" id="amount" class="textbox" placeholder="123" required/>
+            <label>Description</label>
+            <textarea id="desc" class="textarea" required></textarea>
+            <label>City</label>
+            <input type="text" id="city" class="textbox" placeholder="City" required/>
+            <label>Product image</label>
+            <input id="imageUpload" type="file" class="textbox" />
+            <div>
+                <button id="addBtn" class="green-btn">Add product</button>
+                <button id="uploadBtn"class="green-btn">Upload image</button>
+            </div>
+        </div>
     </main>
     <footer>
         © 2023 Ilija Spasic PR 34/2020
@@ -32,7 +50,7 @@
 
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
-    <script src="../JS/profile.js"></script>
+    <script src="../JS/product.js"></script>
 </body>
 
 

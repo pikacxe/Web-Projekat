@@ -12,6 +12,7 @@ namespace Projekat.Repository
     {
         IProductDao productDao = new ProductDAO();
         IUserDao userDao = new UserDAO();
+        IReviewDao reviewDao = new ReviewDAO();
         public IEnumerable<Product> GetAll()
         {
             return productDao.GetAll();
@@ -93,6 +94,7 @@ namespace Projekat.Repository
             User user = userDao.FindById(product.SellerId);
             user.PublishedProducts.Remove(productId);
             userDao.RemoveProductFromFav(productId);
+            reviewDao.DeleteByIds(product.Reviews);
             return productDao.DeleteProduct(productId);
         }
 

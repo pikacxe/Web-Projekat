@@ -32,13 +32,8 @@ namespace Projekat.Repository.Impl
                 message = "Product not found!";
                 return Enumerable.Empty<Review>();
             }
-            IEnumerable<Review> result = reviewDao.FindByProduct(productId);
+            IEnumerable<Review> result = reviewDao.FindByIds(product.Reviews);
             return result;
-        }
-
-        public IEnumerable<Review> FindNotApproved()
-        {
-            return reviewDao.FindNotApproved();
         }
         public IEnumerable<Review> FindForReviewer(int userId, out string message)
         {
@@ -62,6 +57,16 @@ namespace Projekat.Repository.Impl
             review.isApproved = true;
             return "Approved";
         }
+        public string DenyReview(int id)
+        {
+            Review review = reviewDao.FindById(id);
+            if (review == default(Review))
+            {
+                return string.Empty;
+            }
+            review.isDenied = true;
+            return "Denied";
+        }
 
         public Review AddReview(Review review, out string message)
         {
@@ -79,6 +84,7 @@ namespace Projekat.Repository.Impl
                 return default(Review);
             }
             Review added = reviewDao.AddReview(review);
+            product.Reviews.Add(added.ID);
             return added;
         }
 
@@ -91,7 +97,7 @@ namespace Projekat.Repository.Impl
                 return default(Review);
             }
             User user = userDao.FindById(updatedReview.Reviewer);
-            if (user != default(User))
+            if (user == default(User))
             {
                 message = "Reviewer not found";
                 return default(Review);

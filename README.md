@@ -11,7 +11,7 @@ Korišćeni alati:
  - Visual Studio 2019
  - Postman
 
- # Planirani "Road Map" - (podložno izmenama)
+ # Planirani "Road Map"
  
  ## Web API
 
@@ -47,22 +47,22 @@ Korišćeni alati:
      - [X] Signup / Login 
      - [X] Product details with product reviews 
      - [X] Product multi-part search
-     - [ ] Product sorting
+     - [X] Product sorting
  - [X] Add user profile page
      - [X] Display profile info
      - [X] Edit profile
      - [X] Display favourite products for Buyer
      - [X] Display published products for Seller
-        - [ ] Filter products
-        - [ ] Sort products
+        - [X] Filter products
+        - [X] Sort products
      - [X] Display my orders
      - [X] Display my reviews
  - [X] Add admin dashboard
      - [X] Display profile info
      - [X] Display review awaiting approval
      - [X] Display all products
-        - [ ] Filter products
-        - [ ] Sort products
+        - [X] Filter products
+        - [X] Sort products
      - [X] Display all orders
         - [X] Allow order confirmation/cancelation
      - [X] Display all reviews
@@ -70,14 +70,14 @@ Korišćeni alati:
         - [X] Add new user
         - [X] Delete existing user
         - [X] Edit existing user
-        - [ ] Search users
-        - [ ] Sort users
+        - [X] Search users
+        - [X] Sort users
  - [X] Add/Edit product page
      - [X] Product form
      - [X] Image upload
  - [X] Add/Edit user page
      - [X] User form
-     - [ ] Separate edit form for Username and password
+     - [X] Separate edit form for Username and password
  - [X] Add/Edit review page
      - [X] Add review
      - [X] Image upload

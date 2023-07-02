@@ -77,9 +77,11 @@ Korišćeni alati:
      - [X] Image upload
  - [X] Add/Edit user page
      - [X] User form
+     - [ ] Separate edit form for Username and password
  - [X] Add/Edit review page
      - [X] Add review
      - [X] Image upload
      - [X] Edit review
- - [ ] Forms data validation across site. (Currently unavailable globally for easier debugging)
+ - [X] Site-wide input validation.
+ - [X] Show popup for API related errors.
  

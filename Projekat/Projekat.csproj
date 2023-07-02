@@ -148,6 +148,8 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Models\ChangePasswordRequest.cs" />
+    <Compile Include="Models\ChangeUsernameRequest.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\AddFavouriteRequest.cs" />
     <Compile Include="Models\LoginRequest.cs" />

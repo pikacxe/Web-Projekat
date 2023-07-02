@@ -14,7 +14,7 @@
                 <a href="index.html">EShop</a>
             </div>
             <div class="nav-links">
-                <div class="hide dropdown">
+                <div class="dropdown">
                     <a id="profile-name" href="#"></a>
                     <div class="dropdown-content">
                         <button id="logoutBtn" class="red-btn">Logout ➡️</button>
@@ -29,11 +29,11 @@
             <label>Product name</label>
             <input type="text" id="name" class="textbox" placeholder="Product name" required/>
             <label>Product price</label>
-            <input type="number" id="price" class="textbox" placeholder="123.45" required/>
+            <input type="number" id="price" class="textbox" min="0" placeholder="123.45" required/>
             <label>Product amount</label>
-            <input type="number" id="amount" class="textbox" placeholder="123" required/>
+            <input type="number" id="amount" step="1" class="textbox" placeholder="123" min="0" required/>
             <label>Description</label>
-            <textarea id="desc" class="textarea" required></textarea>
+            <textarea id="desc" class="textarea" placeholder="Product desctiption..." required></textarea>
             <label>City</label>
             <input type="text" id="city" class="textbox" placeholder="City" required/>
             <label>Product image</label>
@@ -41,6 +41,7 @@
             <div>
                 <button id="addBtn" class="green-btn">Add product</button>
                 <button id="uploadBtn"class="green-btn">Upload image</button>
+                <button class="red-btn" onclick="toProfile()">Cancel</button>
             </div>
         </div>
     </main>

@@ -14,7 +14,7 @@
                 <a href="index.html">EShop</a>
             </div>
             <div class="nav-links">
-                <div class="hide dropdown">
+                <div class="dropdown">
                     <a id="profile-name" href="#"></a>
                     <div class="dropdown-content">
                         <button id="logoutBtn" class="red-btn">Logout ➡️</button>
@@ -24,19 +24,20 @@
         </nav>
     </nav>
     <main class="content">
-        <h1 id="title"> Add a review</h1>
-        <form class="reviewForm">
-            <label>Title</label>
-            <input id="name" type="text" class="textbox" placeholder="Review title" required />
-            <label>Content</label>
-            <textarea id="content" type="text" class="textarea" placeholder="Review content..." required></textarea>
-            <label>Image</label>
-            <input id="imageUpload" type="file" class="textbox" required/>
-            <div>
-                <button id="addBtn" class="green-btn">Add review</button>
-                <button id="uploadBtn" class="green-btn">Upload image</button>
-            </div>
-        </form>
+            <h1 id="title" style="text-align:center"> Add a review</h1>
+            <form class="reviewForm">
+                <label>Title</label>
+                <input id="name" type="text" class="textbox" placeholder="Review title" required />
+                <label>Content</label>
+                <textarea id="content" type="text" class="textarea" placeholder="Review content..." required></textarea>
+                <label>Image</label>
+                <input id="imageUpload" type="file" class="textbox" required />
+                <div>
+                    <button id="addBtn" class="green-btn">Add review</button>
+                    <button id="uploadBtn" class="green-btn">Upload image</button>
+                    <button class="red-btn" onclick="toProfile()">Cancel</button>
+                </div>
+            </form>
     </main>
     <footer>
         © 2023 Ilija Spasic PR 34/2020

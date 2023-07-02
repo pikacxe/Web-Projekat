@@ -1,15 +1,19 @@
 ﻿$(document).ready(function () {
-    checkLogin().then(function(){
+    checkLogin().then(function () {
         let ID = new URL(window.location.href).searchParams.get("ID");
         if (ID != null) {
             $("#title").text("Edit user");
             $("#addBtn").text("Save");
             populateFields(ID);
-            $("#usrname").remove();
-            $("#usrlbl").remove();
-            $("#pswd").remove();
-            $("#pswdlbl").remove();
+            $("#usrname").addClass("hide");
+            $("#usrlbl").addClass("hide");
+            $("#pswd").addClass("hide");
+            $("#pswdlbl").addClass("hide");
             $("#addBtn").click({ id: ID }, updateUser);
+            $("#chgUsrname").removeClass("hide");
+            $("#chgUsrname").click({ id: ID }, changeUsername);
+            $("#chgPswd").removeClass("hide");
+            $("#chgPswd").click({ id: ID }, changePassword);
         }
         else if (role == "Administrator") {
             $("#addBtn").click({}, addUser);
@@ -19,6 +23,30 @@
         }
     });
 });
+
+let enable_usrname_change = false;
+function changeUsername(event) {
+    event.preventDefault();
+    $("#usrname").removeClass("hide");
+    $("#usrlbl").removeClass("hide").text("New username");
+    $("#chgUsrname").remove();
+    enable_usrname_change = true;
+    return;
+
+}
+
+let enable_pass_change = false;
+function changePassword(event) {
+    event.preventDefault();
+    $("#pswdlbl").removeClass("hide").text("New password");
+    $("#pswd").removeClass("hide");
+    $("#oldPswdlbl").removeClass("hide");
+    $("#oldPswd").removeClass("hide");
+    $("#chgPswd").remove();
+    enable_pass_change = true;
+    return;
+}
+
 
 let old_usrname;
 let old_pass = "placeholder";
@@ -44,7 +72,7 @@ function addUser(event) {
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
     return false;
@@ -57,7 +85,81 @@ function updateUser(event) {
         return;
     }
     user.ID = event.data.id;
+    if (enable_usrname_change) {
+        let usrname = $("#usrname").val().trim();
+        if (username == "") {
+            $("#usrname")[0].setCustomValidity("Username is required");
+            $("#usrname")[0].reportValidity();
+            return;
+        }
+        else {
+            $("#usrname")[0].setCustomValidity("");
+        }
+        let req = {
+            UserID: user.ID,
+            NewUsername: usrname
+        }
+        $.ajax({
+            url: api + "users/update-username/",
+            type: 'PUT',
+            contentType: "application/json",
+            data: JSON.stringify(req),
+            headers: { "Authorization": token },
+            success: function (response) {
+                enable_usrname_change = false;
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                let result = JSON.parse(xhr.responseText);
+                showApiMessage(result.Message, error);
+                return;
+            }
+        });
+    }
+
     user.Username = old_usrname;
+
+    if (enable_pass_change) {
+        let oldPswd = $("#oldPswd").val().trim();
+        let pswd = $("#pswd").val().trim();
+        if (oldPswd == "") {
+            $("#oldPswd")[0].setCustomValidity("Old password is required");
+            $("#oldPswd")[0].reportValidity();
+            return;
+        }
+        else {
+            $("#oldPswd")[0].setCustomValidity("");
+        }
+        if (pswd == "") {
+            $("#pswd")[0].setCustomValidity("New password is required");
+            $("#pswd")[0].reportValidity();
+            return;
+        }
+        else {
+            $("#pswd")[0].setCustomValidity("");
+        }
+        let req = {
+            UserID: user.ID,
+            OldPassword: oldPswd,
+            NewPassword: pswd
+        }
+        $.ajax({
+            url: api + "users/update-password/",
+            type: 'PUT',
+            contentType: "application/json",
+            data: JSON.stringify(req),
+            headers: { "Authorization": token },
+            success: function (response) {
+                enable_pass_change = false;
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                let result = JSON.parse(xhr.responseText);
+                showApiMessage(result.Message, error);
+                return;
+            }
+        });
+    }
     user.Password = old_pass;
     console.log(JSON.stringify(user));
     $.ajax({
@@ -72,10 +174,10 @@ function updateUser(event) {
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
-    return false;
+    return;
 }
 function populateFields(id) {
     $.ajax({
@@ -90,12 +192,11 @@ function populateFields(id) {
             $("#email").val(res.Email);
             $("#dob").val(new Date(res.DateOfBirth).toISOString().split("T")[0]);
             $("#role").val(res.RoleName);
-
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }
@@ -169,13 +270,13 @@ function validateUser() {
 
     let user = {
         Username: username,
-        Password:pass,
+        Password: pass,
         FirstName: firstname,
         LastName: lastname,
         Email: email,
         Gender: gender,
         DateOfBirth: dob,
-        Role:1
+        Role: 1
     };
     console.log(user);
     return user;

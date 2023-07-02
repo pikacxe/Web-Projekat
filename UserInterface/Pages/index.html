@@ -26,34 +26,42 @@
         </div>
     </nav>
     <main>
-        <div class="grid-header">
-            <h1>Proizvodi</h1>
-        </div>
-        <div class="grid-menu">
-            <div>
-                <label>Search</label>
-                <input id="name" type="search" placeholder="Search..." class="textbox" />
+        <div class="grid-container">
+            <div class="grid-header">
+                <h1>Products</h1>
             </div>
-            <br />
-            <div>
-                <label>Price (min - max)</label>
+            <div class="grid-filter">
+                <h1 style="text-align:center">Sort products</h1>
+                <button id="nameUp" onclick="sortName(false)" class="filter-button">Name ⬆️</button>
+                <button id="nameDown" onclick="sortName(true)" class="filter-button">Name ⬇️</button>
+                <button id="priceUp" onclick="sortPrice(false)" class="filter-button">Price ⬆️</button>
+                <button id="priceDown" onclick="sortPrice(true)" class="filter-button">Price ⬇️</button>
+                <button id="dateUp" onclick="sortDate(false)" class="filter-button">Date published ⬆️</button>
+                <button id="dateDown" onclick="sortDate(true)" class="filter-button">Date published ⬇️</button>
+            </div>
+            <div class="grid-menu">
+                <div>
+                    <label>Search</label>
+                    <input id="name" type="search" placeholder="Search..." class="textbox" />
+                </div>
                 <br />
-                <input id="min" type="number" value="0" min="0"/>
-                ➖
-                <input id="max" type="number" value="99999" min="0"/>
+                <div>
+                    <label>Price (min - max)</label>
+                    <br />
+                    <input id="min" type="number" value="0" min="0" />
+                    ➖
+                    <input id="max" type="number" value="99999" min="0" />
+                </div>
+                <br />
+                <div>
+                    <label>City</label>
+                    <input id="city" type="search" placeholder="City..." class="textbox" />
+                </div>
+                <br />
+                <button id="searchBtn" class="green-btn">Search</button>
             </div>
-            <br />
-            <div>
-                <label>City</label>
-                <input id="city" type="search" placeholder="City..." class="textbox" />
+            <div class="items-container grid-content">
             </div>
-            <br />
-            <button id="searchBtn" class="green-btn">Search</button>
-        </div>
-        <div class="items-container grid-content">
-        </div>
-        <div class="grid-footer">
-            <p id="error"></p>
         </div>
     </main>
     <footer>
@@ -63,6 +71,7 @@
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
     <script src="../JS/index.js"></script>
+    <script src="../JS/sorting.js"></script>
 </body>
 
 

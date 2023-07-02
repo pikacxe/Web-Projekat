@@ -1,4 +1,7 @@
-﻿$(document).ready(() => {
+﻿let filtered = []
+let products = []
+
+$(document).ready(() => {
     checkLogin().then(() => {
         let ID = new URL(window.location.href).searchParams.get("ID");
         if (!ID) {
@@ -22,6 +25,7 @@
                     generateOrdersDisplay(res.ID);
                     generateReviewsDisplay(res.ID);
                     $("#productAddBtn").remove();
+                    $("#filterBtns").remove();
                 }
                 else {
                     $("#reviews").addClass("hide");
@@ -34,7 +38,7 @@
             error: function (xhr, status, error) {
                 console.log(xhr.responseText);
                 let result = JSON.parse(xhr.responseText);
-                showApiError(result.Message, error);
+                showApiMessage(result.Message, error);
             }
         })
 
@@ -52,57 +56,66 @@ function generateProductDisplay(id) {
         headers: { "Authorization": token },
         contentType: "application/json",
         success: function (res) {
-            if (res.length > 0) {
-                let div = $(".products");
-                $.each(res, function (index, product) {
-                    // Check if product is available
-                    // Create the HTML elements for each product
-                    let productDiv = $("<div></div>").addClass("product");
-                    productDiv.attr("id", "product-" + product.ID);
-                    let text = $("<div></div>");
-                    let title = $("<h3></h3>").text(product.Name);
-                    let image = $("<img>").attr("src", imagesUrl + product.Image);
-                    image.click({ param1: product.Image }, open_img);
-                    let price = $("<p></p>").text(product.Price + "$");
-                    let action = $("<div></div>");
-                    action.addClass("product-action");
-                    text.append(title, price);
-                    text.click({ id: product.ID }, productDetails);
-                    if (role == "Seller") {
-                        let editBtn = $("<button>📝</button>");
-                        editBtn.addClass("icon-btn");
-                        editBtn.click({ id: product.ID }, editProduct);
-                        let deleteBtn = $("<button>❌</button>");
-                        deleteBtn.addClass("icon-btn");
-                        deleteBtn.click({ id: product.ID }, deleteProduct);
-                        action.append(editBtn, text, deleteBtn);
-                    }
-                    else {
-                        let placeholder = $("<span>&nbsp</span>");
-                        let placeholder1 = $("<span>&nbsp</span>");
-                        action.append(placeholder, text, placeholder1);
-                    }
-
-                    if (!product.isAvailable) {
-                        productDiv.addClass("unavailable");
-                    }
-
-                    // Append the elements to the container div
-                    productDiv.append(image, action);
-                    div.append(productDiv);
-                });
-            }
-            else {
-                let div = $(".products");
-                let message = $("<h2></h2>").text("No products found");
-                div.append(message);
-            }
+            products = res;
+            filtered = Array.from(products);
+            populateItems(filtered);
         },
         error: function (xhr, status, error) {
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
+}
+
+function populateItems(items) {
+    let div = $(".products");
+    div.empty();
+    if (items.length > 0) {
+        $.each(items, function (index, product) {
+            // Check if product is available
+            // Create the HTML elements for each product
+            let productDiv = $("<div></div>").addClass("product");
+            if (!product.isAvailable) {
+                productDiv.addClass("unavailable");
+            }
+            productDiv.attr("id", "product-" + product.ID);
+            let text = $("<div></div>");
+            let title = $("<h3></h3>").text(product.Name);
+            let image = $("<img>").attr("src", imagesUrl + product.Image);
+            image.click({ param1: product.Image }, open_img);
+            let price = $("<p></p>").text(product.Price + "$");
+            let action = $("<div></div>");
+            action.addClass("product-action");
+            text.append(title, price);
+            text.click({ id: product.ID }, productDetails);
+            if (role == "Seller") {
+                let editBtn = $("<button>📝</button>");
+                editBtn.addClass("icon-btn");
+                editBtn.click({ id: product.ID }, editProduct);
+                let deleteBtn = $("<button>❌</button>");
+                deleteBtn.addClass("icon-btn");
+                deleteBtn.click({ id: product.ID }, deleteProduct);
+                action.append(editBtn, text, deleteBtn);
+            }
+            else {
+                let placeholder = $("<span>&nbsp</span>");
+                let placeholder1 = $("<span>&nbsp</span>");
+                action.append(placeholder, text, placeholder1);
+            }
+
+            if (!product.isAvailable) {
+                productDiv.addClass("unavailable");
+            }
+
+            // Append the elements to the container div
+            productDiv.append(image, action);
+            div.append(productDiv);
+        });
+    }
+    else {
+        let message = $("<h2></h2>").text("No products found");
+        div.append(message);
+    }
 }
 
 function productDetails(event) {
@@ -123,7 +136,7 @@ function deleteProduct(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -149,7 +162,7 @@ function generateOrdersDisplay(id) {
                     let id = $("<td></td>").text(order.ID);
                     let product = $("<td></td>").text(order.ProductName);
                     let amount = $("<td></td>").text(order.Amount);
-                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleString(dateLocale, dateFormatOptions));
+                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleDateString(dateLocale));
                     let status = $("<td></td>").text(order.StatusMessage);
                     let actionBtn = $('<button></button>');
                     actionBtn.addClass("green-btn");
@@ -179,7 +192,7 @@ function generateOrdersDisplay(id) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -203,7 +216,7 @@ function OrderComplete(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -255,7 +268,7 @@ function generateReviewsDisplay(id) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }
@@ -278,7 +291,7 @@ function deleteReview(event) {
         error: function (xhr, statis, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }

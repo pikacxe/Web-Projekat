@@ -26,6 +26,8 @@
             <h1 id="title" style="text-align:center">Add seller</h1>
             <label id="usrlbl" for="usrname">Username</label>
             <input id="usrname" type="text" name="Username" placeholder="Username..." class="textbox" required />
+            <label id="oldPswdlbl" for="oldPswd" class="hide">Old password</label>
+            <input id="oldPswd" type="password" name="Password" placeholder="*********" class="hide textbox" required />
             <label id="pswdlbl" for="pswd">Password</label>
             <input id="pswd" type="password" name="Password" placeholder="*********" class="textbox" required />
             <label for="fname">Firstname</label>
@@ -43,9 +45,16 @@
             </div>
             <br />
             <label>Date of birth</label>
-            <input type="date" id="dob" class="textbox"  required/>
+            <input type="date" id="dob" class="textbox" required />
             <br />
-            <button id="addBtn" class="green-btn">Add</button>
+            <div class="chgBtns">
+                <button id="chgUsrname" class="green-btn hide">Change username?</button>
+                <button id="chgPswd" class="green-btn hide">Change password?</button>
+            </div>
+            <div class="chgBtns">
+                <button id="addBtn" class="green-btn">Add</button>
+                <button onclick="toProfile()" class="red-btn">Cancel</button>
+            </div>
         </div>
     </main>
     <footer>

@@ -78,9 +78,15 @@
             </div>
             <div class="items-container">
                 <h1 id="product-title">All products 📦</h1>
-                <div id="btnActions">
-                    <div id="sortBtns">
-
+                <div id="filterBtns">
+                    <div class="filter-buttons">
+                        <label><input type="checkbox" id="filterCheck" checked onchange="sortAvailable" /> Available</label>
+                        <button id="nameUp" onclick="sortName(false)" class="filter-button">Name ⬆️</button>
+                        <button id="nameDown" onclick="sortName(true)" class="filter-button">Name ⬇️</button>
+                        <button id="priceUp" onclick="sortPrice(false)" class="filter-button">Price ⬆️</button>
+                        <button id="priceDown" onclick="sortPrice(true)" class="filter-button">Price ⬇️</button>
+                        <button id="dateUp" onclick="sortDate(false)" class="filter-button">Date published ⬆️</button>
+                        <button id="dateDown" onclick="sortDate(true)" class="filter-button">Date published ⬇️</button>
                     </div>
                 </div>
                 <div class="products">
@@ -88,44 +94,76 @@
                 </div>
             </div>
             <div class="items-container">
-                <h1>All orders 📦</h1>
-                <table class="orders datatable">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Product name</th>
-                        <th>Amount</th>
-                        <th>Order date</th>
-                        <th>Order status</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="items-container">
                 <div class="profile-header">
                     <h1>All users 🤵</h1>
                     <button class="green-btn userAdd" id="userAddBtn">Add seller +</button>
                 </div>
                 <div id="btnActions">
-                    <div>
-                        <label>Search</label>
-                        <input type="text" id="userSearch" />
-                        <button id="btnSearch">Search</button>
+                    <div id="searchBtns">
+                        <div>
+                            <label>Firstname</label>
+                            <input type="search" id="searchFName" class="textbox" placeholder="Firstname..." />
+                        </div>
+                        <div>
+                            <label>Lastname</label>
+                            <input type="search" id="searchLName" class="textbox" placeholder="Lastname..." />
+                        </div>
+                        <div>
+                            <label>Date of birth</label><br />
+                            <label><input type="date" id="minDate" class="textbox" /> ➖ <input type="date" class="textbox" id="maxDate" /> </label>
+                        </div>
+                        <div>
+                            <label>Role</label><br />
+                            <select id="searchRole" class="textbox">
+                                <option value="-1" selected>Default</option>
+                                <option value="0">Buyer</option>
+                                <option value="1">Seller</option>
+                                <option value="2">Administrator</option>
+                            </select>
+                        </div>
+                        <button id="searchUser" onclick="searchUsers()" class="green-btn">Search</button>
                     </div>
-                    <div id="sortBtns">
-
+                    <div class="filter-buttons">
+                        <button id="nameUp" onclick="sortUserName(false)" class="filter-button">Name ⬆️</button>
+                        <button id="nameDown" onclick="sortUserName(true)" class="filter-button">Name ⬇️</button>
+                        <button id="priceUp" onclick="sortRole(false)" class="filter-button">Role ⬆️</button>
+                        <button id="priceDown" onclick="sortRole(true)" class="filter-button">Role ⬇️</button>
+                        <button id="dateUp" onclick="sortBirthDate(false)" class="filter-button">Date of birth ⬆️</button>
+                        <button id="dateDown" onclick="sortBirthDate(true)" class="filter-button">Date of birth ⬇️</button>
                     </div>
                 </div>
                 <table id="users" class="users datatable">
-                    <tr>
-                        <th>Username</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Gender</th>
-                        <th>Date of birth</th>
-                        <th>Action</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Gender</th>
+                            <th>Date of birth</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="items-container">
+                <h1>All orders 📦</h1>
+                <table class="orders datatable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Product name</th>
+                            <th>Amount</th>
+                            <th>Order date</th>
+                            <th>Order status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -137,6 +175,7 @@
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
     <script src="../JS/dashboard.js"></script>
+    <script src="../JS/sorting.js"></script>
 </body>
 
 

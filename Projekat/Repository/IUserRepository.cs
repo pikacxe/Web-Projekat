@@ -11,5 +11,6 @@ namespace Projekat.Repository
         User AddUser(User user);
         User UpdateUser(User updatedUser);
         User DeleteUser(int id);
+        string ChangeUsername(int userId, string newUsername);
     }
 }

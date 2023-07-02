@@ -76,5 +76,19 @@ namespace Projekat.Repository.Impl
             User user = userDao.UpdateUser(updatedUser);
             return user;
         }
+        public string ChangeUsername(int userId,string newUsername)
+        {
+            User user = userDao.FindById(userId);
+            if (user == default(User))
+            {
+                return "User not found";
+            }
+            if(GetAll().FirstOrDefault(x => x.Username == newUsername && !x.isDeleted) != default(User))
+            {
+                return "Username already taken";
+            }
+            user.Username = newUsername;
+            return string.Empty;
+        }
     }
 }

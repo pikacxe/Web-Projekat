@@ -1,4 +1,8 @@
-﻿$(document).ready(() => {
+﻿let filtered = [];
+let products = [];
+let filteredUsers = [];
+let usersList = []
+$(document).ready(() => {
     let ID = new URL(window.location.href).searchParams.get("ID");
     if (!ID) {
         window.location.href = web + "index.html";
@@ -50,44 +54,9 @@ function generateProductDisplay() {
         headers: { "Authorization": token },
         contentType: "application/json",
         success: function (res) {
-            if (res.length > 0) {
-                let div = $(".products");
-                $.each(res, function (index, product) {
-                    // Create the HTML elements for each product
-                    let productDiv = $("<div></div>").addClass("product");
-                    productDiv.attr("id", "product-" + product.ID);
-                    let text = $("<div></div>");
-                    let title = $("<h3></h3>").text(product.Name);
-                    let image = $("<img>").attr("src", imagesUrl + product.Image);
-                    image.click({ param1: product.Image }, open_img);
-                    let price = $("<p></p>").text(product.Price + "$");
-                    let action = $("<div></div>");
-                    action.addClass("product-action");
-                    text.append(title, price);
-                    text.click({ id: product.ID }, productDetails);
-                    let editBtn = $("<button>📝</button>");
-                    editBtn.addClass("icon-btn");
-                    editBtn.click({ id: product.ID }, editProduct);
-                    let deleteBtn = $("<button>❌</button>");
-                    deleteBtn.addClass("icon-btn");
-                    deleteBtn.click({ id: product.ID }, deleteProduct);
-                    action.append(editBtn, text, deleteBtn);
-
-                    // Can admin edit unavailable products?
-                    //    productDiv.addClass("unavailable");
-                    //    action.append(text);
-
-
-                    // Append the elements to the container div
-                    productDiv.append(image, action);
-                    div.append(productDiv);
-                });
-            }
-            else {
-                let div = $(".products");
-                let message = $("<h2></h2>").text("No products found");
-                div.append(message);
-            }
+            products = res;
+            filtered = Array.from(products);
+            populateItems(filtered);
         },
         error: function (xhr, status, error) {
             let div = $(".products");
@@ -95,6 +64,45 @@ function generateProductDisplay() {
             div.append(message);
         }
     })
+}
+
+function populateItems(items) {
+    let div = $(".products");
+    div.empty();
+    if (items.length > 0) {
+        $.each(items, function (index, product) {
+            // Create the HTML elements for each product
+            let productDiv = $("<div></div>").addClass("product");
+            if (!product.isAvailable) {
+                productDiv.addClass("unavailable");
+            }
+            productDiv.attr("id", "product-" + product.ID);
+            let text = $("<div></div>");
+            let title = $("<h3></h3>").text(product.Name);
+            let image = $("<img>").attr("src", imagesUrl + product.Image);
+            image.click({ param1: product.Image }, open_img);
+            let price = $("<p></p>").text(product.Price + "$");
+            let action = $("<div></div>");
+            action.addClass("product-action");
+            text.append(title, price);
+            text.click({ id: product.ID }, productDetails);
+            let editBtn = $("<button>📝</button>");
+            editBtn.addClass("icon-btn");
+            editBtn.click({ id: product.ID }, editProduct);
+            let deleteBtn = $("<button>❌</button>");
+            deleteBtn.addClass("icon-btn");
+            deleteBtn.click({ id: product.ID }, deleteProduct);
+            action.append(editBtn, text, deleteBtn);
+
+            // Append the elements to the container div
+            productDiv.append(image, action);
+            div.append(productDiv);
+        });
+    }
+    else {
+        let message = $("<h2></h2>").text("No products found");
+        div.append(message);
+    }
 }
 
 function productDetails(event) {
@@ -134,7 +142,7 @@ function generateOrdersDisplay() {
                     let id = $("<td></td>").text(order.ID);
                     let product = $("<td></td>").text(order.ProductName);
                     let amount = $("<td></td>").text(order.Amount);
-                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleString(dateLocale, dateFormatOptions));
+                    let date = $("<td></td>").text(new Date(order.OrderDate).toLocaleDateString(dateLocale));
                     let status = $("<td></td>").text(order.StatusMessage);
                     status.attr("id", "order-status-" + order.ID);
                     let deliverBtn = $('<button></button>');
@@ -224,7 +232,7 @@ function generateReviewsDisplay() {
                         div.append(title, content, image, actions);
                         $("#approved").append(div);
                     }
-                    else if(review.isDenied) {
+                    else if (review.isDenied) {
                         let message = $("<h2></h2>");
                         message.text("Denied");
                         message.addClass("red-text");
@@ -244,7 +252,7 @@ function generateReviewsDisplay() {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }
@@ -269,7 +277,7 @@ function denyReview(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -287,12 +295,11 @@ function approveReview(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
 
-let usersList;
 function generateUsersDisplay() {
     $.ajax({
         url: api + "users/all/",
@@ -302,6 +309,7 @@ function generateUsersDisplay() {
         success: function (res) {
             if (res.length > 0) {
                 usersList = res;
+                filteredUsers = Array.from(usersList);
                 populateUserTable(usersList);
             }
             else {
@@ -315,7 +323,7 @@ function generateUsersDisplay() {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 
@@ -336,14 +344,15 @@ function deleteUser(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }
 
 function populateUserTable(users) {
+    let table = $(".users tbody");
+    table.empty();
     if (users.length == 0) {
-        let table = $(".users");
         let tr = $("<tr></tr>");
         let message = $('<td colspan=6></td>').text("No users found");
         tr.append(message);
@@ -351,7 +360,6 @@ function populateUserTable(users) {
     }
     else {
         $.each(users, function (index, user) {
-            let table = $(".users");
             let tr = $("<tr></tr>");
             let usrname = $("<td></td>").text(user.Username);
             let fname = $("<td></td>").text(user.FirstName);
@@ -375,4 +383,26 @@ function populateUserTable(users) {
             table.append(tr);
         });
     }
+}
+
+function searchUsers() {
+    let fname = new RegExp($("#searchFName").val().trim().toLowerCase());
+    let lname = new RegExp($("#searchLName").val().trim().toLowerCase());
+    let dobMin = new Date($("#minDate").val());
+    let dobMax = new Date($("#maxDate").val());
+    let role = $("#searchRole").val();
+    filteredUsers = usersList;
+    if (fname) {
+        filteredUsers = filteredUsers.filter(x => x.FirstName.toLowerCase().match(fname));
+    }
+    if (lname) {
+        filteredUsers = filteredUsers.filter(x => x.LastName.toLowerCase().match(lname));
+    }
+    if (!isNaN(dobMin) && !isNaN(dobMax)) {
+        filteredUsers = filteredUsers.filter(x => new Date(x.DateOfBirth) >= dobMin && new Date(x.DateOfBirth) <= dobMax);
+    }
+    if (role != -1) {
+        filteredUsers = filteredUsers.filter(x => x.Role == role);
+    }
+    populateUserTable(filteredUsers);
 }

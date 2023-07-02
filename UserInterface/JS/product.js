@@ -47,7 +47,7 @@ function updateProduct(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -78,7 +78,7 @@ function addProduct(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
@@ -99,7 +99,7 @@ function populateFields(productId) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
 
     })
@@ -139,7 +139,7 @@ function UploadImage(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }

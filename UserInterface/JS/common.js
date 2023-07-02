@@ -9,14 +9,6 @@ let isLoggedIn = false;
 let favourites = [];
 let username;
 let profileUrl;
-const dateFormatOptions = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour12: false,
-    hour: '2-digit',
-    minute: '2-digit'
-};
 const dateLocale = "en-GB";
 
 async function checkLogin() {
@@ -26,7 +18,7 @@ async function checkLogin() {
             type: "GET",
             headers: {
                 "Authorization": token
-            }
+            }        
         });
         role = response.Role;
         currentID = response.ID;
@@ -73,7 +65,17 @@ function open_img(event) {
     window.open(imagesUrl + event.data.param1, "_blank");
 }
 
-function showApiError(message, error) {
+
+function toProfile() {
+    if (profileUrl) {
+        window.location.href = profileUrl;
+    }
+    else {
+        window.location.href = web + "index.html";
+    }
+}
+
+function showApiMessage(message, error) {
     let div = $("<div></div>");
     let popup = $("<div></div>");
     popup.addClass("error-popup");

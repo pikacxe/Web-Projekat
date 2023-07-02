@@ -27,11 +27,10 @@
     </nav>
     <main class="content">
         <div id="product-display">
-            <div class="grid-amount">
-                <p id="amount-label">Amount to buy:</p>
-                <input type="number" id="buy-amount" class="textbox" min="0" value="0" required/>
-                <p id="product-amount"></p>
-            </div>
+            <label id="amount-label" class="grid-amount">
+                Amount to buy: <input type="number" id="buy-amount" step="1" class="textbox" min="0" value="0" required />
+                <span id="product-amount"></span>
+            </label>
             <ul class="grid-buttons">
                 <li>
                     <button id="btnBuy" class="green-btn">Buy</button>

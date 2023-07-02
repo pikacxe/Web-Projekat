@@ -71,7 +71,7 @@ function populateFields(reviewId) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }
@@ -108,7 +108,7 @@ function updateReview(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
 
     })
@@ -142,7 +142,7 @@ function createReview(event) {
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     })
 }

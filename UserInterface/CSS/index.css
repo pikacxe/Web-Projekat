@@ -1,11 +1,14 @@
-﻿main {
+﻿.grid-container {
     display: grid;
     padding: 20px 50px 20px 50px;
-    grid-template-areas: 'none header' 'menu content' 'other content' 'other footer';
-    grid-template-columns: 400px minmax(935px, 1fr);
-    grid-template-rows: 2rem minmax(350px, 1fr) minmax(400px,1fr) 2rem;
+    grid-template-areas: 'none header'
+        'menu content'
+        'filter content'
+        'temp content';
+    grid-template-columns: 300px minmax(600px, 1fr);
+    grid-template-rows: 2rem 350px 500px minmax(400px,1fr);
     background-color: lightgray;
-    height: 90vh;
+    min-width:1000px;
 }
 
 .grid-header {
@@ -36,8 +39,16 @@
     grid-area: content;
 }
 
-.grid-footer {
-    grid-area: footer;
+.grid-filter {
+    grid-area: filter;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-weight: 600;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border: 1px groove black;
+    background-color: whitesmoke;
 }
 
 .items-container {
@@ -55,8 +66,8 @@
 
 .product {
     display: inline-block;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     margin: 1.25rem;
     font-size: 1.25rem;
     text-align: center;
@@ -75,5 +86,7 @@
     .product img {
         width: 100%;
         height: 70%;
+        object-fit:contain;
+        border-bottom:1px solid darkgray;
         border-radius: 1rem 1rem 0 0;
     }

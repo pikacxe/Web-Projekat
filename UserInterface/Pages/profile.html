@@ -69,6 +69,17 @@
                     <h1 id="product-title">My published products 📦</h1>
                     <button class="green-btn productAdd" id="productAddBtn">Add product +</button>
                 </div>
+                <div id="filterBtns">
+                    <div class="filter-buttons">
+                        <label><input type="checkbox" id="filterCheck" checked onchange="sortAvailable" /> Available</label>
+                        <button id="nameUp" onclick="sortName(false)" class="filter-button">Name ⬆️</button>
+                        <button id="nameDown" onclick="sortName(true)" class="filter-button">Name ⬇️</button>
+                        <button id="priceUp" onclick="sortPrice(false)" class="filter-button">Price ⬆️</button>
+                        <button id="priceDown" onclick="sortPrice(true)" class="filter-button">Price ⬇️</button>
+                        <button id="dateUp" onclick="sortDate(false)" class="filter-button">Date published ⬆️</button>
+                        <button id="dateDown" onclick="sortDate(true)" class="filter-button">Date published ⬇️</button>
+                    </div>
+                </div>
                 <div class="products">
 
                 </div>
@@ -101,6 +112,7 @@
     <script src="../Scripts/jquery-3.7.0.js"></script>
     <script src="../JS/common.js"></script>
     <script src="../JS/profile.js"></script>
+    <script src="../JS/sorting.js"></script>
 </body>
 
 

@@ -84,6 +84,7 @@
     <Content Include="JS\login.js" />
     <Content Include="JS\profile.js" />
     <Content Include="JS\register.js" />
+    <Content Include="JS\sorting.js" />
     <Content Include="JS\user.js" />
     <Content Include="Pages\review.html" />
     <Content Include="Pages\dashboard.html" />

@@ -1,4 +1,10 @@
-﻿.reviewForm{
-    width:50%;
+﻿.reviewForm {
+    width:60%;
+    min-width: 600px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     align-self:center;
+    vertical-align: top;
 }

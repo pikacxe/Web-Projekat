@@ -53,7 +53,7 @@
             },
             error: function (xhr, status, error) {
                 let result = JSON.parse(xhr.responseText);
-                showApiError(result.Message, error);
+                showApiMessage(result.Message, error);
                 history.back();
             }
         });
@@ -83,7 +83,7 @@
             },
             error: function (xhr, status, error) {
                 let result = JSON.parse(xhr.responseText);
-                showApiError(result.Message, error);
+                showApiMessage(result.Message, error);
             }
         });
     });
@@ -97,6 +97,10 @@ function proccedToLogin() {
 function Order(event) {
     let product = event.data.id;
     let amount = $("#buy-amount").val();
+    if (amount <= 0) {
+        showApiMessage("Amount must be greater than zero", "Order error");
+        return;
+    }
     let buyer = currentID;
     let order = {
         Product: product,
@@ -115,7 +119,7 @@ function Order(event) {
         error(xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
 
     });
@@ -146,7 +150,7 @@ function AddToFavourites(event) {
         error(xhr, status, error) {
             console.log(xhr.responseText);
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }

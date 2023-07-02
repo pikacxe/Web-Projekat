@@ -94,6 +94,10 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Invalid data");
             }
+            if(user.Role == UserType.Administrator)
+            {
+                return BadRequest("Cannot add new Administrator");
+            }
             user.Password = HashPassword(user.Password);
             User added = userRepo.AddUser(user);
             if (added == default(User))
@@ -138,9 +142,46 @@ namespace Projekat.Controllers
             {
                 return BadRequest("Selected user does not exist");
             }
-            user.Password = HashPassword(user.Password);
             return Ok(userRepo.UpdateUser(user));
         }
+
+        [HttpPut]
+        [ActionName("update-username")]
+        public IHttpActionResult UpdateUsername([FromBody] ChangeUsernameRequest req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid data");
+            }
+            string result = userRepo.ChangeUsername(req.UserID, req.NewUsername);
+            if(result != string.Empty)
+            {
+                return BadRequest(result);
+            }
+            return Ok("Username changed succesfully");
+        }
+
+        [HttpPut]
+        [ActionName("update-password")]
+        public IHttpActionResult UpdatePassword([FromBody] ChangePasswordRequest req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid data");
+            }
+            User user = userRepo.FindById(req.UserId);
+            if(user == default(User))
+            {
+                return BadRequest("No account associated with provided username!");
+            }
+            if (!VerifyPassword(req.OldPassword, user.Password))
+            {
+                return BadRequest("Old password provided is incorect");
+            }
+            user.Password = HashPassword(req.NewPassword);
+            return Ok("Password changed succesfully");
+        }
+
         [HttpDelete]
         [ActionName("delete")]
         [Authorize(Roles = "Administrator")]

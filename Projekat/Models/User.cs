@@ -26,6 +26,8 @@ namespace Projekat.Models
         [Required(AllowEmptyStrings = false,
             ErrorMessage = "Last name is invalid!")]
         public string LastName { get; set; }
+
+        public string FullName { get => FirstName + " " + LastName; }
         [Required(AllowEmptyStrings = false,
             ErrorMessage = "Gender is invalid!")]
         public string Gender { get; set; }

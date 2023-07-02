@@ -18,7 +18,7 @@
             </ul>
         </div>
     </nav>
-    <main>
+    <main class="content">
         <form class="signup-form">
             <h1 style="text-align:center">Sign up</h1>
             <label for="usrname">Username</label>
@@ -26,9 +26,9 @@
             <label for="pswd">Password</label>
             <input id="pswd" type="password" name="Password" placeholder="*********" class="textbox" required />
             <label for="fname">Firstname</label>
-            <input id="fname" type="text" name="Firstname" placeholder="Firstname..." class="textbox" required/>
+            <input id="fname" type="text" pattern="[^0-9]" name="Firstname" placeholder="Firstname..." class="textbox" required/>
             <label for="lname">Lastname</label>
-            <input id="lname" type="text" name="Lastname" placeholder="Lastname..." class="textbox" required />
+            <input id="lname" type="text" pattern="[^0-9]" name="Lastname" placeholder="Lastname..." class="textbox" required />
             <label for="email">Email</label>
             <input id="email" type="email" name="Email" placeholder="example@example.com" class="textbox" required/>
             <label>Gender</label>

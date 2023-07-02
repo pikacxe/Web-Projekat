@@ -22,7 +22,7 @@ function Signup(event) {
         },
         error: function (xhr, status, error) {
             let result = JSON.parse(xhr.responseText);
-            showApiError(result.Message, error);
+            showApiMessage(result.Message, error);
         }
     });
 }
